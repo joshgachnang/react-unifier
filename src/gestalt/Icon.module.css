@@ -1,0 +1,13 @@
+.icon {
+  fill: currentColor;
+  stroke-width: 0;
+  vertical-align: middle;
+}
+
+.iconBlock {
+  composes: block from "./Layout.module.css";
+}
+
+html[dir="rtl"] .rtlSupport {
+  transform: rotateY(180deg);
+}

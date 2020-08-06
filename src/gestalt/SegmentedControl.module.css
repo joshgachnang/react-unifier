@@ -1,0 +1,29 @@
+.SegmentedControl {
+  composes: borderBox from "./Layout.module.css";
+  composes: lightGrayBg from "./Colors.module.css";
+  composes: flex from "./Layout.module.css";
+  composes: justifyBetween from "./Layout.module.css";
+  composes: rounding2 from "./Borders.module.css";
+  padding: 2px;
+  user-select: none;
+}
+
+.item {
+  composes: accessibilityOutline from "./Focus.module.css";
+  composes: flexGrow from "./Layout.module.css";
+  composes: m0 from "./Whitespace.module.css";
+  composes: noBorder from "./Borders.module.css";
+  composes: pointer from "./Cursor.module.css";
+  border-radius: 6px;
+  flex-basis: 0;
+  flex-shrink: 1;
+  padding: 4px 14px;
+}
+
+.itemIsNotSelected {
+  background: transparent;
+}
+
+.itemIsSelected {
+  composes: whiteBg from "./Colors.module.css";
+}

@@ -1,0 +1,43 @@
+.touchable {
+  composes: accessibilityOutline from "./Focus.module.css";
+}
+
+.fullHeight {
+  height: 100%;
+}
+
+.fullWidth {
+  composes: xsCol12 from "./Column.module.css";
+}
+
+.pointer {
+  composes: pointer from "./Cursor.module.css";
+}
+
+.zoomIn {
+  composes: zoomIn from "./Cursor.module.css";
+}
+
+.zoomOut {
+  composes: zoomOut from "./Cursor.module.css";
+}
+
+.copy {
+  composes: copy from "./Cursor.module.css";
+}
+
+.move {
+  composes: move from "./Cursor.module.css";
+}
+
+.noDrop {
+  composes: noDrop from "./Cursor.module.css";
+}
+
+.grab {
+  composes: grab from "./Cursor.module.css";
+}
+
+.grabbing {
+  composes: grabbing from "./Cursor.module.css";
+}

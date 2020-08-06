@@ -1,0 +1,12 @@
+.textArea {
+  composes: borderBox from "./Layout.module.css";
+  composes: Text fontSize3 from "./Text.module.css";
+  composes: leadingTall from "./Typography.module.css";
+  composes: xsCol12 from "./Column.module.css";
+  padding: 8px 16px;
+  resize: none;
+}
+
+.textArea::placeholder {
+  color: #8e8e8e;
+}

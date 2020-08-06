@@ -1,0 +1,13 @@
+.select {
+  composes: Text fontSize3 from "./Text.module.css";
+  composes: darkGray from "./Colors.module.css";
+  composes: pointer from "./Cursor.module.css";
+  composes: relative from "./Layout.module.css";
+  composes: transparentBg from "./Colors.module.css";
+  composes: xsCol12 from "./Column.module.css";
+  padding: 0 35px 0 16px; /* right padding prevents it from running into arrow */
+}
+
+.select::-ms-expand {
+  display: none;
+}
