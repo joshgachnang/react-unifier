@@ -24,6 +24,9 @@ export const Texts = () => (
     {renderText("gray", {color: "gray"})}
     {renderText("lightGray", {color: "lightGray"})}
     {renderText("primary", {color: "primary"})}
+    {renderText("secondary", {color: "secondary"})}
+    {renderText("tertiary", {color: "tertiary"})}
+    {renderText("accent", {color: "accent"})}
     {renderText("red", {color: "red"})}
     {renderText("bold", {weight: "bold"})}
     {renderText("italic", {italic: true})}
