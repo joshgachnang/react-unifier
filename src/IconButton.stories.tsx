@@ -30,6 +30,29 @@ export const IconButtons = () => (
       icon="plus"
       prefix="fas"
       accessibilityLabel="label"
+      iconColor="secondary"
+      onClick={() => {}}
+    />
+    <IconButton
+      icon="plus"
+      prefix="fas"
+      accessibilityLabel="label"
+      iconColor="primary"
+      onClick={() => {}}
+    />
+    <IconButton
+      icon="plus"
+      prefix="fas"
+      accessibilityLabel="label"
+      iconColor="primary"
+      onClick={() => {}}
+      size="xl"
+    />
+
+    <IconButton
+      icon="plus"
+      prefix="fas"
+      accessibilityLabel="label"
       iconColor="primary"
       onClick={() => {}}
       bgColor="lightGray"

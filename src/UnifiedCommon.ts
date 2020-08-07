@@ -680,8 +680,10 @@ export interface IconButtonProps {
   accessibilityLabel: string;
   iconColor: "darkGray" | ButtonColor | ThemeColor | Color;
   onClick: () => void;
-  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  size?: IconSize;
   bgColor?: "transparent" | "transparentDarkGray" | "gray" | "lightGray" | "white"; // default transparent
+  disabled?: boolean;
+  selected?: boolean;
 }
 
 export interface NavigatorProps {
