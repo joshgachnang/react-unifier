@@ -200,7 +200,7 @@ class ContactsPage extends React.Component<Props, State> {
           renderItem={(item: {item: Contact}) => this.renderContact(item.item)}
           renderSectionHeader={({section: {title}}) => (
             <Box color="white">
-              <Text bold={true}>{title}</Text>
+              <Text weight="bold">{title}</Text>
             </Box>
           )}
           sections={[

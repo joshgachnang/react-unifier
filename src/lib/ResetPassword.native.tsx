@@ -98,7 +98,7 @@ class ResetPasswordPage extends React.Component<Props, State> {
       <Box color="white" paddingX={3} paddingY={6} scroll={true}>
         {this.state.statusText !== "" && (
           <Box paddingY={3}>
-            <Text bold={true}>{this.state.statusText}</Text>
+            <Text weight="bold">{this.state.statusText}</Text>
           </Box>
         )}
         <Box>

@@ -18,7 +18,7 @@ export class WithLabel extends React.Component<WithLabelProps, {}> {
         >
           {this.props.labelPlacement !== "after" && (
             <Box paddingY={1}>
-              <Text size={this.props.labelSize} color={labelColor || "darkGray"} bold={true}>
+              <Text size={this.props.labelSize} color={labelColor || "darkGray"} weight="bold">
                 {label}
               </Text>
             </Box>

@@ -113,7 +113,7 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
         {Boolean(this.props.children) && this.props.children}
         {Boolean(this.props.text) && (
           <Text
-            bold={true}
+            weight="bold"
             color={this.getTextColor(color as Color)}
             size={this.props.size}
             skipLinking={true}

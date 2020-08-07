@@ -47,7 +47,7 @@ export class Banner extends React.Component<BannerProps, BannerState> {
         }}
       >
         <Box marginLeft={3} flex="grow" display="flex" justifyContent="center" alignItems="center">
-          <Text align="center" color={this.props.textColor || "white"} bold={true}>
+          <Text align="center" color={this.props.textColor || "white"} weight="bold">
             {this.props.text}
           </Text>
           {this.props.subtext && (

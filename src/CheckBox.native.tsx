@@ -62,12 +62,12 @@ export class CheckBoxWithLabel extends React.Component<CheckBoxWithLabelProps, {
           <Text
             numberOfLines={this.props.subLabel ? 1 : 2}
             color={this.props.labelColor || "darkGray"}
-            bold={true}
+            weight="bold"
           >
             {this.props.label}
           </Text>
           {Boolean(this.props.subLabel) && (
-            <Text size="sm" color={this.props.labelColor || "darkGray"} bold={true}>
+            <Text size="sm" color={this.props.labelColor || "darkGray"} weight="bold">
               {this.props.subLabel}
             </Text>
           )}

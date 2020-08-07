@@ -81,7 +81,7 @@ const API_BASE_URL = "https://api.idleinbox.com";
 //       return (
 //         <>
 //           <Box paddingY={2}>
-//             <Text bold={true} align="center" color="white">
+//             <Text weight="bold" align="center" color="white">
 //               Please enter your phone number:
 //             </Text>
 //           </Box>
@@ -213,7 +213,7 @@ class EmailSignUp extends React.Component<SignUpFormProps, EmailSignupState> {
     return (
       <Box maxWidth={600} width="100%">
         {/* <Box paddingY={2}>
-          <Text color="white" bold={true} align="center">
+          <Text color="white" weight="bold" align="center">
             Sign Up Now!
           </Text>
         </Box> */}
@@ -235,7 +235,7 @@ class EmailSignUp extends React.Component<SignUpFormProps, EmailSignupState> {
           </Box>
 
           <Box paddingY={1} marginBottom={2}>
-            <Text bold={true} color="white">
+            <Text weight="bold" color="white">
               {this.state.username}@idleinbox.com
             </Text>
           </Box>
@@ -332,7 +332,7 @@ class EmailLogIn extends React.Component<SignUpFormProps, EmailLoginState> {
     return (
       <Box maxWidth={600}>
         <Box paddingY={2}>
-          <Text color="white" bold={true}>
+          <Text color="white" weight="bold">
             Please enter your details to log in:
           </Text>
         </Box>
@@ -418,14 +418,14 @@ export class SignUpForm extends React.Component<
           )}
           {Boolean(this.props.title) && (
             <Box paddingY={4}>
-              <Heading align="center" color="white" bold={true} size="lg">
+              <Heading align="center" color="white" weight="bold" size="lg">
                 {this.props.title}
               </Heading>
             </Box>
           )}
           {Boolean(this.props.explainer) && (
             <Box paddingY={2}>
-              <Text align="center" bold={true} color="white">
+              <Text align="center" weight="bold" color="white">
                 {this.props.explainer}
               </Text>
             </Box>
@@ -502,7 +502,7 @@ export class SignUpForm extends React.Component<
 //   text(message: string, size: "xl" | "lg" | "md" = "md") {
 //     return (
 //       <Box paddingY={1}>
-//         <Text bold={true} size={size} align="center" color="white">
+//         <Text weight="bold" size={size} align="center" color="white">
 //           {message}
 //         </Text>
 //       </Box>

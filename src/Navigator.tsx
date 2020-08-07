@@ -394,7 +394,7 @@ export class NavigatorBare extends React.Component<NavigatorProps, NavigatorStat
                 />
               </Box>
               <Box display="flex" flex="grow" justifyContent="center" alignItems="center">
-                <Text size="lg" bold={true} color="white" align="center">
+                <Text size="lg" weight="bold" color="white" align="center">
                   {title}
                 </Text>
               </Box>

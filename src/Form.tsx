@@ -20,7 +20,7 @@ interface FormLineProps {
   value: any;
   onSave: (value: any) => void;
   kind: "boolean" | "string" | "textarea" | "select" | "multiboolean";
-  options?: string[];
+  options?: (string | undefined)[];
 }
 
 interface FormLineState {
@@ -38,12 +38,12 @@ export class FormLine extends React.Component<FormLineProps, FormLineState> {
     return (
       <>
         <Box marginRight={2}>
-          <Text bold={true}>{this.props.name}</Text>
+          <Text weight="bold">{this.props.name}</Text>
         </Box>
         <Box display="flex" direction="column">
           {Object.keys(this.props.value).map((k) => (
             <>
-              <Text bold={true}>{k}</Text>
+              <Text weight="bold">{k}</Text>
               <Switch
                 switched={this.state.value[k]}
                 onChange={() =>
@@ -62,7 +62,7 @@ export class FormLine extends React.Component<FormLineProps, FormLineState> {
     return (
       <>
         <Box marginRight={2}>
-          <Text bold={true}>{this.props.name}</Text>
+          <Text weight="bold">{this.props.name}</Text>
         </Box>
         <Switch
           switched={this.state.value}
@@ -77,7 +77,7 @@ export class FormLine extends React.Component<FormLineProps, FormLineState> {
     return (
       <>
         <Box marginRight={2}>
-          <Text bold={true}>{this.props.name}</Text>
+          <Text weight="bold">{this.props.name}</Text>
         </Box>
         <TextField
           value={this.state.value}
@@ -92,7 +92,7 @@ export class FormLine extends React.Component<FormLineProps, FormLineState> {
     return (
       <>
         <Box marginRight={2}>
-          <Text bold={true}>{this.props.name}</Text>
+          <Text weight="bold">{this.props.name}</Text>
         </Box>
         <TextArea
           value={this.state.value}
@@ -108,7 +108,7 @@ export class FormLine extends React.Component<FormLineProps, FormLineState> {
     return (
       <>
         <Box marginRight={2}>
-          <Text bold={true}>{this.props.name}</Text>
+          <Text weight="bold">{this.props.name}</Text>
         </Box>
         <SelectList
           id={this.props.name}
@@ -142,7 +142,7 @@ export class FormLine extends React.Component<FormLineProps, FormLineState> {
             onClick={() => this.setState({editing: true, value: this.props.value})}
           />
           <Box marginRight={2}>
-            <Text bold={true}>{this.props.name}: </Text>
+            <Text weight="bold">{this.props.name}: </Text>
           </Box>
           <Text>{text}</Text>
         </Box>

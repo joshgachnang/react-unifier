@@ -20,7 +20,7 @@ export class ActionBanner extends React.Component<ActionBannerProps, {}> {
         }}
       >
         <Box marginLeft={3} flex="grow" display="flex" justifyContent="center" alignItems="center">
-          <Text align="center" color={this.props.textColor || "white"} bold={true}>
+          <Text align="center" color={this.props.textColor || "white"} weight="bold">
             {this.props.text}
           </Text>
         </Box>

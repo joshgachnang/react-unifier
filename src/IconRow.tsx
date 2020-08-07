@@ -33,7 +33,7 @@ export class IconRow extends React.Component<IconRowProps, {}> {
             <Icon prefix="fas" name={this.props.icon} size={18} />
           </Box>
           <Box paddingX={2} flex="shrink" marginLeft={1} display="flex" justifyContent="center">
-            <Text bold={true}>{this.props.label}</Text>
+            <Text weight="bold">{this.props.label}</Text>
           </Box>
         </Box>
         <Box display="flex" flex="grow" justifyContent="center">

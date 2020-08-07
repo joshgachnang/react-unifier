@@ -87,7 +87,7 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
         )}
         {Boolean(this.props.text) && (
           <Text
-            bold={true}
+            weight="bold"
             // TODO: this shouldn't be a text color.
             color={this.getTextColor(color) as TextColor}
             size={this.props.size}

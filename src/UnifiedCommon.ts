@@ -469,7 +469,6 @@ export type IconPrefix = "far" | "fal" | "fas" | "fab";
 
 export interface TextProps {
   align?: "left" | "right" | "center" | "justify"; // default "left"
-  bold?: boolean; // default false
   children?: ReactNode;
   color?: TextColor | ThemeColor;
 

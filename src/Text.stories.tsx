@@ -42,7 +42,7 @@ export const Truncate = () => (
     </Box>
     <Box marginBottom={2}>
       <Text weight="bold">breakWord:</Text>
-      <Text>
+      <Text overflow="breakWord">
         This is a long and Supercalifragilisticexpialidocious sentence.
         次の単語グレートブリテンおよび北アイルランド連合王国で本当に大きな言葉
         ｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗ&#39;
@@ -50,7 +50,7 @@ export const Truncate = () => (
     </Box>
     <Box marginBottom={2}>
       <Text weight="bold">truncate:</Text>
-      <Text truncate>
+      <Text truncate={true}>
         This is a long and Supercalifragilisticexpialidocious sentence.
         次の単語グレートブリテンおよび北アイルランド連合王国で本当に大きな言葉
         ｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗ&#39;

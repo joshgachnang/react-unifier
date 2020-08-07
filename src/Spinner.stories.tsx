@@ -1,26 +1,26 @@
 import React from "react";
 import {Spinner} from "./Spinner";
-import {Box} from "../Box/Box";
+import {Box} from "./Box";
 
 export default {
   title: "Spinner",
   component: Spinner,
 };
 
-export const NormalSpinner = () => (
+export const SmallSpinner = () => (
   <Box width="100%">
-    <Spinner />
+    <Spinner size="sm" />
   </Box>
 );
 
 export const BigSpinner = () => (
-  <Box height={400} width={400}>
-    <Spinner size="10x" />
+  <Box display="flex">
+    <Spinner size="md" />
   </Box>
 );
 
 export const DarkSpinner = () => (
   <Box color="darkGray" paddingY={6}>
-    <Spinner color="#fff" />
+    <Spinner color="white" />
   </Box>
 );

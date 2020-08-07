@@ -24,7 +24,7 @@ export class ErrorPage extends React.Component<ErrorPageProps, {}> {
         direction="column"
         padding={6}
       >
-        <Text color="red" size="lg" bold={true} align="center">
+        <Text color="red" size="lg" weight="bold" align="center">
           Oops!
         </Text>
         <Box paddingY={3}>

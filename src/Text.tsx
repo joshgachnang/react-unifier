@@ -4,9 +4,9 @@ import {TextProps, TextColor} from "./UnifiedCommon";
 
 export class Text extends React.Component<TextProps, {}> {
   render() {
-    const {color, bold, ...rest} = this.props;
+    const {color, ...rest} = this.props;
     return (
-      <GestaltText color={color as TextColor} {...rest} weight={bold ? "bold" : "normal"}>
+      <GestaltText color={color as TextColor} {...rest}>
         {this.props.children}
       </GestaltText>
     );

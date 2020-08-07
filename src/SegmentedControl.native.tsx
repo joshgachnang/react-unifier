@@ -5,9 +5,9 @@ import {SegmentedControlProps} from "./UnifiedCommon";
 
 export class SegmentedControl extends React.Component<SegmentedControlProps, {}> {
   renderItem(item: string | React.ReactNode) {
-    return <Text bold={true}>{item}</Text>;
+    return <Text weight="bold">{item}</Text>;
     // if (typeof item === "string") {
-    //   return <Text bold={true}>{item}</Text>;
+    //   return <Text weight="bold">{item}</Text>;
     // } else {
     //   return item;
     // }

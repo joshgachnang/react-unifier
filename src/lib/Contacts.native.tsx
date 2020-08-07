@@ -308,7 +308,7 @@ export class ContactsPicker extends React.Component<ContactsPickerProps, Contact
             renderItem={(item: {item: RNContact}) => this.renderContact(item.item)}
             renderSectionHeader={({section: {title}}) => (
               <Box color="white">
-                <Text bold={true}>{title}</Text>
+                <Text weight="bold">{title}</Text>
               </Box>
             )}
             sections={sections}
