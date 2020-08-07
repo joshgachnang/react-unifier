@@ -71,26 +71,3 @@ export default function IconButton({
     </button>
   );
 }
-
-IconButton.propTypes = {
-  accessibilityExpanded: PropTypes.bool,
-  accessibilityHaspopup: PropTypes.bool,
-  accessibilityLabel: PropTypes.string.isRequired,
-  bgColor: PropTypes.oneOf([
-    "transparent",
-    "transparentDarkGray",
-    "gray",
-    "lightGray",
-    "white",
-    "blue",
-  ]),
-  dangerouslySetSvgPath: PropTypes.shape({
-    __path: PropTypes.string,
-  }),
-  disabled: PropTypes.bool,
-  icon: PropTypes.oneOf(Object.keys(icons)),
-  iconColor: PropTypes.oneOf(["gray", "darkGray", "red", "blue", "white", "orange"]),
-  onClick: PropTypes.func,
-  selected: PropTypes.bool,
-  size: PropTypes.oneOf(["xs", "sm", "md", "lg", "xl"]),
-};
