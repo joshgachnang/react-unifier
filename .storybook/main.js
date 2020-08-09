@@ -1,10 +1,17 @@
 module.exports = {
-  stories: ["../src/**/*.stories.tsx"],
+  stories: ["../src/**/*.stories.(tsx|mdx)"],
   addons: [
     "@storybook/preset-create-react-app",
     "@storybook/addon-actions",
     "@storybook/addon-links",
-    "@storybook/addon-docs",
+    {
+      name: "@storybook/addon-docs",
+      options: {
+        configureJSX: true,
+        babelOptions: {},
+        sourceLoaderOptions: null,
+      },
+    },
   ],
   webpackFinal: async (config) => {
     config.module.rules.push({

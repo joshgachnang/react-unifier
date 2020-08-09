@@ -1,13 +1,13 @@
-import * as React from "react";
-import {COLOR_MAP, IconProps, iconNumberToSize, iconSizeToNumber} from "./UnifiedCommon";
-import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
-
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {fas} from "@fortawesome/free-solid-svg-icons";
 import {far} from "@fortawesome/free-regular-svg-icons";
+import {fas} from "@fortawesome/free-solid-svg-icons";
 import {fal as proFal} from "@fortawesome/pro-light-svg-icons";
 import {far as proFar} from "@fortawesome/pro-regular-svg-icons";
 import {fas as proFas} from "@fortawesome/pro-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
+import * as React from "react";
+import {iconNumberToSize, IconProps, iconSizeToNumber} from "./UnifiedCommon";
+import {Unifier} from "./Unifier";
 
 library.add(fas);
 library.add(far);

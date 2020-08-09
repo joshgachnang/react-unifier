@@ -8,7 +8,7 @@ export * from "./Button";
 export * from "./Camera";
 export * from "./CameraView";
 export * from "./Card";
-export * from "./CheckBox";
+export * from "./Checkbox";
 export * from "./ErrorBoundary";
 export * from "./ErrorPage";
 export * from "./FlatList";

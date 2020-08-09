@@ -109,6 +109,10 @@ export class NavigatorBare extends React.Component<NavigatorProps, NavigatorStat
       web: true,
       dev: true,
       tracking: Tracking,
+      storage: {
+        getItem: async (key: string) => localStorage && localStorage.getItem(key),
+        setItem: (key: string, item: any) => localStorage && localStorage.setItem(key, item),
+      },
       theme: {
         primaryLighter: "#457b9d",
         primaryLight: "#457b9d",
@@ -195,6 +199,7 @@ export class NavigatorBare extends React.Component<NavigatorProps, NavigatorStat
         openUrl: async (url: string) => {
           window.open(url);
         },
+        platform: () => "web",
       },
       navigation: {
         bindComponent: (component: React.Component<any>) => {

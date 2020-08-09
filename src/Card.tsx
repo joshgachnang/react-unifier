@@ -6,15 +6,13 @@ export class Card extends React.Component<BoxProps, {}> {
   render() {
     return (
       <Box
-        direction="row"
+        direction="column"
         display="flex"
-        color={this.props.color}
+        color={this.props.color || "white"}
         shape="rounded"
-        // shadow={true}
-        marginBottom={4}
-        // marginLeft={2}
-        // marginRight={2}
-        width="100%"
+        shadow={true}
+        padding={this.props.padding || 4}
+        width={this.props.width}
         {...this.props}
       >
         {this.props.children}

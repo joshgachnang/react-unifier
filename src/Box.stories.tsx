@@ -1,6 +1,6 @@
 import React from "react";
 import {Box} from "./Box";
-import {AllColors, ThemeColor, Color} from "./UnifiedCommon";
+import {Color, ThemeColor} from "./UnifiedCommon";
 
 export default {
   title: "Box",
@@ -22,7 +22,7 @@ export const FlexBox = () => (
     >
       <h2>JG</h2>
     </Box>
-    <Box paddingX={2}>
+    <Box paddingX={2} direction="column">
       <div>
         <b>Josh Gachnang</b>
       </div>

@@ -1,8 +1,12 @@
+import {library} from "@fortawesome/fontawesome-svg-core";
+import {faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import * as React from "react";
 import {Box} from "./Box";
-import {Text} from "./Text";
 import {IconButton} from "./IconButton";
+import {Text} from "./Text";
 import {ActionBannerProps, ButtonColor} from "./UnifiedCommon";
+
+library.add(faArrowRight);
 
 export class ActionBanner extends React.Component<ActionBannerProps, {}> {
   render() {

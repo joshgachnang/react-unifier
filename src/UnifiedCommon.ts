@@ -487,10 +487,11 @@ export interface TextProps {
 
 export interface ActionBannerProps {
   text: string;
-  color?: BoxColor;
+  color?: AllColors;
   textColor?: TextColor;
   negativeXMargin?: number;
   onClick: () => void;
+  shape?: BoxShape;
 }
 
 export interface ActionSheetProps {
@@ -508,11 +509,22 @@ export interface BannerProps {
   textColor?: TextColor;
   negativeXMargin?: number;
   bold?: boolean;
+  shape?: BoxShape;
 }
 
 export interface BlurBoxProps extends BoxProps {
   blurType?: "regular" | "dark" | "prominent";
 }
+
+export type BoxShape =
+  | "square"
+  | "rounded"
+  | "pill"
+  | "circle"
+  | "roundedTop"
+  | "roundedBottom"
+  | "roundedLeft"
+  | "roundedRight";
 
 export interface BoxProps {
   alignContent?: AlignContent;
@@ -590,15 +602,7 @@ export interface BoxProps {
   lgPaddingY?: UnsignedUpTo12;
   position?: "static" | "absolute" | "relative" | "fixed";
   right?: boolean;
-  shape?:
-    | "square"
-    | "rounded"
-    | "pill"
-    | "circle"
-    | "roundedTop"
-    | "roundedBottom"
-    | "roundedLeft"
-    | "roundedRight";
+  shape?: BoxShape;
   rounding?: "pill" | "circle" | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
   top?: boolean;
   width?: number | string;

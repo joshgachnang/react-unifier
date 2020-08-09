@@ -86,6 +86,17 @@ export type UnifiedLayout = Layout;
 export type UnifiedLayoutOptions = Options;
 export type UnifiedLayoutRoot = LayoutRoot;
 
+export interface UnifiedStorage {
+  getItem: (key: string) => Promise<any>;
+  setItem: (key: string, item: any) => void;
+}
+
+const StubStorage: UnifiedStorage = {
+  getItem: async () => {},
+  setItem: () => {},
+};
+
+export type PlatformOS = "ios" | "android" | "web";
 export interface UnifiedUtils {
   dismissKeyboard: () => void;
   dimensions: () => {height: number; width: number};
@@ -96,6 +107,7 @@ export interface UnifiedUtils {
   vibrate: (pattern?: number[]) => void;
   haptic: () => void;
   openUrl: (url: string) => Promise<void>;
+  platform: () => PlatformOS;
 }
 
 const StubUtils: UnifiedUtils = {
@@ -111,6 +123,7 @@ const StubUtils: UnifiedUtils = {
   vibrate: (pattern?: number[]) => {},
   haptic: () => {},
   openUrl: async (url: string) => {},
+  platform: () => "web",
 };
 
 const StubTracking: TrackerInterface = {
@@ -205,6 +218,7 @@ export interface AppConfig {
   navigation: UnifiedNavigation;
   tracking: TrackerInterface;
   utils: UnifiedUtils;
+  storage: UnifiedStorage;
 }
 
 class UnifierClass {
@@ -212,6 +226,7 @@ class UnifierClass {
   private _theme?: UnifiedThemeConfig;
   private _tracking?: TrackerInterface;
   private _utils?: UnifiedUtils;
+  private _storage?: UnifiedStorage;
   private _web = false;
   private _dev = false;
 
@@ -282,6 +297,13 @@ class UnifierClass {
     //   throw new Error("[unifier] You must call setConfig before using utils.");
     // }
     return this._utils;
+  }
+
+  get storage(): UnifiedStorage {
+    if (!this._storage) {
+      return StubStorage;
+    }
+    return this._storage;
   }
 
   constructor() {
