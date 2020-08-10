@@ -1,6 +1,6 @@
 import React from "react";
 import {Box} from "./Box";
-import {Color, ThemeColor} from "./UnifiedCommon";
+import {Color, ThemeColor, AllColors} from "./UnifiedCommon";
 
 export default {
   title: "Box",
@@ -31,7 +31,7 @@ export const FlexBox = () => (
   </Box>
 );
 
-const colors: (Color | ThemeColor)[] = [
+const colors: AllColors[] = [
   "primary",
   "secondary",
   "tertiary",
@@ -53,6 +53,10 @@ const colors: (Color | ThemeColor)[] = [
   "red",
   "watermelon",
   "white",
+  "neutral900",
+  "neutral200",
+  "neutral70",
+  "neutral10",
 ];
 
 export const BoxColors = () => (

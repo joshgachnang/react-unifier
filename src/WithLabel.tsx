@@ -6,6 +6,10 @@ import {WithLabelProps} from "./UnifiedCommon";
 export class WithLabel extends React.Component<WithLabelProps, {}> {
   render() {
     const {label, labelInline, labelColor, children} = this.props;
+    // If show is undefined or true, show, only hide for actual false for simplicity.
+    if (this.props.show === false) {
+      return children;
+    }
     if (!children) {
       return null;
     }

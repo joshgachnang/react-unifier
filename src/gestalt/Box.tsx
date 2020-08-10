@@ -137,7 +137,26 @@ interface BoxProps {
     | "accentLight"
     | "accent"
     | "accentDark"
-    | "accentDarker";
+    | "accentDarker"
+    | "neutral900"
+    | "neutral800"
+    | "neutral700"
+    | "neutral600"
+    | "neutral500"
+    | "neutral400"
+    | "neutral300"
+    | "neutral200"
+    | "neutral100"
+    | "neutral90"
+    | "neutral80"
+    | "neutral70"
+    | "neutral60"
+    | "neutral50"
+    | "neutral40"
+    | "neutral30"
+    | "neutral20"
+    | "neutral10";
+
   fit?: boolean;
   flex?: "grow" | "shrink" | "none";
   height?: number | string;
@@ -369,6 +388,24 @@ const COLOR_MAPPING = mapping({
   accent: colors.accentBg,
   accentDark: colors.accentDarkBg,
   accentDarker: colors.accentDarkerBg,
+  neutral900: colors.neutral900,
+  neutral800: colors.neutral800,
+  neutral700: colors.neutral700,
+  neutral600: colors.neutral600,
+  neutral500: colors.neutral500,
+  neutral400: colors.neutral400,
+  neutral300: colors.neutral300,
+  neutral200: colors.neutral200,
+  neutral100: colors.neutral100,
+  neutral90: colors.neutral90,
+  neutral80: colors.neutral80,
+  neutral70: colors.neutral70,
+  neutral60: colors.neutral60,
+  neutral50: colors.neutral50,
+  neutral40: colors.neutral40,
+  neutral30: colors.neutral30,
+  neutral20: colors.neutral20,
+  neutral10: colors.neutral10,
   // default: transparent
 });
 

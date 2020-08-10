@@ -1,21 +1,27 @@
+import isDate from "lodash/isDate";
+import isNumber from "lodash/isNumber";
 import moment from "moment";
 import * as React from "react";
-import {OnChangeResult, TextFieldType} from "./UnifiedCommon";
 import {Box} from "./Box";
 import {SelectList} from "./SelectList";
 import {Switch} from "./Switch";
 import {TextArea} from "./TextArea";
 import {TextField} from "./TextField";
+import {OnChangeResult, SelectListOptions, TextFieldType} from "./UnifiedCommon";
 import {WithLabel} from "./WithLabel";
+
 interface Props {
   name: string;
   label?: string;
   initialValue?: any;
   handleChange: any;
-  validate?: any;
+  // Additional validation
+  validate?: (value: any) => boolean;
+  validateErrorMessage?: string;
   help?: string;
   type?:
     | "boolean"
+    | "email"
     | "text"
     | "textarea"
     | "number"
@@ -26,7 +32,7 @@ interface Props {
     | "url"
     | "date";
   rows?: number;
-  options?: any;
+  options?: SelectListOptions;
   placeholder?: string;
   disabled?: boolean;
 }
@@ -67,8 +73,49 @@ export class Field extends React.Component<Props, State> {
     }
   };
 
+  validate = () => {
+    console.log("VALIDATE", this.props.validate && this.props.validate(this.state.value));
+    if (this.props.validate && !this.props.validate(this.state.value)) {
+      return false;
+    }
+    switch (this.props.type) {
+      case "boolean":
+        return true;
+      case "currency":
+        return true;
+      case "date":
+        return !this.state.value || isDate(this.state.value);
+      case "email":
+        return (
+          !this.state.value ||
+          (this.state.value.search("@") > -1 && this.state.value.search(".") > -1)
+        );
+      case "number":
+        return !this.state.value || isNumber(this.state.value);
+      case "password":
+        return true;
+      case "percent":
+        return !this.state.value || isNumber(this.state.value.replace("%", ""));
+      case "select":
+        return true;
+      case "text":
+      case undefined: // text is default
+        return true;
+      case "textarea":
+        return true;
+      case "url":
+        return true;
+      default:
+        return true;
+    }
+  };
+
   renderField() {
     if (this.props.type === "select") {
+      if (!this.props.options) {
+        console.error("Field with type=select require options");
+        return null;
+      }
       return (
         <SelectList
           id={this.props.name}
@@ -86,6 +133,7 @@ export class Field extends React.Component<Props, State> {
           onChange={this.handleChange}
           value={String(this.state.value)}
           disabled={this.props.disabled}
+          rows={this.props.rows}
         />
       );
     } else if (this.props.type === "boolean") {
@@ -151,9 +199,26 @@ export class Field extends React.Component<Props, State> {
   }
 
   render() {
+    let children = this.renderField();
+
     return (
       <Box marginBottom={5}>
-        <WithLabel label={this.props.label}>{this.renderField()}</WithLabel>
+        <WithLabel
+          show={Boolean(this.props.help)}
+          label={this.props.help}
+          labelPlacement="after"
+          labelSize="sm"
+        >
+          <WithLabel
+            show={!this.validate()}
+            label={this.props.validateErrorMessage || "Invalid"}
+            labelPlacement="after"
+            labelSize="md"
+            labelColor="red"
+          >
+            <WithLabel label={this.props.label}>{children}</WithLabel>
+          </WithLabel>
+        </WithLabel>
       </Box>
     );
   }

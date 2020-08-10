@@ -10,6 +10,7 @@ export default {
 interface State {
   boolean: boolean;
   withLabel: boolean;
+  primary: boolean;
   small: boolean;
 }
 
@@ -19,6 +20,7 @@ class Forms extends React.Component<{}, State> {
     this.state = {
       boolean: false,
       withLabel: false,
+      primary: false,
       small: false,
     };
   }
@@ -38,7 +40,15 @@ class Forms extends React.Component<{}, State> {
           onChange={(result) => this.setState({withLabel: result.value})}
         />
         <CheckBoxWithLabel
-          id="withLabel"
+          id="primary"
+          checked={this.state.primary}
+          label="Primary Color"
+          color="primary"
+          labelColor="primary"
+          onChange={(result) => this.setState({primary: result.value})}
+        />
+        <CheckBoxWithLabel
+          id="small"
           checked={this.state.small}
           label="Small"
           size="sm"

@@ -625,7 +625,7 @@ export interface BoxProps {
   onLayout?: (event: any) => void;
 }
 
-export type BoxColor = Color | ThemeColor | "transparent";
+export type BoxColor = AllColors | "transparent";
 
 export interface ButtonProps {
   text: string;
@@ -774,6 +774,7 @@ export interface TextAreaProps {
 }
 
 export interface WithLabelProps {
+  show?: boolean;
   label?: string;
   labelInline?: boolean;
   labelColor?: Color;
@@ -839,10 +840,11 @@ export interface ImageProps {
   style?: any;
 }
 
+export type SelectListOptions = {label: string; value: string}[];
 export interface SelectListProps {
   id?: string;
   name?: string;
-  options: {label: string; value: string}[];
+  options: SelectListOptions;
   onChange: ({event, value}: {event: any; value: string}) => void;
   value?: string;
   disabled?: boolean;
@@ -868,13 +870,13 @@ export interface CheckboxProps {
   name?: string;
   onClick?: any;
   size?: "sm" | "md";
-  color?: Color | ThemeColor;
+  color?: AllColors;
 }
 
 export interface CheckBoxWithLabelProps extends CheckboxProps {
   label: string;
   subLabel?: string;
-  labelColor?: Color;
+  labelColor?: AllColors;
 }
 
 export interface RadioButtonProps {
@@ -884,7 +886,7 @@ export interface RadioButtonProps {
   disabled?: boolean;
   name?: string;
   size?: "sm" | "md";
-  color?: Color | ThemeColor;
+  color?: AllColors;
 }
 
 export interface RadioButtonWithLabelProps extends RadioButtonProps {
