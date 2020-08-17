@@ -804,12 +804,15 @@ export interface SpinnerProps {
 }
 
 export interface MaskProps {
+  children?: any;
   shape?: "circle" | "rounded" | "square";
   height?: number | string;
   width?: number | string;
   maxHeight?: number | string;
   maxWidth?: number | string;
   rounding?: "circle" | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  willChangeTransform?: boolean;
+  wash?: boolean;
 }
 
 export interface IconRowProps {
@@ -825,6 +828,8 @@ export interface LinkProps {
   onClick?: () => void;
   target?: null | "blank";
 }
+
+export type Rounding = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | "circle";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HeadingProps {
