@@ -812,9 +812,28 @@ export interface MaskProps {
   rounding?: "circle" | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 }
 
+export interface IconRowProps {
+  icon: string;
+  label: string;
+  value: string;
+}
+
+export interface LinkProps {
+  href?: string;
+  inline?: boolean;
+  children?: any;
+  onClick?: () => void;
+  target?: null | "blank";
+}
+
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface HeadingProps extends TextProps {
+export interface HeadingProps {
+  align?: "left" | "right" | "center" | "justify"; // default "left"
+  children?: ReactNode;
+  color?: AllColors;
+  overflow?: "normal" | "breakWord"; // default "breakWord"
   size?: "sm" | "md" | "lg";
+  truncate?: boolean; // default false
 }
 
 export interface MetaProps {

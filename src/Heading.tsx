@@ -33,7 +33,6 @@ export function Heading(props: HeadingProps) {
     align = "left",
     children,
     color = "darkGray",
-    // id = null,
     overflow = "normal",
     size = "lg",
     truncate = false,
@@ -51,7 +50,10 @@ export function Heading(props: HeadingProps) {
   );
 
   const headingLevel = defaultHeadingLevels[size];
-  let newProps: {[key: string]: any} = {className: cs, style: {color: Unifier.theme[color]}};
+  let newProps: {[key: string]: any} = {
+    className: cs,
+    style: {color: Unifier.theme[color]},
+  };
 
   if (truncate && typeof children === "string") {
     newProps = {...newProps, title: children};

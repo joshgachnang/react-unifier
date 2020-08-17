@@ -1,31 +1,49 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import * as React from "react";
-import {Box} from "./Box";
-import {Text} from "./Text";
-import {TextProps} from "./UnifiedCommon";
-import {Unifier} from "./Unifier";
+import {LinkProps} from "./UnifiedCommon";
+const styles = require("./gestalt/Link.module.css");
+import cx from "classnames";
 
-interface Props extends TextProps {
-  url: string;
-}
+const TAB_KEY_CODE = 9;
 
-export class Link extends React.Component<Props, {}> {
-  render() {
-    return (
-      <Box
-        onClick={() =>
-          Unifier.utils
-            .openUrl(this.props.url)
-            .catch((err: any) => console.error("An error occurred", err))
-        }
-      >
-        <Text
-          bold={this.props.bold !== undefined ? this.props.bold : true}
-          color={this.props.color || "blue"}
-          skipLinking={true}
-        >
-          {this.props.children}
-        </Text>
-      </Box>
-    );
-  }
+export function Link({children, href, inline = false, onClick, target = null}: LinkProps) {
+  const [enableFocusStyles, setEnableFocusStyles] = React.useState(true);
+  const rel = target === "blank" ? "noopener noreferrer" : undefined;
+  const linkTarget = target ? `_${target}` : undefined;
+
+  const handleClick = (_event: React.MouseEvent) => {
+    if (onClick && href) {
+      onClick();
+    }
+  };
+
+  const handleMouseDown = () => {
+    if (target === "blank" && href) {
+      setEnableFocusStyles(false);
+    }
+  };
+
+  const handleKeyUp = (event: React.KeyboardEvent) => {
+    if (target === "blank" && event.keyCode === TAB_KEY_CODE && href) {
+      setEnableFocusStyles(true);
+    }
+  };
+
+  return (
+    <a
+      className={cx(
+        styles.link,
+        enableFocusStyles ? styles.accessibleFocusStyle : "",
+        inline ? "" : styles.block
+      )}
+      href={href}
+      onMouseDown={handleMouseDown}
+      onKeyUp={handleKeyUp}
+      onClick={handleClick}
+      rel={rel}
+      target={linkTarget}
+    >
+      {children}
+    </a>
+  );
 }

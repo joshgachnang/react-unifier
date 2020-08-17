@@ -16,7 +16,6 @@ export * from "./HeaderButtons";
 export * from "./Heading";
 export * from "./Icon";
 export * from "./IconButton";
-export * from "./IconRow";
 export * from "./Image";
 export * from "./ImageBackground";
 export * from "./Layout";

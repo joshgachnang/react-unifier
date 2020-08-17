@@ -1,15 +1,14 @@
 import React from "react";
 import {Box} from "./Box";
 import {Heading} from "./Heading";
-import {Text} from "./Text";
-import {TextProps} from "./UnifiedCommon";
+import {HeadingProps} from "./UnifiedCommon";
 
 export default {
   title: "Heading",
   component: Heading,
 };
 
-function renderText(text: string, props: Partial<TextProps>) {
+function renderText(text: string, props: Partial<HeadingProps>) {
   return (
     <Box width="100%" paddingY={1}>
       <Heading {...props}>{text}</Heading>
@@ -20,7 +19,7 @@ function renderText(text: string, props: Partial<TextProps>) {
 export const Headings = () => (
   <Box width="100%" height="100%" display="flex" direction="column">
     {renderText("Default Heading - h1", {})}
-    {/* {renderText("medium - h2", {size: "md"})}
+    {renderText("medium - h2", {size: "md"})}
     {renderText("small - h3", {size: "sm"})}
     {renderText("gray", {color: "gray"})}
     {renderText("lightGray", {color: "lightGray"})}
@@ -29,8 +28,6 @@ export const Headings = () => (
     {renderText("tertiary", {color: "tertiary"})}
     {renderText("accent", {color: "accent"})}
     {renderText("red", {color: "red"})}
-    {renderText("bold", {weight: "bold"})}
-    {renderText("italic", {italic: true})}
-    {renderText("center", {align: "center"})} */}
+    {renderText("center", {align: "center"})}
   </Box>
 );
