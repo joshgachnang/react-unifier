@@ -486,6 +486,7 @@ export interface TextProps {
 }
 
 export interface ActionBannerProps {
+  /** The text to show in the banner. */
   text: string;
   color?: AllColors;
   textColor?: TextColor;
@@ -1382,7 +1383,7 @@ export interface TrackerInterface {
   init: (config: TrackingConfig) => void;
   trackPages: () => void;
   setUser: (user: BaseProfile) => void;
-  setUserProperty: (property: string, value: string | object) => void;
+  setUserProperty: (property: string, value: string | {object}) => void;
   track: (eventName: string, properties?: TrackingProperties) => void;
   trackNavigation: (screen: string, properties?: TrackingProperties) => void;
   trackLogin: (method: string, success: boolean, properties?: TrackingProperties) => void;

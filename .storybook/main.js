@@ -1,18 +1,32 @@
 module.exports = {
   stories: ["../src/**/*.stories.(tsx|mdx)"],
   addons: [
-    "@storybook/preset-create-react-app",
+    "@storybook/addon-essentials",
     "@storybook/addon-actions",
     "@storybook/addon-links",
+    {
+      name: "@storybook/preset-create-react-app",
+      options: {
+        tsDocgenLoaderOptions: {},
+      },
+    },
     {
       name: "@storybook/addon-docs",
       options: {
         configureJSX: true,
         babelOptions: {},
-        sourceLoaderOptions: null,
       },
     },
   ],
+  typescript: {
+    check: false,
+    checkOptions: {},
+    reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+    },
+  },
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.(ts|tsx)$/,

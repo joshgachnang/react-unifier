@@ -73,27 +73,12 @@ export class FlatList extends React.Component<FlatListProps, {}> {
           display="flex"
           direction="row"
           width="100%"
-          justifyContent="center"
+          justifyContent="between"
         >
-          {/* <Masonry
-          minCols={numColumns}
-          columnWidth={getCardWidth()}
-          scrollContainer={() => this.scrollContainerRef.current as any}
-          items={items}
-          comp={Brick}
-          // virtualize={true}
-          // virtualBoundsTop={600}
-          // virtualBoundsBottom={600}
-          loadItems={() => {
-            onEndReached && onEndReached({distanceFromEnd: 0});
-          }}
-          // layout={UniformRowLayoutSymbol}
-          // flexible={true}
-        /> */}
-
           {[...Array(numColumns).keys()].map((col) => (
             <Box
               key={col}
+              display="flex"
               direction="column"
               dangerouslySetInlineStyle={columnWrapperStyle && {__style: columnWrapperStyle}}
             >

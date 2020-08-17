@@ -2,8 +2,7 @@
 
 import cx from "classnames";
 import * as React from "react";
-
-import {AllColors} from "./UnifiedCommon";
+import {TextProps} from "./UnifiedCommon";
 import {Unifier} from "./Unifier";
 
 const styles = require("./gestalt/Text.module.css");
@@ -15,21 +14,6 @@ const SIZE_SCALE: {[size: string]: number} = {
   lg: 3,
 };
 
-interface Props {
-  align?: "left" | "right" | "center" | "justify";
-  children?: React.ReactNode;
-  color?: AllColors;
-  inline?: boolean;
-  italic?: boolean;
-  overflow?: "normal" | "breakWord";
-  size?: "sm" | "md" | "lg";
-  leading?: "tall" | "short";
-  truncate?: boolean;
-  weight?: "bold" | "normal";
-  underline?: boolean;
-  __dangerouslyIncreaseLineHeight?: boolean;
-}
-
 export function Text({
   align = "left",
   children,
@@ -38,19 +22,18 @@ export function Text({
   italic = false,
   overflow = "normal",
   size = "lg",
-  leading,
+  // leading,
   truncate = false,
   weight = "normal",
   underline = false,
-  __dangerouslyIncreaseLineHeight = false,
-}: Props) {
+}: TextProps) {
   const scale = (SIZE_SCALE as any)[size];
 
   const cs = cx(
     styles.Text,
     styles[`fontSize${scale}`],
-    leading === "short" && typography.leadingShort,
-    (leading === "tall" || __dangerouslyIncreaseLineHeight) && typography.leadingTall,
+    // leading === "short" && typography.leadingShort,
+    // (leading === "tall" || __dangerouslyIncreaseLineHeight) && typography.leadingTall,
     align === "center" && typography.alignCenter,
     align === "justify" && typography.alignJustify,
     align === "left" && typography.alignLeft,

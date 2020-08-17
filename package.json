@@ -36,6 +36,7 @@
     "@babel/core": "7.9.0",
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/addon-docs": "^5.3.19",
+    "@storybook/addon-essentials": "^6.0.10",
     "@storybook/addon-info": "^5.3.19",
     "@storybook/addon-links": "^5.3.19",
     "@storybook/addons": "^5.3.19",
@@ -104,6 +105,7 @@
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "4.0.1",
     "prettier": "1.19.1",
+    "react-docgen-typescript": "^1.20.2",
     "react-docgen-typescript-loader": "^3.7.2",
     "resolve": "1.15.0",
     "resolve-url-loader": "3.1.1",
@@ -236,6 +238,7 @@
       }
     },
     "rules": {
+      "@typescript-eslint/explicit-module-boundary-types": "off",
       "@typescript-eslint/explicit-member-accessibility": "off",
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/no-empty-function": "off",

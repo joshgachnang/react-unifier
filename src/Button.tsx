@@ -26,6 +26,15 @@ const buttonTextColor: {[buttonColor: string]: "white" | "darkGray"} = {
   google: "white",
 };
 
+/**
+ * Buttons in React Unifier are normal buttons with a nicer UX than a typical button.
+ *
+ * They come in 3 different types (solid, ghost, text) and can use your theme's colors.
+ *
+ * The UX is nicer than a typical React or React Native button. When onClick is an asynchronous
+ * callback, you can have the button in a loading and disabled state until the callback finishes.
+ * Double clicks are filtered by default. They respond haptically where possible when tapped.
+ */
 export class Button extends React.Component<ButtonProps, ButtonState> {
   state = {loading: false};
   HEIGHTS = {
@@ -34,11 +43,11 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
     lg: 48,
   };
 
-  getBackgroundColor(color: AllColors | "transparent") {
+  getBackgroundColor(color: AllColors | "transparent"): string {
     if (this.props.type === "ghost" || this.props.type === "outline" || color === "transparent") {
       return "transparent";
     } else {
-      return Unifier.theme[color];
+      return Unifier.theme[color] as AllColors;
     }
   }
 
@@ -52,9 +61,9 @@ export class Button extends React.Component<ButtonProps, ButtonState> {
     }
   }
 
-  getBorderColor(color: AllColors) {
+  getBorderColor(color: AllColors): string {
     if (this.props.type === "outline") {
-      return Unifier.theme[this.getTextColor(color)];
+      return Unifier.theme[this.getTextColor(color)] as AllColors;
     } else {
       return "transparent";
     }

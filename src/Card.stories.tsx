@@ -7,7 +7,7 @@ export default {
   component: Card,
 };
 
-export const PlainBanner = () => (
+export const PlainCard = () => (
   <Box width="100%" height="100%" display="flex" direction="column" color="lightGray" padding={12}>
     <Card>
       <Box display="flex" direction="row" alignItems="center">
