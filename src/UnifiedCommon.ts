@@ -819,7 +819,7 @@ export interface IconRowProps {
 }
 
 export interface LinkProps {
-  href?: string;
+  href: string;
   inline?: boolean;
   children?: any;
   onClick?: () => void;
