@@ -1,5 +1,5 @@
 import React from "react";
-import {FieldWithLabelsProps} from "./UnifiedCommon";
+import {FieldWithLabelsProps} from "./Common";
 import {WithLabel} from "./WithLabel";
 
 export function FieldWithLabels({

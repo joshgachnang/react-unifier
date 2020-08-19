@@ -4,7 +4,7 @@ import {ActivityIndicator, TouchableOpacity} from "react-native";
 import {Box} from "./Box";
 import {Icon} from "./Icon";
 import {Text} from "./Text";
-import {ButtonProps, Color, COLOR_MAP, iconSizeToNumber} from "./UnifiedCommon";
+import {ButtonProps, Color, COLOR_MAP, iconSizeToNumber} from "./Common";
 import {Unifier} from "./Unifier";
 
 interface ButtonState {

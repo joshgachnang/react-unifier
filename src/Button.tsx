@@ -4,7 +4,7 @@ import * as React from "react";
 import {Box} from "./Box";
 import {Icon} from "./Icon";
 import {Text} from "./Text";
-import {ButtonProps, Color, iconSizeToNumber, AllColors, TextColor} from "./UnifiedCommon";
+import {ButtonProps, Color, iconSizeToNumber, AllColors, TextColor} from "./Common";
 import {Unifier} from "./Unifier";
 
 interface ButtonState {

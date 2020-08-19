@@ -3,7 +3,7 @@ import {Box} from "./Box";
 import {FlatList} from "./FlatList";
 import {Text} from "./Text";
 import {Card} from "./Card";
-import {FlatListProps} from "./UnifiedCommon";
+import {FlatListProps} from "./Common";
 
 export default {
   title: "FlatList",

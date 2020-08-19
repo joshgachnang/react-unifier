@@ -1,7 +1,7 @@
 import React from "react";
 import {Box} from "./Box";
 import {Heading} from "./Heading";
-import {HeadingProps} from "./UnifiedCommon";
+import {HeadingProps} from "./Common";
 
 export default {
   title: "Heading",

@@ -6,7 +6,7 @@ import {far as proFar} from "@fortawesome/pro-regular-svg-icons";
 import {fas as proFas} from "@fortawesome/pro-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import * as React from "react";
-import {iconNumberToSize, IconProps, iconSizeToNumber} from "./UnifiedCommon";
+import {iconNumberToSize, IconProps, iconSizeToNumber} from "./Common";
 import {Unifier} from "./Unifier";
 
 library.add(fas);

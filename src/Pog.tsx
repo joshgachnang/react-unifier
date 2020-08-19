@@ -2,8 +2,8 @@ import * as React from "react";
 import classnames from "classnames";
 import {Box} from "./Box";
 import {Icon} from "./Icon";
-import styles from "./gestalt/Pog.module.css";
-import {IconSize, IconPrefix, AllColors} from "./UnifiedCommon";
+import styles from "./Pog.module.css";
+import {IconSize, IconPrefix, AllColors} from "./Common";
 
 const SIZE_NAME_TO_PIXEL = {
   xs: 24,

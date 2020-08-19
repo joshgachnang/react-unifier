@@ -1,5 +1,5 @@
 import * as React from "react";
-import {BodyProps} from "./UnifiedCommon";
+import {BodyProps} from "./Common";
 
 export class Body extends React.Component<BodyProps, {}> {
   render() {

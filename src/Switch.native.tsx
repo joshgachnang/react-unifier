@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Switch as NativeSwitch} from "react-native";
-import {SwitchProps} from "./UnifiedCommon";
+import {SwitchProps} from "./Common";
 import {WithLabel} from "./WithLabel";
 
 export class Switch extends React.Component<SwitchProps, {}> {

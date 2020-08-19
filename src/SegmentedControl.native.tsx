@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Box} from "./Box";
 import {Text} from "./Text";
-import {SegmentedControlProps} from "./UnifiedCommon";
+import {SegmentedControlProps} from "./Common";
 
 export class SegmentedControl extends React.Component<SegmentedControlProps, {}> {
   renderItem(item: string | React.ReactNode) {

@@ -18,7 +18,7 @@ import {Heading} from "./Heading";
 import {Icon} from "./Icon";
 import {Text} from "./Text";
 import {Tracking} from "./lib/Tracking";
-import {PermissionKind, NavConfig} from "./UnifiedCommon";
+import {PermissionKind, NavConfig} from "./Common";
 import {IconButton} from "./IconButton";
 import {Button} from "./Button";
 

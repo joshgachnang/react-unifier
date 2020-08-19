@@ -1,17 +1,16 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import React from "react";
 import {Clipboard, Dimensions, Keyboard, Linking, Platform, Vibration} from "react-native";
 import "react-native-gesture-handler";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import {Navigation, Options} from "react-native-navigation";
-import {LayoutRoot} from "./navigation";
-import {Tracking} from "./lib/Tracking";
-import {Unifier, UnifiedLayoutOptions, UnifiedLayout} from "./Unifier";
-import {FONT_MAP, PermissionKind} from "./UnifiedCommon";
-import {withProfile} from "./react-firestorm/src";
+import {FONT_MAP, PermissionKind} from "./Common";
 import {RNNDrawer} from "./lib/Drawer";
 import {requestPermissions} from "./lib/Permissions";
 import {clearNotificationsForTab} from "./lib/PushNotifications";
+import {Tracking} from "./lib/Tracking";
+import {LayoutRoot} from "./navigation";
+import {withProfile} from "./react-firestorm/src";
+import {UnifiedLayout, UnifiedLayoutOptions, Unifier} from "./Unifier";
 
 interface WrapperProps {
   store: any;

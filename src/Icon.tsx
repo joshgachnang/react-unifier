@@ -1,5 +1,5 @@
 import * as React from "react";
-import {IconProps, iconNumberToSize} from "./UnifiedCommon";
+import {IconProps, iconNumberToSize} from "./Common";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 // import {library} from "@fortawesome/fontawesome-svg-core";

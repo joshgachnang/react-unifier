@@ -15,7 +15,7 @@ import {
   isTestUser,
   BaseProfile,
   TrackingConfig,
-} from "../UnifiedCommon";
+} from "../Common";
 import {Unifier} from "../Unifier";
 import {FireStorm} from "../..";
 

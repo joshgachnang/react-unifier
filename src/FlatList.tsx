@@ -1,6 +1,6 @@
 import React, {createRef} from "react";
 import {Box} from "./Box";
-import {FlatListProps} from "./UnifiedCommon";
+import {FlatListProps} from "./Common";
 
 // interface BrickProps {
 //   data: any;

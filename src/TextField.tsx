@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import classnames from "classnames";
 // export class TextField extends React.Component<TextFieldProps, {}> {
 //   render() {
@@ -22,15 +21,11 @@ import classnames from "classnames";
 //   }
 // }
 import * as React from "react";
-import {TextFieldProps} from "./UnifiedCommon";
+import {TextFieldProps} from "./Common";
 import {FieldWithLabels} from "./FieldWithLabels";
-
-const formElement = require("./gestalt/FormElement.module.css");
-// import FormErrorMessage from "./FormErrorMessage";
-// import FormHelperText from "./FormHelperText";
-// import FormLabel from "./FormLabel";
-const layout = require("./gestalt/Layout.module.css");
-const styles = require("./gestalt/TextField.module.css");
+import formElement from "./FormElement.module.css";
+import layout from "./Layout.module.css";
+import styles from "./TextField.module.css";
 
 interface State {
   focused: boolean;

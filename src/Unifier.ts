@@ -14,7 +14,7 @@ import {
   UnifiedTheme,
   BASE_THEME,
   UnifiedThemeConfig,
-} from "./UnifiedCommon";
+} from "./Common";
 
 const DefaultTheme: UnifiedTheme = {
   // Primary colors

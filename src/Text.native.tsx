@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Text as NativeText} from "react-native";
 import Hyperlink from "react-native-hyperlink";
-import {COLOR_MAP, FONT_MAP, TextProps} from "./UnifiedCommon";
+import {FONT_MAP, TextProps} from "./Common";
 
 export class Text extends React.Component<TextProps, {}> {
   fontSizes = {

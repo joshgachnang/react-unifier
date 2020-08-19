@@ -1,5 +1,5 @@
 import * as React from "react";
-import {TextAreaProps} from "./UnifiedCommon";
+import {TextAreaProps} from "./Common";
 
 export class TextArea extends React.Component<TextAreaProps, {}> {
   constructor(props: TextAreaProps) {

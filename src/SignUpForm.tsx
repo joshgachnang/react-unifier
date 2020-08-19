@@ -6,7 +6,7 @@ import {SubmittingForm} from "./SubmittingForm";
 import {Text} from "./Text";
 import {TextField} from "./TextField";
 import {Unifier} from "./Unifier";
-import {BaseProfile} from "./UnifiedCommon";
+import {BaseProfile} from "./Common";
 import {FireStorm} from "./react-firestorm/src";
 import axios from "axios";
 

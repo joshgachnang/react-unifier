@@ -1,18 +1,15 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import cx from "classnames";
 import * as React from "react";
-import {fromClassName, identity, Style, toProps} from "./gestalt/style";
-import {bind, range} from "./gestalt/transforms";
-import {MaskProps, Rounding} from "./UnifiedCommon";
+import borders from "./Borders.module.css";
+import {MaskProps, Rounding} from "./Common";
+import styles from "./Mask.module.css";
+import {bind, fromClassName, identity, range, Style, toProps} from "./Utilities";
 
-const styles = require("./gestalt/Mask.module.css");
-const borders = require("./gestalt/Borders.module.css");
-
-require("./gestalt/Typography.module.css");
+import "./Typography.module.css";
 
 const getRoundingStyle = (r: Rounding): Style => {
   if (typeof r === "number") {
-    return bind(range("rounding"), borders)(r);
+    return bind(range("rounding"), borders as any)(r);
   }
 
   if (r === "circle") {

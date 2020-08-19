@@ -2,7 +2,7 @@ import * as React from "react";
 import {Box} from "./Box";
 import {Icon} from "./Icon";
 import {Text} from "./Text";
-import {CheckboxProps, CheckBoxWithLabelProps} from "./UnifiedCommon";
+import {CheckboxProps, CheckBoxWithLabelProps} from "./Common";
 
 export class Checkbox extends React.Component<CheckboxProps> {
   render() {

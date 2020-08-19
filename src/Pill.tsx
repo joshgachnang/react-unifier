@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PillProps} from "./UnifiedCommon";
+import {PillProps} from "./Common";
 import {Box} from "./Box";
 import {Text} from "./Text";
 

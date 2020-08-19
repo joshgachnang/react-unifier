@@ -1,16 +1,15 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {faArrowDown} from "@fortawesome/free-solid-svg-icons";
 import classnames from "classnames";
 import * as React from "react";
 import {Box} from "./Box";
 import {Icon} from "./Icon";
-import {SelectListProps} from "./UnifiedCommon";
+import {SelectListProps} from "./Common";
 import {FieldWithLabels} from "./FieldWithLabels";
 
-const formElement = require("./gestalt/FormElement.module.css");
-const layout = require("./gestalt/Layout.module.css");
-const styles = require("./gestalt/SelectList.module.css");
+import layout from "./Layout.module.css";
+import formElement from "./FormElement.module.css";
+import styles from "./SelectList.module.css";
 
 library.add(faArrowDown);
 

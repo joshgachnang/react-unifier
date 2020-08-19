@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 import cx from "classnames";
 import * as React from "react";
-import {TextProps} from "./UnifiedCommon";
+import {TextProps} from "./Common";
 import {Unifier} from "./Unifier";
 
-const styles = require("./gestalt/Text.module.css");
-const typography = require("./gestalt/Typography.module.css");
+import styles from "./Text.module.css";
+import typography from "./Typography.module.css";
 
 const SIZE_SCALE: {[size: string]: number} = {
   sm: 1,

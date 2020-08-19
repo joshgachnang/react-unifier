@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import * as React from "react";
 import PropTypes from "prop-types";
 import Box from "./Box";

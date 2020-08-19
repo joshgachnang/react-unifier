@@ -1,9 +1,8 @@
 import * as React from "react";
 import {ActivityIndicator, KeyboardTypeOptions, Platform, TextInput, View} from "react-native";
 import {Box} from "./Box";
+import {TextFieldProps} from "./Common";
 import {Icon} from "./Icon";
-import {COLOR_MAP} from "./UnifiedCommon";
-import {TextFieldProps} from "./UnifiedCommon";
 import {WithLabel} from "./WithLabel";
 
 interface TextFieldState {

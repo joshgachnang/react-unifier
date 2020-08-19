@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import classnames from "classnames";
 import * as React from "react";
-import {TextAreaProps} from "./UnifiedCommon";
+import {TextAreaProps} from "./Common";
 import {FieldWithLabels} from "./FieldWithLabels";
-
-const formElement = require("./gestalt/FormElement.module.css");
-const styles = require("./gestalt/TextArea.module.css");
+import formElement from "./FormElement.module.css";
+import styles from "./TextArea.module.css";
 
 interface State {
   focused: boolean;

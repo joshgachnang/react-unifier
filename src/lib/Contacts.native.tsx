@@ -10,7 +10,7 @@ import {Text} from "../Text";
 import {requestPermissions} from "./Permissions";
 import {Tracking} from "./Tracking";
 import {Icon} from "../Icon";
-import {COLOR_MAP} from "../UnifiedCommon";
+import {COLOR_MAP} from "../Common";
 
 interface ContactProps {
   contact: RNContact;

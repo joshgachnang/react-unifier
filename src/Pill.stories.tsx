@@ -1,6 +1,6 @@
 import React from "react";
 import {Box} from "./Box";
-import {AllColors} from "./UnifiedCommon";
+import {AllColors} from "./Common";
 import {Pill} from "./Pill";
 
 export default {

@@ -7,15 +7,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import {
-  AlignContent,
-  AlignItems,
-  AlignSelf,
-  COLOR_MAP,
-  JustifyContent,
-  SPACING,
-} from "./UnifiedCommon";
-import {BoxProps} from "./UnifiedCommon";
+import {AlignContent, AlignItems, AlignSelf, COLOR_MAP, JustifyContent, SPACING} from "./Common";
+import {BoxProps} from "./Common";
 import {Unifier} from "./Unifier";
 
 const ALIGN_CONTENT = {

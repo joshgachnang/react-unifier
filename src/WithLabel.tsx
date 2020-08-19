@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Box} from "./Box";
 import {Text} from "./Text";
-import {WithLabelProps} from "./UnifiedCommon";
+import {WithLabelProps} from "./Common";
 
 export class WithLabel extends React.Component<WithLabelProps, {}> {
   render() {

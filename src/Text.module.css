@@ -1,0 +1,21 @@
+:root {
+  --font-size-1: 12px;
+  --font-size-2: 14px;
+  --font-size-3: 16px;
+}
+
+.Text {
+  composes: antialiased sansSerif from "./Typography.module.css";
+}
+
+.fontSize1 {
+  font-size: var(--font-size-1);
+}
+
+.fontSize2 {
+  font-size: var(--font-size-2);
+}
+
+.fontSize3 {
+  font-size: var(--font-size-3);
+}

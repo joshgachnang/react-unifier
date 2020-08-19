@@ -368,6 +368,7 @@ export type SignedUpTo12 =
   | -2
   | -1
   | UnsignedUpTo12;
+export type Margin = SignedUpTo12 | "auto";
 export const SPACING = 4;
 
 export type TextFieldType =

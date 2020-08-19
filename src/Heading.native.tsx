@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Text as NativeText} from "react-native";
-import {COLOR_MAP, FONT_MAP, HeadingProps} from "./UnifiedCommon";
+import {COLOR_MAP, FONT_MAP, HeadingProps} from "./Common";
 
 export class Heading extends React.Component<HeadingProps, {}> {
   fontSizes = {

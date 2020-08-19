@@ -3,7 +3,7 @@ import {Auth} from "./Auth";
 import {BarcodeView} from "./CameraView";
 import {FullPageModal} from "./Modal";
 import {Spinner} from "./Spinner";
-import {NavConfig} from "./UnifiedCommon";
+import {NavConfig} from "./Common";
 import {Unifier} from "./Unifier";
 
 export enum Screens {

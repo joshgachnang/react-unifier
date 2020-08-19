@@ -1,7 +1,7 @@
 import React from "react";
 import {Box} from "./Box";
 import {Text} from "./Text";
-import {TextProps} from "./UnifiedCommon";
+import {TextProps} from "./Common";
 
 export default {
   title: "Text",

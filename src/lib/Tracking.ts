@@ -7,7 +7,7 @@ import {
   BaseProfile,
   isTestUser,
   TrackingConfig,
-} from "../UnifiedCommon";
+} from "../Common";
 import {Unifier} from "../Unifier";
 import Mixpanel from "mixpanel-browser";
 import * as Sentry from "@sentry/react";

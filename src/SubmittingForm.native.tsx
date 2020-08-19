@@ -1,6 +1,6 @@
 import * as React from "react";
 import {View} from "react-native";
-import {SubmittingFormProps} from "./UnifiedCommon";
+import {SubmittingFormProps} from "./Common";
 
 // https://github.com/zackify/react-native-autofocus/blob/master/form.js
 export class SubmittingForm extends React.Component<SubmittingFormProps, {}> {

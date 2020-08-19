@@ -42,7 +42,7 @@ export * from "./Switch";
 export * from "./TapToEdit";
 export * from "./Text";
 export * from "./TextField";
-export * from "./UnifiedCommon";
+export * from "./Common";
 export * from "./UnifiedScreens";
 export * from "./Unifier";
 export * from "./Utils";

@@ -2,7 +2,7 @@ import {BlurView} from "@react-native-community/blur";
 import * as React from "react";
 import {Platform, View} from "react-native";
 import {Box} from "./Box";
-import {BlurBoxProps} from "./UnifiedCommon";
+import {BlurBoxProps} from "./Common";
 
 export class BlurBox extends React.Component<BlurBoxProps, {}> {
   renderBlur(children: any) {

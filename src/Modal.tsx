@@ -1,15 +1,14 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import * as React from "react";
 import OutsideEventBehavior from "./behaviors/OutsideEventBehavior";
 import StopScrollBehavior from "./behaviors/StopScrollBehavior";
 import TrapFocusBehavior from "./behaviors/TrapFocusBehavior";
 import {Box} from "./Box";
+import {ModalProps} from "./Common";
 import {Heading} from "./Heading";
+import styles from "./Modal.module.css";
 import {OptionsLayout} from "./navigation";
-import {ModalProps} from "./UnifiedCommon";
 import {Screens} from "./UnifiedScreens";
 import {Unifier} from "./Unifier";
-const styles = require("./gestalt/Modal.module.css");
 
 require("react-dom");
 

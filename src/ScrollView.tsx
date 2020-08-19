@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ScrollViewProps} from "./UnifiedCommon";
+import {ScrollViewProps} from "./Common";
 import {Box} from "./Box";
 
 export class ScrollView extends React.Component<ScrollViewProps, {}> {

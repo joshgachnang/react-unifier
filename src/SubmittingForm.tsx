@@ -1,5 +1,5 @@
 import * as React from "react";
-import {SubmittingFormProps} from "./UnifiedCommon";
+import {SubmittingFormProps} from "./Common";
 
 export class SubmittingForm extends React.Component<SubmittingFormProps, {}> {
   render() {

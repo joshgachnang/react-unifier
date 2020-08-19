@@ -7,7 +7,7 @@ import {SelectList} from "./SelectList";
 import {Switch} from "./Switch";
 import {TextArea} from "./TextArea";
 import {TextField} from "./TextField";
-import {OnChangeResult, TextFieldType, FieldProps} from "./UnifiedCommon";
+import {OnChangeResult, TextFieldType, FieldProps} from "./Common";
 import {FieldWithLabels} from "./FieldWithLabels";
 
 interface State {

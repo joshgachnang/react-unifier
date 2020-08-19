@@ -3,7 +3,7 @@ import * as React from "react";
 import {Box} from "./Box";
 import {Button} from "./Button";
 import {Text} from "./Text";
-import {BackButtonInterface, SearchButtonProps} from "./UnifiedCommon";
+import {BackButtonInterface, SearchButtonProps} from "./Common";
 import {Unifier} from "./Unifier";
 
 export class SearchButton extends React.Component<SearchButtonProps, {}> {

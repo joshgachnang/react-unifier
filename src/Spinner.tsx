@@ -1,5 +1,5 @@
 import * as React from "react";
-import {SpinnerProps} from "./UnifiedCommon";
+import {SpinnerProps} from "./Common";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Unifier} from "./Unifier";
 

@@ -1,5 +1,5 @@
 import * as Sentry from "@sentry/react-native";
-import {ErrorBoundaryProps} from "./UnifiedCommon";
+import {ErrorBoundaryProps} from "./Common";
 import * as React from "react";
 import {ErrorPage} from "./ErrorPage";
 

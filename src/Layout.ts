@@ -1,4 +1,4 @@
-import {FONT_MAP} from "./UnifiedCommon";
+import {FONT_MAP} from "./Common";
 import {Screens} from "./UnifiedScreens";
 import {Unifier} from "./Unifier";
 import {LayoutRoot} from "./navigation";
@@ -66,7 +66,6 @@ export const setDefaultNavOptions = () => {
   });
 };
 
-/* eslint-disable @typescript-eslint/no-var-requires */
 const feedImage = "/format-list.png";
 const profileImage = "/account-circle.png";
 const chatImage = "/chat.png";

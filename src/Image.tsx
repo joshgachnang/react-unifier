@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import * as React from "react";
-import {ImageProps} from "./UnifiedCommon";
+import {ImageProps} from "./Common";
 import {Box} from "./Box";
 import {Unifier} from "./Unifier";
-const styles = require("./gestalt/Image.module.css");
+import styles from "./Image.module.css";
 
 const shouldScaleImage = (fit: any) => fit === "cover" || fit === "contain";
 
@@ -78,7 +77,7 @@ export class Image extends React.PureComponent<ImageProps> {
     return isScaledImage ? (
       <div
         aria-label={alt}
-        className={fit === "contain" || fit === "cover" ? styles[fit] : null}
+        className={fit === "contain" || fit === "cover" ? styles[fit] : undefined}
         style={{
           backgroundColor: color,
           backgroundImage: `url('${src}')`,

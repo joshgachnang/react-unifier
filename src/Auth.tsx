@@ -3,7 +3,7 @@ import {BlurBox} from "./BlurBox";
 import {Box} from "./Box";
 import {ImageBackground} from "./ImageBackground";
 import {SignUpForm} from "./SignUpForm";
-import {FONT_MAP, BaseProfile} from "./UnifiedCommon";
+import {FONT_MAP, BaseProfile} from "./Common";
 import {Unifier} from "./Unifier";
 import {getOnboardingBackground} from "./Utils";
 import {FireStorm} from "./react-firestorm/src";

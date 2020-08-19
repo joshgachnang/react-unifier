@@ -1,5 +1,5 @@
 import React from "react";
-import {LayerProps} from "./UnifiedCommon";
+import {LayerProps} from "./Common";
 
 interface LayerState {}
 

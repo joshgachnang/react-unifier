@@ -4,7 +4,7 @@ import * as React from "react";
 import {Box} from "./Box";
 import {IconButton} from "./IconButton";
 import {Text} from "./Text";
-import {ActionBannerProps, ButtonColor} from "./UnifiedCommon";
+import {ActionBannerProps, ButtonColor} from "./Common";
 
 library.add(faArrowRight);
 

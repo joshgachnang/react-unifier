@@ -2,7 +2,7 @@ import * as React from "react";
 import {Box} from "./Box";
 import {IconButton} from "./IconButton";
 import {Text} from "./Text";
-import {BannerProps, ButtonColor} from "./UnifiedCommon";
+import {BannerProps, ButtonColor} from "./Common";
 import {Unifier} from "./Unifier";
 
 import {library} from "@fortawesome/fontawesome-svg-core";

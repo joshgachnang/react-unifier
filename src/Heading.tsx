@@ -1,20 +1,9 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-// export class Heading extends React.Component<HeadingProps, {}> {
-//   render() {
-//     return (
-//       <GestaltHeading {...this.props} color={this.props.color as any}>
-//         {this.props.children}
-//       </GestaltHeading>
-//     );
-//   }
-// }
 import cx from "classnames";
 import * as React from "react";
-import {HeadingProps} from "./UnifiedCommon";
+import {HeadingProps} from "./Common";
+import styles from "./Heading.module.css";
+import typography from "./Typography.module.css";
 import {Unifier} from "./Unifier";
-
-const styles = require("./gestalt/Heading.module.css");
-const typography = require("./gestalt/Typography.module.css");
 
 const defaultHeadingLevels = {
   sm: 3,

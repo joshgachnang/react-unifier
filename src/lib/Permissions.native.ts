@@ -1,6 +1,6 @@
 import Permissions from "react-native-permissions";
 import {Tracking} from "./Tracking";
-import {PermissionStatus, PermissionKind} from "../UnifiedCommon";
+import {PermissionStatus, PermissionKind} from "../Common";
 import capitalize from "lodash/capitalize";
 
 export async function requestPermissions(kind: PermissionKind): Promise<PermissionStatus> {

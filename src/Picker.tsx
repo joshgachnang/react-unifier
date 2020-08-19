@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PickerProps} from "./UnifiedCommon";
+import {PickerProps} from "./Common";
 
 export class Picker extends React.Component<PickerProps, {}> {
   render() {

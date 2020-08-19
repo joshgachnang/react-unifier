@@ -1,4 +1,4 @@
-import {BoxProps} from "./UnifiedCommon";
+import {BoxProps} from "./Common";
 import * as React from "react";
 import {Box} from "./Box";
 

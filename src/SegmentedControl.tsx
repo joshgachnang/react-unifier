@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import classnames from "classnames";
 import * as React from "react";
 import {Box} from "./Box";
+import {SegmentedControlProps} from "./Common";
+import layout from "./Layout.module.css";
+import styles from "./SegmentedControl.module.css";
 import {Text} from "./Text";
-import {SegmentedControlProps} from "./UnifiedCommon";
-
-const layout = require("./gestalt/Layout.module.css");
-const styles = require("./gestalt/SegmentedControl.module.css");
 
 export function SegmentedControl(props: SegmentedControlProps) {
   const {items, onChange, responsive, selectedItemIndex, size = "md"} = props;

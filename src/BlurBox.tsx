@@ -1,5 +1,5 @@
 import * as React from "react";
-import {BlurBoxProps} from "./UnifiedCommon";
+import {BlurBoxProps} from "./Common";
 import {Box} from "./Box";
 import {mergeInlineStyles} from "./Utilities";
 

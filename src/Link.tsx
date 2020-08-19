@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-import * as React from "react";
-import {LinkProps} from "./UnifiedCommon";
-const styles = require("./gestalt/Link.module.css");
 import cx from "classnames";
+import * as React from "react";
+import {LinkProps} from "./Common";
+import styles from "./Link.module.css";
 
 const TAB_KEY_CODE = 9;
 

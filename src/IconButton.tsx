@@ -1,9 +1,9 @@
 import * as React from "react";
-import {IconButtonProps} from "./UnifiedCommon";
+import {IconButtonProps} from "./Common";
 import {Unifier} from "./Unifier";
 
 import classnames from "classnames";
-import styles from "./gestalt/IconButton.module.css";
+import styles from "./IconButton.module.css";
 import Pog from "./Pog";
 
 export function IconButton({
