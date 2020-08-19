@@ -1,5 +1,5 @@
 import React, {createRef} from "react";
-import {Box} from "./gestalt";
+import {Box} from "./Box";
 import {FlatListProps} from "./UnifiedCommon";
 
 // interface BrickProps {

@@ -27,6 +27,7 @@ export class Box extends React.Component<BoxProps, {}> {
       <GestaltBox
         {...props}
         display={props.display || "flex"} // Default to flexbox to more closely match React Native
+        direction={props.direction || "column"}
         onClick={() => {
           // Unifier.utils.haptic();
           onClick && onClick();

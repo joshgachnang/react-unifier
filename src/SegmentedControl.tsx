@@ -1,8 +1,55 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+import classnames from "classnames";
 import * as React from "react";
+import {Box} from "./Box";
+import {Text} from "./Text";
 import {SegmentedControlProps} from "./UnifiedCommon";
-import {SegmentedControl as GestaltSC} from "./gestalt";
-export class SegmentedControl extends React.Component<SegmentedControlProps, {}> {
-  render() {
-    return <GestaltSC {...(this.props as any)} />;
-  }
+
+const layout = require("./gestalt/Layout.module.css");
+const styles = require("./gestalt/SegmentedControl.module.css");
+
+export function SegmentedControl(props: SegmentedControlProps) {
+  const {items, onChange, responsive, selectedItemIndex, size = "md"} = props;
+  const buttonWidth = responsive ? undefined : `${Math.floor(100 / Math.max(1, items.length))}%`;
+  return (
+    <div
+      className={classnames(styles.SegmentedControl, size === "md" ? layout.medium : layout.large)}
+      role="tablist"
+      style={{width: "100%"}}
+    >
+      {items.map((item, i) => {
+        const isSelected = i === selectedItemIndex;
+        const cs = classnames(styles.item, {
+          [styles.itemIsNotSelected]: !isSelected,
+          [styles.itemIsSelected]: isSelected,
+        });
+        return (
+          <button
+            aria-selected={isSelected}
+            className={cs}
+            key={i}
+            onClick={() => onChange({activeIndex: i})}
+            role="tab"
+            type="button"
+            style={{width: buttonWidth}}
+          >
+            {typeof item === "string" ? (
+              <Text
+                color={isSelected ? "darkGray" : "gray"}
+                align="center"
+                size={size}
+                weight="bold"
+              >
+                {item}
+              </Text>
+            ) : (
+              <Box display="flex" justifyContent="center">
+                {item}
+              </Box>
+            )}
+          </button>
+        );
+      })}
+    </div>
+  );
 }

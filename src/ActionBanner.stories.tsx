@@ -7,7 +7,7 @@ export default {
   component: ActionBanner,
 };
 
-export const SolidIcons = () => (
+export const ActionBanners = () => (
   <Box width="100%" height="100%" display="flex">
     <ActionBanner
       text="Take some action on this banner!"

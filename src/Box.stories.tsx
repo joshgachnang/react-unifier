@@ -1,6 +1,6 @@
 import React from "react";
 import {Box} from "./Box";
-import {Color, ThemeColor, AllColors} from "./UnifiedCommon";
+import {AllColors} from "./UnifiedCommon";
 
 export default {
   title: "Box",

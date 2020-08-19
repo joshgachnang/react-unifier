@@ -19,6 +19,7 @@ export class WithLabel extends React.Component<WithLabelProps, {}> {
         <Box
           direction={labelInline ? "row" : "column"}
           justifyContent={this.props.labelJustifyContent}
+          width="100%"
         >
           {this.props.labelPlacement !== "after" && (
             <Box paddingY={1}>

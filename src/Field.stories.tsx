@@ -13,7 +13,7 @@ export const TextField = () => (
       label="Text Field"
       type="text"
       name="text"
-      help="Here's some help text"
+      helperText="Here's some help text"
       initialValue="Pre-filled text"
       handleChange={() => {}}
     />
@@ -22,7 +22,7 @@ export const TextField = () => (
       type="text"
       name="text"
       disabled={true}
-      help="Here's some help text"
+      helperText="Here's some help text"
       initialValue="Pre-filled text"
       handleChange={() => {}}
     />
@@ -35,7 +35,7 @@ export const BooleanField = () => (
       label="Boolean Field"
       type="boolean"
       name="text"
-      help="Here's some help text"
+      helperText="Here's some help text"
       handleChange={() => {}}
     />
   </Box>
@@ -47,7 +47,7 @@ export const EmailTextField = () => (
       label="Email Field"
       type="email"
       name="text"
-      help="Here's some help text"
+      helperText="Here's some help text"
       handleChange={() => {}}
     />
 
@@ -55,7 +55,7 @@ export const EmailTextField = () => (
       label="Email Field With Extra Validation"
       type="email"
       name="text"
-      help="Requires @example.com"
+      helperText="Requires @example.com"
       handleChange={() => {}}
       validate={(value) => value.search("@example.com") > -1}
       validateErrorMessage="Must be an example.com email"
@@ -69,7 +69,7 @@ export const TextAreaField = () => (
       label="TextArea Field"
       type="textarea"
       name="text"
-      help="Here's some help text"
+      helperText="Here's some help text"
       handleChange={() => {}}
     />
     <Field
@@ -77,7 +77,7 @@ export const TextAreaField = () => (
       type="textarea"
       name="text"
       rows={10}
-      help="Here's some help text"
+      helperText="Here's some help text"
       handleChange={() => {}}
     />
   </Box>
@@ -89,7 +89,7 @@ export const NumberField = () => (
       label="Number Field"
       type="number"
       name="text"
-      help="Here's some help text"
+      helperText="Here's some help text"
       handleChange={() => {}}
     />
   </Box>
@@ -101,7 +101,7 @@ export const CurrencyField = () => (
       label="Currency Field"
       type="currency"
       name="text"
-      help="Here's some help text"
+      helperText="Here's some help text"
       handleChange={() => {}}
     />
   </Box>
@@ -113,7 +113,7 @@ export const PercentField = () => (
       label="Percent Field"
       type="percent"
       name="text"
-      help="Here's some help text"
+      helperText="Here's some help text"
       handleChange={() => {}}
     />
   </Box>
@@ -125,7 +125,7 @@ export const SelectField = () => (
       label="Select Field"
       type="select"
       name="text"
-      help="Here's some help text"
+      helperText="Here's some help text"
       handleChange={() => {}}
       options={[
         {label: "Option 1", value: "Option 1"},
@@ -141,7 +141,7 @@ export const PasswordField = () => (
       label="Password Field"
       type="password"
       name="text"
-      help="Here's some help text"
+      helperText="Here's some help text"
       handleChange={() => {}}
     />
   </Box>
@@ -153,7 +153,7 @@ export const UrlField = () => (
       label="Url Field"
       type="url"
       name="text"
-      help="Here's some help text"
+      helperText="Here's some help text"
       handleChange={() => {}}
     />
   </Box>
@@ -165,7 +165,7 @@ export const DateField = () => (
       label="Date Field"
       type="date"
       name="text"
-      help="Here's some help text"
+      helperText="Here's some help text"
       handleChange={() => {}}
     />
   </Box>

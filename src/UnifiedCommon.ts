@@ -1,4 +1,4 @@
-import {ReactNode, SyntheticEvent} from "react";
+import {SyntheticEvent} from "react";
 
 export interface BaseProfile {
   email: string;
@@ -469,8 +469,8 @@ export type IconPrefix = "far" | "fal" | "fas" | "fab";
 
 export interface TextProps {
   align?: "left" | "right" | "center" | "justify"; // default "left"
-  children?: ReactNode;
-  color?: TextColor | ThemeColor;
+  children?: React.ReactNode;
+  color?: AllColors;
 
   inline?: boolean; // default false
   italic?: boolean; // default false
@@ -515,6 +515,22 @@ export interface BannerProps {
 
 export interface BlurBoxProps extends BoxProps {
   blurType?: "regular" | "dark" | "prominent";
+}
+
+export interface LayerProps {
+  children: React.ReactNode;
+}
+
+export interface ModalProps {
+  header?: React.ReactNode;
+  accessibilityModalLabel: string;
+  children?: React.ReactNode;
+  closeOnOutsideClick?: boolean;
+  footer?: React.ReactNode;
+  heading?: string | React.ReactNode;
+  onDismiss: () => void;
+  role?: "alertdialog" | "dialog";
+  size?: "sm" | "md" | "lg" | number;
 }
 
 export type BoxShape =
@@ -618,7 +634,7 @@ export interface BoxProps {
   scroll?: boolean;
   // Pattern Addition. Shadows!
   shadow?: boolean;
-  border?: Color | ThemeColor;
+  border?: AllColors;
   avoidKeyboard?: boolean;
   keyboardOffset?: number;
   scrollRef?: any;
@@ -710,8 +726,8 @@ export interface PageProps {
 
 export interface PillProps {
   text: string;
-  color: Color | ThemeColor;
-  enabled: boolean;
+  color: AllColors;
+  enabled?: boolean;
   onClick: (enabled: boolean) => void;
 }
 
@@ -723,13 +739,49 @@ export interface SegmentedControlProps {
   size?: "md" | "lg"; // defaults to md
 }
 
-export interface TextFieldProps {
+// Shared props for fields with labels, subtext, and error messages.
+export interface FieldWithLabelsProps {
+  errorMessage?: string;
+  errorMessageColor?: AllColors; // Default: red.
+  label?: string;
+  labelColor?: AllColors;
+  helperText?: string;
+  helperTextColor?: AllColors;
+  children?: React.ReactNode;
+}
+
+export interface FieldProps extends FieldWithLabelsProps {
+  name: string;
+  label?: string;
+  initialValue?: any;
+  handleChange: any;
+  // Additional validation
+  validate?: (value: any) => boolean;
+  validateErrorMessage?: string;
+  type?:
+    | "boolean"
+    | "email"
+    | "text"
+    | "textarea"
+    | "number"
+    | "currency"
+    | "percent"
+    | "select"
+    | "password"
+    | "url"
+    | "date";
+  rows?: number;
+  options?: SelectListOptions;
+  placeholder?: string;
+  disabled?: boolean;
+}
+
+export interface TextFieldProps extends FieldWithLabelsProps {
   id?: string;
   onChange: OnChangeCallback;
   autoComplete?: "current-password" | "on" | "off" | "username";
   disabled?: boolean;
-  errorMessage?: string;
-  errorMessageColor?: "white" | "red";
+
   idealErrorDirection?: Direction;
   name?: string;
   onBlur?: OnChangeCallback;
@@ -737,18 +789,15 @@ export interface TextFieldProps {
   placeholder?: string;
   type?: TextFieldType;
   value?: string;
-  // Pattern Addition
-  label?: string;
-  labelColor?: Color;
-  labelInside?: boolean;
   style?: any;
   // If type === search, indicates whether to show the search icon or spinner
   searching?: boolean;
+
   returnKeyType?: "done" | "go" | "next" | "search" | "send";
 
+  // TODO: still needed?
   autoFocus?: boolean;
   grow?: boolean;
-
   // react-native-autofocus
   inputRef?: any;
   onSubmitEditing?: any;
@@ -760,15 +809,13 @@ export interface TextFieldProps {
   paddingY?: number;
 }
 
-export interface TextAreaProps {
+export interface TextAreaProps extends FieldWithLabelsProps {
   id: string;
-  onChange: (args: {event: React.SyntheticEvent<HTMLInputElement>; value: string}) => void;
+  onChange: (value: string) => void;
   disabled?: boolean;
-  errorMessage?: string;
-  idealErrorDirection?: "up" | "right" | "down" | "left";
   name?: string;
-  onBlur?: (args: {event: React.SyntheticEvent<React.FocusEvent>; value: string}) => void;
-  onFocus?: (args: {event: React.FocusEvent<React.FocusEvent>; value: string}) => void;
+  onBlur?: (value: string) => void;
+  onFocus?: (value: string) => void;
   placeholder?: string;
   rows?: number;
   value?: string;
@@ -778,7 +825,7 @@ export interface WithLabelProps {
   show?: boolean;
   label?: string;
   labelInline?: boolean;
-  labelColor?: Color;
+  labelColor?: AllColors;
   labelJustifyContent?: JustifyContent;
   labelPlacement?: "before" | "after";
   labelSize?: TextSize;
@@ -788,7 +835,7 @@ export interface SubmittingFormProps {
   onSubmitEditting: () => void;
 }
 
-export interface SwitchProps {
+export interface SwitchProps extends FieldWithLabelsProps {
   id?: string;
   onChange: (value: boolean) => void;
   disabled?: boolean;
@@ -804,7 +851,7 @@ export interface SpinnerProps {
 }
 
 export interface MaskProps {
-  children?: any;
+  children?: React.ReactNode;
   shape?: "circle" | "rounded" | "square";
   height?: number | string;
   width?: number | string;
@@ -824,7 +871,7 @@ export interface IconRowProps {
 export interface LinkProps {
   href: string;
   inline?: boolean;
-  children?: any;
+  children?: React.ReactNode;
   onClick?: () => void;
   target?: null | "blank";
 }
@@ -834,7 +881,7 @@ export type Rounding = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | "circle";
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HeadingProps {
   align?: "left" | "right" | "center" | "justify"; // default "left"
-  children?: ReactNode;
+  children?: React.ReactNode;
   color?: AllColors;
   overflow?: "normal" | "breakWord"; // default "breakWord"
   size?: "sm" | "md" | "lg";
@@ -866,13 +913,15 @@ export interface ImageProps {
 }
 
 export type SelectListOptions = {label: string; value: string}[];
-export interface SelectListProps {
+export interface SelectListProps extends FieldWithLabelsProps {
   id?: string;
   name?: string;
   options: SelectListOptions;
-  onChange: ({event, value}: {event: any; value: string}) => void;
+  onChange: (value: string) => void;
   value?: string;
   disabled?: boolean;
+  size?: "md" | "lg";
+  placeholder?: string;
 }
 
 export interface SearchButtonProps {
@@ -918,10 +967,6 @@ export interface RadioButtonWithLabelProps extends RadioButtonProps {
   label: string;
   subLabel?: string;
   labelColor?: Color;
-}
-
-export interface TapToEditState {
-  showEdit: boolean;
 }
 
 export interface BodyProps {

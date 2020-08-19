@@ -7,47 +7,20 @@ import {SelectList} from "./SelectList";
 import {Switch} from "./Switch";
 import {TextArea} from "./TextArea";
 import {TextField} from "./TextField";
-import {OnChangeResult, SelectListOptions, TextFieldType} from "./UnifiedCommon";
-import {WithLabel} from "./WithLabel";
-
-interface Props {
-  name: string;
-  label?: string;
-  initialValue?: any;
-  handleChange: any;
-  // Additional validation
-  validate?: (value: any) => boolean;
-  validateErrorMessage?: string;
-  help?: string;
-  type?:
-    | "boolean"
-    | "email"
-    | "text"
-    | "textarea"
-    | "number"
-    | "currency"
-    | "percent"
-    | "select"
-    | "password"
-    | "url"
-    | "date";
-  rows?: number;
-  options?: SelectListOptions;
-  placeholder?: string;
-  disabled?: boolean;
-}
+import {OnChangeResult, TextFieldType, FieldProps} from "./UnifiedCommon";
+import {FieldWithLabels} from "./FieldWithLabels";
 
 interface State {
   value: any;
 }
 
-export class Field extends React.Component<Props, State> {
-  constructor(props: Props) {
+export class Field extends React.Component<FieldProps, State> {
+  constructor(props: FieldProps) {
     super(props);
     this.state = {value: props.initialValue || ""};
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  componentWillReceiveProps(nextProps: FieldProps) {
     if (nextProps.initialValue !== this.state.value) {
       this.setState({value: nextProps.initialValue});
     }
@@ -200,25 +173,21 @@ export class Field extends React.Component<Props, State> {
 
   render() {
     let children = this.renderField();
-
+    const {
+      errorMessage,
+      errorMessageColor,
+      helperText,
+      helperTextColor,
+      label,
+      labelColor,
+    } = this.props;
     return (
       <Box marginBottom={5}>
-        <WithLabel
-          show={Boolean(this.props.help)}
-          label={this.props.help}
-          labelPlacement="after"
-          labelSize="sm"
+        <FieldWithLabels
+          {...{errorMessage, errorMessageColor, helperText, helperTextColor, label, labelColor}}
         >
-          <WithLabel
-            show={!this.validate()}
-            label={this.props.validateErrorMessage || "Invalid"}
-            labelPlacement="after"
-            labelSize="md"
-            labelColor="red"
-          >
-            <WithLabel label={this.props.label}>{children}</WithLabel>
-          </WithLabel>
-        </WithLabel>
+          {children}
+        </FieldWithLabels>
       </Box>
     );
   }
