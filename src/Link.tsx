@@ -1,3 +1,5 @@
+// Originally based on https://github.com/pinterest/gestalt
+// Forked, updated to Typescript, and added features.
 import cx from "classnames";
 import * as React from "react";
 import {LinkProps} from "./Common";

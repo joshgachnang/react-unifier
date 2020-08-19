@@ -1,3 +1,7 @@
+/* 
+Originally based on https://github.com/pinterest/gestalt
+Forked, added type definitions, and added features.
+*/
 .backdrop {
   composes: absolute left0 top0 right0 bottom0 from "./Layout.module.css";
   composes: zoomOut from "./Cursor.module.css";

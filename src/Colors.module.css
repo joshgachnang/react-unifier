@@ -1,3 +1,7 @@
+/* 
+Originally based on https://github.com/pinterest/gestalt
+Forked, added type definitions, and added features.
+*/
 :root {
   /* primary colors */
   --red: #e63946;

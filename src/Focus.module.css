@@ -1,3 +1,7 @@
+/* 
+Originally based on https://github.com/pinterest/gestalt
+Forked, added type definitions, and added features.
+*/
 .accessibilityOutline:focus {
   box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.5);
   outline: 0;

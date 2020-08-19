@@ -1,3 +1,7 @@
+/* 
+Originally based on https://github.com/pinterest/gestalt
+Forked, added type definitions, and added features.
+*/
 .textArea {
   composes: borderBox from "./Layout.module.css";
   composes: Text fontSize3 from "./Text.module.css";

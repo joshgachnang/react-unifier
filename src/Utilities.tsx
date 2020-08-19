@@ -1,3 +1,5 @@
+// Originally based on https://github.com/pinterest/gestalt
+// Forked, updated to Typescript, and added features.
 import get from "lodash/get";
 
 export function mergeInlineStyles(inlineStyle?: any, newStyle?: any) {

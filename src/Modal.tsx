@@ -1,3 +1,5 @@
+// Originally based on https://github.com/pinterest/gestalt
+// Forked, updated to Typescript, and added features.
 import * as React from "react";
 import OutsideEventBehavior from "./behaviors/OutsideEventBehavior";
 import StopScrollBehavior from "./behaviors/StopScrollBehavior";

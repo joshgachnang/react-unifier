@@ -1,3 +1,5 @@
+// Originally based on https://github.com/pinterest/gestalt
+// Forked, updated to Typescript, and added features.
 import * as React from "react";
 import borders from "./Borders.module.css";
 import styles from "./Box.module.css";
