@@ -22,6 +22,7 @@ export * from "./Layout";
 export * from "./Drawer";
 export * from "./Link";
 export * from "./Mask";
+export * from "./Meta";
 export * from "./Modal";
 export * from "./Page";
 export * from "./Picker";
