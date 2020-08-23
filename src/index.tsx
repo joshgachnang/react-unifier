@@ -26,6 +26,7 @@ export * from "./Modal";
 export * from "./Page";
 export * from "./Picker";
 export * from "./Pill";
+export * from "./RadioButton";
 export * from "./ScrollView";
 export * from "./SegmentedControl";
 export * from "./SelectList";
