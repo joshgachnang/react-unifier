@@ -1,8 +1,7 @@
 import * as React from "react";
 import {ActivityIndicator, View} from "react-native";
-import {COLOR_MAP, SpinnerProps} from "./Common";
+import {SpinnerProps} from "./Common";
 import {Unifier} from "./Unifier";
-// import {SpinnerComponent} from "./Spinner";
 
 export class LoadingOverlay extends React.Component<SpinnerProps, {}> {
   componentId?: string = undefined;

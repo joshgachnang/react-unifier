@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Text as NativeText} from "react-native";
-import {COLOR_MAP, FONT_MAP, HeadingProps} from "./Common";
+import {HeadingProps} from "./Common";
+import {Unifier} from "./Unifier";
 
 export class Heading extends React.Component<HeadingProps, {}> {
   fontSizes = {
@@ -12,11 +13,11 @@ export class Heading extends React.Component<HeadingProps, {}> {
   propsToStyle(): any {
     const style: any = {};
 
-    let font = this.props.font || "primary";
-    if (this.props.bold) {
-      font += "Bold";
-    }
-    style.fontFamily = FONT_MAP[font];
+    // let font = this.props.font || "primary";
+    // if (this.props.bold) {
+    //   font += "Bold";
+    // }
+    style.fontFamily = Unifier.theme.primaryFont;
 
     style.fontSize = this.fontSizes[this.props.size || "md"];
     if (this.props.align) {
@@ -37,11 +38,11 @@ export class Heading extends React.Component<HeadingProps, {}> {
 
   render() {
     let lines = 0;
-    if (this.props.numberOfLines) {
-      lines = this.props.numberOfLines;
-    } else if (this.props.inline) {
-      lines = 1;
-    }
+    // if (this.props.numberOfLines) {
+    //   lines = this.props.numberOfLines;
+    // } else if (this.props.inline) {
+    //   lines = 1;
+    // }
     return (
       <NativeText numberOfLines={lines} style={this.propsToStyle()}>
         {this.props.children}

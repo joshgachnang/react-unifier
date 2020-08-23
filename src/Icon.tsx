@@ -7,10 +7,10 @@ import {library} from "@fortawesome/fontawesome-svg-core";
 // import {fal as proFal} from "@fortawesome/pro-light-svg-icons";
 import {
   faHeart as farHeart,
-  faPlus as farPlus,
+  // faPlus as farPlus,
   faEdit as farEdit,
   faNewspaper as farNewspaper,
-} from "@fortawesome/pro-regular-svg-icons";
+} from "@fortawesome/free-regular-svg-icons";
 import {
   faChevronLeft,
   faEnvelopeOpen,
@@ -27,11 +27,11 @@ import {
   faTrashRestoreAlt,
   faEnvelope,
   faSpinner,
-} from "@fortawesome/pro-solid-svg-icons";
+} from "@fortawesome/free-solid-svg-icons";
 import {Unifier} from "./Unifier";
 library.add(
   farHeart,
-  farPlus,
+  // farPlus,
   farEdit,
   farNewspaper,
   faChevronLeft,

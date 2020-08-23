@@ -3,7 +3,7 @@ import {BlurBox} from "./BlurBox";
 import {Box} from "./Box";
 import {ImageBackground} from "./ImageBackground";
 import {SignUpForm} from "./SignUpForm";
-import {FONT_MAP, BaseProfile} from "./Common";
+import {BaseProfile} from "./Common";
 import {Unifier} from "./Unifier";
 import {getOnboardingBackground} from "./Utils";
 import {FireStorm} from "./react-firestorm/src";
@@ -19,7 +19,7 @@ class AuthPage extends React.Component<AuthPageProps, {}> {
       title: {
         text: "Sign Up",
         color: Unifier.theme.white,
-        fontFamily: FONT_MAP["title"],
+        fontFamily: Unifier.theme.titleFont,
         fontSize: 18,
       },
       background: {

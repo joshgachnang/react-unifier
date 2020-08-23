@@ -1,6 +1,7 @@
 import * as React from "react";
 import RNPickerSelect from "react-native-picker-select";
-import {SelectListProps, COLOR_MAP} from "./Common";
+import {SelectListProps} from "./Common";
+import {Unifier} from "./Unifier";
 
 export class SelectList extends React.Component<SelectListProps, {}> {
   state = {showing: false};

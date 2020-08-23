@@ -20,7 +20,7 @@ export class Field extends React.Component<FieldProps, State> {
     this.state = {value: props.initialValue || ""};
   }
 
-  componentWillReceiveProps(nextProps: FieldProps) {
+  UNSAFE_componentWillReceiveProps(nextProps: FieldProps) {
     if (nextProps.initialValue !== this.state.value) {
       this.setState({value: nextProps.initialValue});
     }

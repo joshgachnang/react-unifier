@@ -2,10 +2,11 @@ import debounce from "lodash/debounce";
 import * as React from "react";
 import {ActivityIndicator, TouchableOpacity} from "react-native";
 import {Box} from "./Box";
-import {Icon} from "./Icon";
+import {ButtonProps, Color, iconSizeToNumber} from "./Common";
+// import {Icon} from "./Icon";
 import {Text} from "./Text";
-import {ButtonProps, Color, COLOR_MAP, iconSizeToNumber} from "./Common";
 import {Unifier} from "./Unifier";
+import {Icon} from "./Icon";
 
 interface ButtonState {
   loading: boolean;

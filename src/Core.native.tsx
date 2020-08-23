@@ -3,14 +3,14 @@ import {Clipboard, Dimensions, Keyboard, Linking, Platform, Vibration} from "rea
 import "react-native-gesture-handler";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import {Navigation, Options} from "react-native-navigation";
-import {FONT_MAP, PermissionKind} from "./Common";
-import {RNNDrawer} from "./lib/Drawer";
-import {requestPermissions} from "./lib/Permissions";
-import {clearNotificationsForTab} from "./lib/PushNotifications";
-import {Tracking} from "./lib/Tracking";
-import {LayoutRoot} from "./navigation";
+import {PermissionKind} from "./Common";
+import {RNNDrawer} from "./Drawer";
+// import {requestPermissions} from "./lib/Permissions";
+// import {clearNotificationsForTab} from "./lib/PushNotifications";
+import {LayoutRoot, OptionsLayout} from "./navigation";
 import {withProfile} from "./react-firestorm/src";
 import {UnifiedLayout, UnifiedLayoutOptions, Unifier} from "./Unifier";
+import {Screens} from "./UnifiedScreens";
 
 interface WrapperProps {
   store: any;
@@ -40,13 +40,13 @@ const setDefaultNavOptions = () => {
       },
       title: {
         color: Unifier.theme.white,
-        fontFamily: FONT_MAP.title,
+        fontFamily: Unifier.theme.titleFont,
         fontSize: 18,
         alignment: "fill",
       },
       subtitle: {
         color: Unifier.theme.white,
-        fontFamily: FONT_MAP.title,
+        fontFamily: Unifier.theme.titleFont,
       },
       // buttonColor: Unifier.theme["white"],
       backButton: {
@@ -73,7 +73,7 @@ const setDefaultNavOptions = () => {
       textColor: Unifier.theme.darkGray,
       selectedIconColor: Unifier.theme.primaryDark,
       selectedTextColor: Unifier.theme.primaryDark,
-      fontFamily: FONT_MAP.primary,
+      fontFamily: Unifier.theme.primaryFont,
       // icon: 1, //????
       iconInsets: {top: 1, bottom: 1},
     },
@@ -141,7 +141,7 @@ function initializeUnifier() {
                 bottomTab: {
                   text: "Log",
                   fontSize: 12,
-                  icon: logImage,
+                  // icon: logImage,
                 },
               },
             },
@@ -160,7 +160,7 @@ function initializeUnifier() {
                 bottomTab: {
                   fontSize: 12,
                   text: "Feed",
-                  icon: feedImage,
+                  // icon: feedImage,
                 },
               },
             },
@@ -184,7 +184,7 @@ function initializeUnifier() {
                 bottomTab: {
                   fontSize: 12,
                   text: "Chat",
-                  icon: chatImage,
+                  // icon: chatImage,
                 },
               },
             },
@@ -203,7 +203,7 @@ function initializeUnifier() {
                 bottomTab: {
                   text: "Profile",
                   fontSize: 12,
-                  icon: profileImage,
+                  // icon: profileImage,
                 },
               },
             },
@@ -223,7 +223,7 @@ function initializeUnifier() {
   };
 
   Unifier.setConfig({
-    tracking: Tracking,
+    // tracking: Tracking,
     web: true,
     utils: {
       dismissKeyboard: () => {
@@ -236,11 +236,17 @@ function initializeUnifier() {
       copyToClipboard: (text: string) => {
         Clipboard.setString(text);
       },
-      requestPermissions: async (perm: PermissionKind) => {
-        return requestPermissions(perm);
+      requestPermissions: async (_perm: PermissionKind) => {
+        console.warn("Permissions not set up yet.");
+        return "undetermined";
+        // return requestPermissions(perm);
       },
-      makePurchase: makePurchase,
-      PaymentService: PaymentService,
+      makePurchase: () => {
+        console.warn("Make purchase not supported yet.");
+      },
+      PaymentService: () => {
+        console.warn("Make purchase not supported yet.");
+      },
       vibrate: (pattern?: number[]) => {
         Vibration.vibrate(pattern || [100], false);
       },
@@ -261,7 +267,7 @@ function initializeUnifier() {
         return Navigation.events().bindComponent(component);
       },
       registerScreen: (screen: string, component: any) => {
-        Navigation.registerComponentWithRedux(screen, () => withProfile(component), Wrapper);
+        Navigation.registerComponent(screen, () => withProfile(component), Wrapper);
       },
       registerActionSheet: (componentName: string, component: React.ComponentType<any>) => {
         Navigation.registerComponentWithRedux(
@@ -275,7 +281,7 @@ function initializeUnifier() {
         return Navigation.setRoot(layout);
       },
       setDefaultOptions: (options: UnifiedLayoutOptions) => {
-        return Navigation.setDefaultOptions(options);
+        return Navigation.setDefaultOptions(options as any);
       },
       mergeOptions: (componentId: string, layout: Options) => {
         return Navigation.mergeOptions(componentId, layout);
@@ -314,7 +320,7 @@ function initializeUnifier() {
         Navigation.setRoot(MainRoot);
         if (Platform.OS === "ios") {
           try {
-            await requestPermissions("notification");
+            // await requestPermissions("notification");
           } catch (e) {
             console.warn("Error getting permission for notifications:", e, e.stack);
           }
@@ -323,9 +329,9 @@ function initializeUnifier() {
       goToPayment: () => {
         console.debug("[App] going to payment stack");
         let isProduction = true;
-        if (typeof __DEV__ !== "undefined" && __DEV__) {
-          isProduction = false;
-        }
+        // if (typeof __DEV__ !== "undefined" && __DEV__) {
+        //   isProduction = false;
+        // }
         if (!isProduction) {
           Navigation.setRoot(MainRoot);
         } else {
@@ -334,8 +340,53 @@ function initializeUnifier() {
         // Navigation.setRoot(MainRoot);
       },
       clearNotificationsForTab: (tab: "log" | "feed" | "chat" | "profile") => {
-        clearNotificationsForTab(tab);
+        console.warn("Clear notifications not supported yet.");
+        // clearNotificationsForTab(tab);
       },
+    },
+  });
+}
+
+// Pass "onSave" in passProps to create the save right nav button
+export function showFullPageModal(
+  component: any,
+  title: string,
+  layout?: OptionsLayout,
+  passProps?: any
+) {
+  Unifier.navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            name: Screens.FullPageModal,
+            passProps: {
+              component,
+              ...passProps,
+            },
+            options: {
+              topBar: {
+                background: {
+                  color: Unifier.theme.primaryDark,
+                },
+                title: {
+                  text: title,
+                  color: Unifier.theme.white,
+                },
+                leftButtons: [
+                  {
+                    id: "close",
+                    text: "Close",
+                    color: Unifier.theme.white,
+                    // icon: times,
+                  },
+                ],
+              },
+              layout: layout,
+            },
+          },
+        },
+      ],
     },
   });
 }

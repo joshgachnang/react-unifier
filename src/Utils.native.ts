@@ -1,7 +1,6 @@
 import {Linking} from "react-native";
 import {Unifier} from "./Unifier";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const onboardingBackground = require("../../app/onboarding-background.jpg");
 
 export const openURL = (url: string) => {
   return Linking.canOpenURL(url);
@@ -17,5 +16,5 @@ export const getImageHeight = () => {
 };
 
 export function getOnboardingBackground() {
-  return onboardingBackground;
+  return "";
 }

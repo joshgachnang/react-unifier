@@ -1,7 +1,8 @@
 import * as React from "react";
 import {Text as NativeText} from "react-native";
-import Hyperlink from "react-native-hyperlink";
-import {FONT_MAP, TextProps} from "./Common";
+// import Hyperlink from "react-native-hyperlink";
+import {TextProps} from "./Common";
+import {Unifier} from "./Unifier";
 
 export class Text extends React.Component<TextProps, {}> {
   fontSizes = {
@@ -14,10 +15,11 @@ export class Text extends React.Component<TextProps, {}> {
     const style: any = {};
 
     let font = this.props.font || "primary";
-    if (this.props.bold) {
+    if (this.props.weight === "bold") {
       font += "Bold";
     }
-    style.fontFamily = FONT_MAP[font];
+    font += "Font";
+    style.fontFamily = Unifier.theme[font];
 
     style.fontSize = this.fontSizes[this.props.size || "md"];
     if (this.props.align) {
@@ -51,9 +53,9 @@ export class Text extends React.Component<TextProps, {}> {
       return inner;
     } else {
       return (
-        <Hyperlink linkDefault={true} linkStyle={{textDecorationLine: "underline"}}>
-          {inner}
-        </Hyperlink>
+        // <Hyperlink linkDefault={true} linkStyle={{textDecorationLine: "underline"}}>
+        inner
+        // </Hyperlink>
       );
     }
   }

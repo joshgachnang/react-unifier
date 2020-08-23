@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import {AlignContent, AlignItems, AlignSelf, COLOR_MAP, JustifyContent, SPACING} from "./Common";
+import {AlignContent, AlignItems, AlignSelf, JustifyContent, SPACING} from "./Common";
 import {BoxProps} from "./Common";
 import {Unifier} from "./Unifier";
 
@@ -41,7 +41,10 @@ const ALIGN_SELF = {
 
 export class Box extends React.Component<BoxProps, {}> {
   BOX_STYLE_MAP: {
-    [prop: string]: (value: any) => {[style: string]: string | number} | {};
+    [prop: string]: (
+      value: any,
+      all: {[prop: string]: any}
+    ) => {[style: string]: string | number} | {};
   } = {
     alignItems: (value: AlignItems) => ({alignItems: ALIGN_ITEMS[value]}),
     alignContent: (value: AlignContent) => ({alignContent: ALIGN_CONTENT[value]}),
@@ -49,7 +52,7 @@ export class Box extends React.Component<BoxProps, {}> {
     color: (value) => ({backgroundColor: Unifier.theme[value]}),
     direction: (value: any) => ({flexDirection: value}),
     display: (value: any) => {
-      return value === "flex" ? {flex: 1} : {flex: 0};
+      return value === "flex" ? {flex: undefined} : {flex: 0};
     },
     flex: (value: string) => {
       if (value === "grow") {
@@ -81,11 +84,31 @@ export class Box extends React.Component<BoxProps, {}> {
     bottom: (bottom) => ({bottom}),
     right: (right) => ({right}),
     left: (left) => ({left}),
-    rounding: (rounding) => ({borderRadius: rounding * 4}),
+    rounding: (rounding, allProps) => {
+      if (typeof rounding === "number") {
+        return {borderRadius: rounding * 4};
+      }
+
+      if (rounding === "circle") {
+        if (!allProps.height && !allProps.width) {
+          console.warn("Cannot use Box rounding='circle' without height or width.");
+          return {borderRadius: undefined};
+        }
+        return {borderRadius: (allProps.height || allProps.width) / 2};
+      }
+
+      if (rounding === "pill") {
+        return {borderRadius: 999};
+      }
+
+      return {borderRadius: undefined};
+    },
     // scroll: () => ({flex: 1}),
     overflow: (value) => {
       if (value === "scrollY" || value === "scroll") {
         return {overflow: "scroll"};
+      } else if (value === "scollX") {
+        return {overflow: "scrollX"};
       }
       return {};
     },
@@ -172,7 +195,7 @@ export class Box extends React.Component<BoxProps, {}> {
     for (const prop of Object.keys(this.props)) {
       const value = (this.props as any)[prop];
       if (this.BOX_STYLE_MAP[prop]) {
-        Object.assign(style, this.BOX_STYLE_MAP[prop](value));
+        Object.assign(style, this.BOX_STYLE_MAP[prop](value, this.props));
       } else if (prop !== "children" && prop !== "onClick") {
         style[prop] = value;
         // console.warn(`Box: unknown property ${prop}`);
@@ -218,24 +241,16 @@ export class Box extends React.Component<BoxProps, {}> {
         </TouchableOpacity>
       );
     } else {
+      console.log("PROPS", this.propsToStyle());
       box = <View style={this.propsToStyle()}>{this.props.children}</View>;
     }
 
-    if (
-      this.props.overflow &&
-      this.props.overflow !== "scroll" &&
-      this.props.overflow !== "scrollY"
-    ) {
-      console.warn(`Unsupported scroll: ${this.props.overflow}`);
-    } else if (
-      this.props.overflow === "scroll" ||
-      this.props.overflow === "scrollY" ||
-      this.props.scroll
-    ) {
+    if (this.props.scroll) {
       const {justifyContent, alignContent, alignItems, ...scrollStyle} = this.propsToStyle();
 
       box = (
         <ScrollView
+          horizontal={this.props.overflow === "scrollX"}
           style={scrollStyle}
           contentContainerStyle={{justifyContent, alignContent, alignItems}}
           keyboardShouldPersistTaps="handled"

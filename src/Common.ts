@@ -14,33 +14,6 @@ export interface TrackingConfig {
   SENTRY_MOBILE_DSN: string;
 }
 
-export const BASE_THEME: {[name: string]: string} = {
-  // Primary colors
-  red: "#bd081c",
-  white: "#fdfdfd",
-  lightGray: "#efefef",
-  gray: "#8e8e8e",
-  darkGray: "#111",
-  // secondary colors
-  green: "#0fa573",
-  pine: "#0a6955",
-  olive: "#364a4c",
-  blue: "#4a90e2",
-  navy: "#004b91",
-  midnight: "#133a5e",
-  purple: "#b469eb",
-  orchid: "#8046a5",
-  eggplant: "#5b2677",
-  maroon: "#6e0f3c",
-  watermelon: "#f13535",
-  orange: "#e3780c",
-
-  // Social buttons
-  google: "#999999",
-  twitter: "#38a1f3",
-  facebook: "#4267b2",
-};
-
 // For configuring a theme.
 export interface UnifiedThemeConfig {
   blue?: string;
@@ -103,6 +76,15 @@ export interface UnifiedThemeConfig {
   neutral30?: string;
   neutral20?: string;
   neutral10?: string;
+
+  primaryFont: string;
+  primaryBoldFont?: string;
+  secondaryFont?: string;
+  secondaryBoldFont?: string;
+  buttonFont?: string;
+  accentFont?: string;
+  accentBoldFont?: string;
+  titleFont?: string;
 }
 
 // For using a theme.
@@ -168,23 +150,16 @@ export interface UnifiedTheme {
   neutral30: string;
   neutral20: string;
   neutral10: string;
+
+  primaryFont: string;
+  primaryBoldFont: string;
+  secondaryFont: string;
+  secondaryBoldFont: string;
+  buttonFont: string;
+  accentFont: string;
+  accentBoldFont: string;
+  titleFont: string;
 }
-
-// TODO: add to config
-export const FONT_MAP: {[name: string]: string} = {
-  primary: "Montserrat-Regular",
-  primaryBold: "Montserrat-Bold",
-
-  secondary: "SourceSansPro-Regular",
-  secondaryBold: "SourceSansPro-Bold",
-
-  button: "SourceSansPro-Bold",
-
-  accent: "PlayfairDisplay-Regular",
-  accentBold: "PlayfairDisplay-Bold",
-
-  title: "Montserrat-Bold",
-};
 
 export type Font =
   | "primary"
@@ -192,7 +167,9 @@ export type Font =
   | "secondary"
   | "secondaryBold"
   | "accent"
-  | "accentBold";
+  | "accentBold"
+  | "title"
+  | "button";
 
 // type Sizes = "small" | "xsmall" | "sm" | "small" | "medium" | "lg" | "large";
 export type Direction = "up" | "right" | "down" | "left";

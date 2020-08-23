@@ -4,6 +4,7 @@ import {Box} from "./Box";
 import {TextFieldProps} from "./Common";
 import {Icon} from "./Icon";
 import {WithLabel} from "./WithLabel";
+import {Unifier} from "./Unifier";
 
 interface TextFieldState {
   focused: boolean;
@@ -117,7 +118,7 @@ export class TextField extends React.Component<TextFieldProps, TextFieldState> {
               borderColor: this.getBorderColor(),
               borderWidth: this.state.focused && !this.props.errorMessage ? 5 : 1,
               borderRadius: 16,
-              backgroundColor: Unifier.theme.white,
+              backgroundColor: this.props.disabled ? Unifier.theme.lightGray : Unifier.theme.white,
               overflow: "hidden",
             }}
           >
@@ -132,7 +133,7 @@ export class TextField extends React.Component<TextFieldProps, TextFieldState> {
                 height: this.getHeight(),
                 width: "100%",
                 color: Unifier.theme.darkGray,
-                fontFamily: "SourceSansPro-Regular",
+                fontFamily: Unifier.theme.primaryFont,
                 ...this.props.style,
               }}
               keyboardType={keyboardType as KeyboardTypeOptions}

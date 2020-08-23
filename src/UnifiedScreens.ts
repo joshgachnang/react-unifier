@@ -1,17 +1,19 @@
 // import {Screens} from "./UnifiedScreens";
 import {Auth} from "./Auth";
-import {BarcodeView} from "./CameraView";
+// import {BarcodeView} from "./CameraView";
 import {FullPageModal} from "./Modal";
 import {Spinner} from "./Spinner";
 import {NavConfig} from "./Common";
 import {Unifier} from "./Unifier";
 
 export enum Screens {
-  BarcodeView = "BarcodeView",
+  // BarcodeView = "BarcodeView",
   Contacts = "Contacts",
   FullPageModal = "FullPageModal",
   Auth = "Auth",
   Spinner = "lib.Spinner",
+  Payment = "Payment",
+  Onboarding = "Onboarding",
 }
 let initialized = false;
 export function initializeUnifiedScreens() {
@@ -33,7 +35,7 @@ export function initializeUnifiedScreens() {
   //   Unifier.navigation.registerActionSheet(screen, component, config);
   // };
   registerScreen(Screens.Auth, Auth, {url: "/auth"});
-  registerScreen(Screens.BarcodeView, BarcodeView, {url: "/barcode"});
+  // registerScreen(Screens.BarcodeView, BarcodeView, {url: "/barcode"});
   registerScreen(Screens.FullPageModal, FullPageModal, {url: "/item"});
   registerScreen(Screens.Spinner, Spinner);
 

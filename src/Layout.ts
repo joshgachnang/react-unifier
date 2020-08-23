@@ -1,4 +1,3 @@
-import {FONT_MAP} from "./Common";
 import {Screens} from "./UnifiedScreens";
 import {Unifier} from "./Unifier";
 import {LayoutRoot} from "./navigation";
@@ -27,13 +26,13 @@ export const setDefaultNavOptions = () => {
       },
       title: {
         color: Unifier.theme.white,
-        fontFamily: FONT_MAP["title"],
+        fontFamily: Unifier.theme.titleFont,
         fontSize: 18,
         alignment: "fill",
       },
       subtitle: {
         color: Unifier.theme.primaryDark,
-        fontFamily: FONT_MAP["title"],
+        fontFamily: Unifier.theme.titleFont,
       },
       // buttonColor: Unifier.theme["white"],
       backButton: {
@@ -59,7 +58,7 @@ export const setDefaultNavOptions = () => {
       textColor: Unifier.theme.darkGray,
       selectedIconColor: Unifier.theme.primaryDark,
       selectedTextColor: Unifier.theme.primaryDark,
-      fontFamily: FONT_MAP.primaryDark,
+      fontFamily: Unifier.theme.primaryFont,
       icon: 1, //????
       iconInsets: {top: 3},
     },

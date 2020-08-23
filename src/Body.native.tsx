@@ -1,7 +1,8 @@
 import * as React from "react";
-import {Box} from "./Box";
-import {COLOR_MAP, BodyProps} from "./Common";
 import {ActivityIndicator, KeyboardAvoidingView} from "react-native";
+import {Box} from "./Box";
+import {BodyProps} from "./Common";
+import {Unifier} from "./Unifier";
 
 export class Body extends React.Component<BodyProps, {}> {
   renderBody() {

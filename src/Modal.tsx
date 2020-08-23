@@ -8,55 +8,9 @@ import {Box} from "./Box";
 import {ModalProps} from "./Common";
 import {Heading} from "./Heading";
 import styles from "./Modal.module.css";
-import {OptionsLayout} from "./navigation";
-import {Screens} from "./UnifiedScreens";
 import {Unifier} from "./Unifier";
 
 require("react-dom");
-
-// Pass "onSave" in passProps to create the save right nav button
-export function showFullPageModal(
-  component: any,
-  title: string,
-  layout?: OptionsLayout,
-  passProps?: any
-) {
-  Unifier.navigation.showModal({
-    stack: {
-      children: [
-        {
-          component: {
-            name: Screens.FullPageModal,
-            passProps: {
-              component,
-              ...passProps,
-            },
-            options: {
-              topBar: {
-                background: {
-                  color: Unifier.theme.primaryDark,
-                },
-                title: {
-                  text: title,
-                  color: Unifier.theme.white,
-                },
-                leftButtons: [
-                  {
-                    id: "close",
-                    text: "Close",
-                    color: Unifier.theme.white,
-                    // icon: times,
-                  },
-                ],
-              },
-              layout: layout,
-            },
-          },
-        },
-      ],
-    },
-  });
-}
 
 interface FullPageModalProps {
   component: any;

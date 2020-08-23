@@ -12,9 +12,11 @@ import {
   BaseProfile,
   TrackingConfig,
   UnifiedTheme,
-  BASE_THEME,
   UnifiedThemeConfig,
 } from "./Common";
+
+const DEFAULT_FONT = "Cochin";
+const DEFAULT_BOLD_FONT = "Cochin";
 
 const DefaultTheme: UnifiedTheme = {
   // Primary colors
@@ -80,6 +82,18 @@ const DefaultTheme: UnifiedTheme = {
   neutral30: "#EBECF0",
   neutral20: "#F4F5F7",
   neutral10: "#FAFBFC",
+
+  primaryFont: DEFAULT_FONT,
+  primaryBoldFont: DEFAULT_BOLD_FONT,
+
+  secondaryFont: DEFAULT_FONT,
+  secondaryBoldFont: DEFAULT_BOLD_FONT,
+
+  accentFont: DEFAULT_FONT,
+  accentBoldFont: DEFAULT_BOLD_FONT,
+
+  buttonFont: DEFAULT_FONT,
+  titleFont: DEFAULT_FONT,
 };
 
 export type UnifiedLayout = Layout;
@@ -239,8 +253,8 @@ class UnifierClass {
   }
 
   get theme(): UnifiedTheme {
+    console.log("GET THEME", DefaultTheme);
     return {
-      ...BASE_THEME,
       ...DefaultTheme,
       // Custom per project
       primaryLighter: this._theme?.primaryLighter || this._theme?.primary || DefaultTheme.primary,
@@ -269,6 +283,21 @@ class UnifierClass {
       tertiary: this._theme?.tertiary || this._theme?.accent || DefaultTheme.accent,
       tertiaryDark: this._theme?.tertiaryDark || this._theme?.accent || DefaultTheme.accent,
       tertiaryDarker: this._theme?.tertiaryDarker || this._theme?.accent || DefaultTheme.accent,
+
+      primaryFont: this._theme?.primaryFont || DefaultTheme.primaryFont,
+      primaryBoldFont:
+        this._theme?.primaryBoldFont || this._theme?.primaryFont || DefaultTheme.primaryBoldFont,
+      secondaryFont:
+        this._theme?.secondaryFont || this._theme?.primaryFont || DefaultTheme.secondaryFont,
+      secondaryBoldFont:
+        this._theme?.secondaryBoldFont ||
+        this._theme?.primaryFont ||
+        DefaultTheme.secondaryBoldFont,
+      buttonFont: this._theme?.buttonFont || this._theme?.primaryFont || DefaultTheme.buttonFont,
+      accentFont: this._theme?.accentFont || this._theme?.primaryFont || DefaultTheme.accentFont,
+      accentBoldFont:
+        this._theme?.accentBoldFont || this._theme?.primaryFont || DefaultTheme.accentBoldFont,
+      titleFont: this._theme?.titleFont || this._theme?.primaryFont || DefaultTheme.titleFont,
     };
   }
 
@@ -317,6 +346,7 @@ class UnifierClass {
   setConfig(config: Partial<AppConfig>) {
     // console.debug("[unifier] Setting config", config);
     if (config.theme) {
+      console.log("CONFIG THEME", config.theme);
       this._theme = config.theme;
     }
     this._utils = config.utils;

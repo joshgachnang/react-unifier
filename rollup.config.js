@@ -41,7 +41,7 @@ export default {
   input: "src/index.tsx",
   output: [
     {
-      file: "dist/unified.js",
+      file: "dist/unifier.js",
       format: "cjs",
       name: "unified",
       exports: "named",

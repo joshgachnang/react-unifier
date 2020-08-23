@@ -1,7 +1,7 @@
 import * as React from "react";
 import {TouchableOpacity} from "react-native";
 import {Icon} from "./Icon";
-import {COLOR_MAP, IconButtonProps, iconSizeToNumber} from "./Common";
+import {IconButtonProps, iconSizeToNumber} from "./Common";
 import {Unifier} from "./Unifier";
 
 export class IconButton extends React.Component<IconButtonProps, {}> {

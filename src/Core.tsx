@@ -8,7 +8,7 @@ import {Redirect, Route, RouteComponentProps, Switch} from "react-router-dom";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {UnifiedLayoutOptions, UnifiedLayout, Unifier} from "./Unifier";
-import {LayoutRoot, OptionsTopBarButton} from "./navigation";
+import {LayoutRoot, OptionsTopBarButton, OptionsLayout} from "./navigation";
 import {WithProfileProps, withProfile} from "./react-firestorm/src";
 import {Box} from "./Box";
 import {Layer} from "./Layer";
@@ -17,7 +17,6 @@ import {BackButton} from "./HeaderButtons";
 import {Heading} from "./Heading";
 import {Icon} from "./Icon";
 import {Text} from "./Text";
-import {Tracking} from "./lib/Tracking";
 import {PermissionKind, NavConfig} from "./Common";
 import {IconButton} from "./IconButton";
 import {Button} from "./Button";
@@ -109,7 +108,7 @@ export class NavigatorBare extends React.Component<NavigatorProps, NavigatorStat
     Unifier.setConfig({
       web: true,
       dev: true,
-      tracking: Tracking,
+      // tracking: Tracking,
       storage: {
         getItem: async (key: string) => localStorage && localStorage.getItem(key),
         setItem: (key: string, item: any) => localStorage && localStorage.setItem(key, item),
@@ -642,6 +641,50 @@ export class NavigatorBare extends React.Component<NavigatorProps, NavigatorStat
       </Box>
     );
   }
+}
+
+// Pass "onSave" in passProps to create the save right nav button
+export function showFullPageModal(
+  component: any,
+  title: string,
+  layout?: OptionsLayout,
+  passProps?: any
+) {
+  Unifier.navigation.showModal({
+    stack: {
+      children: [
+        {
+          component: {
+            name: Screens.FullPageModal,
+            passProps: {
+              component,
+              ...passProps,
+            },
+            options: {
+              topBar: {
+                background: {
+                  color: Unifier.theme.primaryDark,
+                },
+                title: {
+                  text: title,
+                  color: Unifier.theme.white,
+                },
+                leftButtons: [
+                  {
+                    id: "close",
+                    text: "Close",
+                    color: Unifier.theme.white,
+                    // icon: times,
+                  },
+                ],
+              },
+              layout: layout,
+            },
+          },
+        },
+      ],
+    },
+  });
 }
 
 export const Navigator = withProfile(withRouter(NavigatorBare));
