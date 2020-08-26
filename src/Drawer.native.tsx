@@ -8,7 +8,7 @@ import {emit, on} from "jetemit";
 import * as React from "react";
 import {Animated, Dimensions, StyleSheet, TouchableWithoutFeedback, View} from "react-native";
 import {Navigation} from "react-native-navigation";
-import {DrawerProps, DrawerDirection, Direction} from "../Common";
+import {DrawerProps, DrawerDirection, Direction} from "./Common";
 
 const DEFAULT_FADE_OPACITY = 0.6;
 

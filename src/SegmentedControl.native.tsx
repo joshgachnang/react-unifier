@@ -15,7 +15,7 @@ export class SegmentedControl extends React.Component<SegmentedControlProps, {}>
   render() {
     return (
       <Box
-        shape="rounded"
+        rounding={3}
         width="100%"
         height={40}
         display="flex"
@@ -26,7 +26,7 @@ export class SegmentedControl extends React.Component<SegmentedControlProps, {}>
         {this.props.items.map((item, index) => (
           <Box
             key={index}
-            shape="rounded"
+            rounding={3}
             height="100%"
             width={`${100 / this.props.items.length}%`}
             color={this.props.selectedItemIndex === index ? "white" : "lightGray"}

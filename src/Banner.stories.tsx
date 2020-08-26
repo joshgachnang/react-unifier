@@ -28,7 +28,7 @@ export const ShapeBanners = () => (
         subtext="Here's a pill."
         color="primary"
         textColor="white"
-        shape="pill"
+        rounding="pill"
       />
     </Box>
     <Box paddingY={2} width="100%">
@@ -37,7 +37,7 @@ export const ShapeBanners = () => (
         text="And a rounded banner"
         color="secondary"
         textColor="white"
-        shape="rounded"
+        rounding={3}
       />
     </Box>
   </Box>

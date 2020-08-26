@@ -7,7 +7,7 @@ export class Pill extends React.Component<PillProps, {}> {
   render() {
     return (
       <Box
-        shape="pill"
+        rounding="pill"
         color={this.props.enabled ? this.props.color : "white"}
         onClick={() => this.props.onClick(!this.props.enabled)}
         border={this.props.color}

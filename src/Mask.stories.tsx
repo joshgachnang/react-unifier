@@ -11,7 +11,7 @@ export default {
 export const RoundedMask = () => (
   <Box display="flex" direction="row" justifyContent="between">
     <Box width="100%" padding={6} color="primary">
-      <Mask shape="rounded">
+      <Mask rounding={3}>
         <Box
           width={50}
           height={50}

@@ -597,7 +597,6 @@ export interface BoxProps {
   lgPaddingY?: UnsignedUpTo12;
   position?: "static" | "absolute" | "relative" | "fixed";
   right?: boolean;
-  shape?: BoxShape;
   rounding?: "pill" | "circle" | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
   top?: boolean;
   width?: number | string;
@@ -912,7 +911,7 @@ export interface BackButtonInterface {
   onBack: () => void;
 }
 
-export interface CheckboxProps {
+export interface CheckBoxProps {
   id: string;
   onChange: ({value}: {value: boolean}) => void;
   checked?: boolean;
@@ -923,28 +922,11 @@ export interface CheckboxProps {
   onClick?: any;
   size?: "sm" | "md";
   color?: AllColors;
-}
+  radio?: boolean;
 
-export interface CheckBoxWithLabelProps extends CheckboxProps {
-  label: string;
+  label?: string;
   subLabel?: string;
   labelColor?: AllColors;
-}
-
-export interface RadioButtonProps {
-  id: string;
-  onChange: ({value}: {value: boolean}) => void;
-  checked?: boolean;
-  disabled?: boolean;
-  name?: string;
-  size?: "sm" | "md";
-  color?: AllColors;
-}
-
-export interface RadioButtonWithLabelProps extends RadioButtonProps {
-  label: string;
-  subLabel?: string;
-  labelColor?: Color;
 }
 
 export interface BodyProps {
@@ -1446,4 +1428,5 @@ export interface TrackerInterface {
 
 export interface NavConfig {
   url?: string;
+  wrapper?: (component: any) => any;
 }

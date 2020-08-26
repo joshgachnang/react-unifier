@@ -9,7 +9,7 @@ export class Card extends React.Component<BoxProps, {}> {
         direction="column"
         display="flex"
         color={this.props.color || "white"}
-        shape="rounded"
+        rounding={3}
         shadow={true}
         padding={this.props.padding || 4}
         width={this.props.width}

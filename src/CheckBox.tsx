@@ -1,14 +1,18 @@
+import {library} from "@fortawesome/fontawesome-svg-core";
+import {faCheck} from "@fortawesome/free-solid-svg-icons";
 import * as React from "react";
 import {Box} from "./Box";
 import {Icon} from "./Icon";
 import {Text} from "./Text";
-import {CheckboxProps, CheckBoxWithLabelProps} from "./Common";
+import {CheckBoxProps} from "./Common";
 
-export class Checkbox extends React.Component<CheckboxProps> {
-  render() {
+library.add(faCheck);
+
+export class CheckBox extends React.Component<CheckBoxProps, {}> {
+  renderCheckBox() {
     return (
       <Box
-        shape="rounded"
+        rounding={this.props.radio ? "circle" : 3}
         border={this.props.color || "darkGray"}
         height={this.props.size === "sm" ? 20 : 35}
         width={this.props.size === "sm" ? 20 : 35}
@@ -18,11 +22,11 @@ export class Checkbox extends React.Component<CheckboxProps> {
           this.props.onClick && this.props.onClick();
         }}
       >
-        <Box display="flex" justifyContent="center" alignItems="center">
+        <Box display="flex" direction="column" justifyContent="center" alignItems="center">
           {this.props.checked && (
             <Icon
-              prefix="far"
-              size={this.props.size === "sm" ? 15 : 25}
+              prefix="fas"
+              size={this.props.size === "sm" ? 12 : 20}
               name="check"
               color="white"
             />
@@ -31,23 +35,20 @@ export class Checkbox extends React.Component<CheckboxProps> {
       </Box>
     );
   }
-}
 
-export class CheckBoxWithLabel extends React.Component<CheckBoxWithLabelProps, {}> {
   render() {
     return (
-      <Box paddingY={1} display="flex" direction="row" width="100%" alignItems="center">
-        <Checkbox
-          id=""
-          checked={this.props.checked}
-          onChange={this.props.onChange}
-          color={this.props.color}
-          onClick={this.props.onClick}
-          size={this.props.size}
-          indeterminate={this.props.indeterminate}
-          hasError={this.props.hasError}
-          disabled={this.props.disabled}
-        />
+      <Box
+        paddingY={1}
+        display="flex"
+        direction="row"
+        maxHeight={60}
+        width="100%"
+        alignItems="center"
+      >
+        <Box display="flex" justifyContent="center" width={30} maxWidth={30}>
+          {this.renderCheckBox()}
+        </Box>
         <Box
           onClick={() => {
             this.props.onChange({value: !this.props.checked});

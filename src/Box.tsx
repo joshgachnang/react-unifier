@@ -36,13 +36,6 @@ export class Box extends React.Component<BoxProps, {}> {
       props.overflow = "scrollY";
     }
     let rounding: "pill" | "circle" | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | undefined = undefined;
-    if (this.props.shape === "pill") {
-      rounding = "pill";
-    } else if (this.props.shape === "circle") {
-      rounding = "circle";
-    } else if (this.props.shape === "rounded") {
-      rounding = 3;
-    }
 
     let body = (
       <GestaltBox

@@ -1,6 +1,6 @@
 import React from "react";
 import {Box} from "./Box";
-import {Checkbox, CheckBoxWithLabel} from "./Checkbox";
+import {Checkbox, CheckBoxWithLabel} from "./CheckBox";
 
 export default {
   title: "Checkbox",

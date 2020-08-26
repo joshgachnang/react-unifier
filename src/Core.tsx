@@ -9,7 +9,6 @@ import {Redirect, Route, RouteComponentProps, Switch} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {UnifiedLayoutOptions, UnifiedLayout, Unifier} from "./Unifier";
 import {LayoutRoot, OptionsTopBarButton, OptionsLayout} from "./navigation";
-import {WithProfileProps, withProfile} from "./react-firestorm/src";
 import {Box} from "./Box";
 import {Layer} from "./Layer";
 import {Modal} from "./Modal";
@@ -20,6 +19,7 @@ import {Text} from "./Text";
 import {PermissionKind, NavConfig} from "./Common";
 import {IconButton} from "./IconButton";
 import {Button} from "./Button";
+import {UnifierScreens} from "./UnifiedScreens";
 
 function urlToRegex(url?: string): RegExp | undefined {
   if (!url) {
@@ -50,8 +50,8 @@ interface Tab {
   url: string;
 }
 
-interface NavigatorProps extends RouteComponentProps, WithProfileProps {}
-
+// interface NavigatorProps extends { }
+type NavigatorProps = RouteComponentProps;
 interface NavigatorState {
   loading: boolean;
   initialProps: {[key: string]: any};
@@ -112,51 +112,6 @@ export class NavigatorBare extends React.Component<NavigatorProps, NavigatorStat
       storage: {
         getItem: async (key: string) => localStorage && localStorage.getItem(key),
         setItem: (key: string, item: any) => localStorage && localStorage.setItem(key, item),
-      },
-      theme: {
-        primaryLighter: "#457b9d",
-        primaryLight: "#457b9d",
-        primary: "#457b9d",
-        primaryDark: "#457b9d",
-        primaryDarker: "#457b9d",
-
-        secondaryLighter: "#a8dadc",
-        secondaryLight: "#a8dadc",
-        secondary: "#a8dadc",
-        secondaryDark: "#a8dadc",
-        secondaryDarker: "#a8dadc",
-
-        accentLighter: "#e63946",
-        accentLight: "#e63946",
-        accent: "#e63946",
-        accentDark: "#e63946",
-        accentDarker: "#e63946",
-
-        tertiaryLighter: "#1d3557",
-        tertiaryLight: "#1d3557",
-        tertiary: "#1d3557",
-        tertiaryDark: "#1d3557",
-        tertiaryDarker: "#1d3557",
-
-        // From the Atlassian templates
-        neutral900: "#091E42",
-        neutral800: "#172B4D",
-        neutral700: "#253858",
-        neutral600: "#344563",
-        neutral500: "#42526E",
-        neutral400: "#505F79",
-        neutral300: "#5E6C84",
-        neutral200: "#6B778C",
-        neutral100: "#7A869A",
-        neutral90: "#8993A4",
-        neutral80: "#97A0AF",
-        neutral70: "#A5ADBA",
-        neutral60: "#B3BAC5",
-        neutral50: "#C1C7D0",
-        neutral40: "#DFE1E6",
-        neutral30: "#EBECF0",
-        neutral20: "#F4F5F7",
-        neutral10: "#FAFBFC",
       },
       utils: {
         dismissKeyboard: () => {
@@ -450,7 +405,7 @@ export class NavigatorBare extends React.Component<NavigatorProps, NavigatorStat
       return null;
     }
 
-    let leftButtons = [];
+    let leftButtons: any[] = [];
     if (topBar?.backButton?.visible) {
       leftButtons.push(
         <BackButton componentId="backbutton" onBack={() => Unifier.navigation.pop("back")} />
@@ -655,7 +610,7 @@ export function showFullPageModal(
       children: [
         {
           component: {
-            name: Screens.FullPageModal,
+            name: UnifierScreens.FullPageModal,
             passProps: {
               component,
               ...passProps,
@@ -687,4 +642,4 @@ export function showFullPageModal(
   });
 }
 
-export const Navigator = withProfile(withRouter(NavigatorBare));
+export const Navigator = withRouter(NavigatorBare);

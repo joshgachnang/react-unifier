@@ -1,4 +1,4 @@
-import {Screens} from "./UnifiedScreens";
+import {UnifierScreens} from "./UnifiedScreens";
 import {Unifier} from "./Unifier";
 import {LayoutRoot} from "./navigation";
 
@@ -78,17 +78,17 @@ const AuthRoot = {
       children: [
         {
           component: {
-            name: Screens.Auth,
+            name: UnifierScreens.Auth,
           },
         },
         // {
         //   component: {
-        //     name: Screens.PersonalInfo,
+        //     name: UnifierScreens.PersonalInfo,
         //   },
         // },
         // {
         //   component: {
-        //     name: Screens.Diet,
+        //     name: UnifierScreens.Diet,
         //   },
         // },
       ],
@@ -103,7 +103,7 @@ const AuthRoot = {
 //       children: [
 //         {
 //           component: {
-//             name: Screens.Payment,
+//             name: UnifierScreens.Payment,
 //             options: {
 //               layout: {
 //                 backgroundColor: Unifier.theme.primaryDark,

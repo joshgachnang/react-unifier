@@ -21,7 +21,12 @@ export class BlurBox extends React.Component<BlurBoxProps, {}> {
   render() {
     const {marginBottom, marginTop, margin, ...props} = this.props;
     return (
-      <Box marginBottom={marginBottom || 4} marginTop={marginTop || 0} margin={margin || 0}>
+      <Box
+        marginBottom={marginBottom || 4}
+        marginTop={marginTop || 0}
+        margin={margin || 0}
+        width="100%"
+      >
         {this.renderBlur(
           <Box paddingX={4} {...props}>
             {this.props.children}

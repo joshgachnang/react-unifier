@@ -1,6 +1,6 @@
 import React from "react";
 import {Clipboard, Dimensions, Keyboard, Linking, Platform, Vibration} from "react-native";
-import "react-native-gesture-handler";
+// import "react-native-gesture-handler";
 import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 import {Navigation, Options} from "react-native-navigation";
 import {PermissionKind} from "./Common";
@@ -8,9 +8,8 @@ import {RNNDrawer} from "./Drawer";
 // import {requestPermissions} from "./lib/Permissions";
 // import {clearNotificationsForTab} from "./lib/PushNotifications";
 import {LayoutRoot, OptionsLayout} from "./navigation";
-import {withProfile} from "./react-firestorm/src";
 import {UnifiedLayout, UnifiedLayoutOptions, Unifier} from "./Unifier";
-import {Screens} from "./UnifiedScreens";
+import {UnifierScreens} from "./UnifiedScreens";
 
 interface WrapperProps {
   store: any;
@@ -23,204 +22,10 @@ class Wrapper extends React.Component<WrapperProps, {}> {
   }
 }
 
-const setDefaultNavOptions = () => {
-  Navigation.setDefaultOptions({
-    // TODO: statusbar styling not working
-    statusBar: {
-      visible: true,
-      style: "light",
-    },
-    layout: {
-      backgroundColor: Unifier.theme.white,
-    },
-    topBar: {
-      // visible: true,
-      background: {
-        color: Unifier.theme.primaryDark,
-      },
-      title: {
-        color: Unifier.theme.white,
-        fontFamily: Unifier.theme.titleFont,
-        fontSize: 18,
-        alignment: "fill",
-      },
-      subtitle: {
-        color: Unifier.theme.white,
-        fontFamily: Unifier.theme.titleFont,
-      },
-      // buttonColor: Unifier.theme["white"],
-      backButton: {
-        color: Unifier.theme.white,
-        showTitle: false,
-      },
-      borderColor: Unifier.theme.darkGray,
-      borderHeight: 2,
-    },
-    bottomTabs: {
-      animate: true,
-      backgroundColor: Unifier.theme.lightGray,
-      drawBehind: false,
-      elevation: 3,
-      // hideShadow: true,
-      titleDisplayMode: "alwaysShow",
-      // translucent: true,
-      // barStyle: "black",
-      hideShadow: true,
-      // backgroundColor: "#F5F6F7",
-    },
-    bottomTab: {
-      iconColor: Unifier.theme.darkGray,
-      textColor: Unifier.theme.darkGray,
-      selectedIconColor: Unifier.theme.primaryDark,
-      selectedTextColor: Unifier.theme.primaryDark,
-      fontFamily: Unifier.theme.primaryFont,
-      // icon: 1, //????
-      iconInsets: {top: 1, bottom: 1},
-    },
-  });
-};
-
 function initializeUnifier() {
+  console.debug("[unifier] Initializing native core unifier.");
   // const adminImage = require("../img/admin-tab.png");
   // console.log("LOGOS", feedImage, profileImage);
-
-  const AuthRoot: LayoutRoot = {
-    root: {
-      stack: {
-        id: "App",
-        children: [
-          {
-            component: {
-              name: Screens.Onboarding,
-            },
-          },
-        ],
-      },
-    },
-  };
-
-  const PaymentRoot: LayoutRoot = {
-    root: {
-      stack: {
-        id: "Payment",
-        children: [
-          {
-            component: {
-              name: Screens.Payment,
-              options: {
-                layout: {
-                  backgroundColor: Unifier.theme.primaryDark,
-                },
-                topBar: {
-                  visible: false,
-                },
-              },
-            },
-          },
-        ],
-      },
-    },
-  };
-
-  const MainRoot: LayoutRoot = {
-    root: {
-      bottomTabs: {
-        id: "BottomTabsId",
-        children: [
-          {
-            stack: {
-              id: "LogTab",
-              children: [
-                {
-                  component: {
-                    name: "Log",
-                  },
-                },
-              ],
-              options: {
-                bottomTab: {
-                  text: "Log",
-                  fontSize: 12,
-                  // icon: logImage,
-                },
-              },
-            },
-          },
-          {
-            stack: {
-              id: "FeedTab",
-              children: [
-                {
-                  component: {
-                    name: "Home",
-                  },
-                },
-              ],
-              options: {
-                bottomTab: {
-                  fontSize: 12,
-                  text: "Feed",
-                  // icon: feedImage,
-                },
-              },
-            },
-          },
-          // {
-          //   component: {
-          //     name: "lib.AddBottomButton",
-          //   },
-          // },
-          {
-            stack: {
-              id: "ChatTab",
-              children: [
-                {
-                  component: {
-                    name: "Chat",
-                  },
-                },
-              ],
-              options: {
-                bottomTab: {
-                  fontSize: 12,
-                  text: "Chat",
-                  // icon: chatImage,
-                },
-              },
-            },
-          },
-          {
-            stack: {
-              id: "ProfileTab",
-              children: [
-                {
-                  component: {
-                    name: "Profile",
-                  },
-                },
-              ],
-              options: {
-                bottomTab: {
-                  text: "Profile",
-                  fontSize: 12,
-                  // icon: profileImage,
-                },
-              },
-            },
-          },
-        ],
-      },
-    },
-    // overlay: {
-    //   screen: "lib.addTabButton", // Where 'CustomTab' is the name of my registered tab button
-    //   height: 62,
-    //   width: 62,
-    //   position: {
-    //     top: DEVICE_HEIGHT - 62,
-    //     left: DEVICE_WIDTH / 2 - 31,
-    //   },
-    // },
-  };
 
   Unifier.setConfig({
     // tracking: Tracking,
@@ -266,16 +71,13 @@ function initializeUnifier() {
       bindComponent: (component: React.Component<any>) => {
         return Navigation.events().bindComponent(component);
       },
-      registerScreen: (screen: string, component: any) => {
-        Navigation.registerComponent(screen, () => withProfile(component), Wrapper);
+      registerScreen: (screenName, component, config) => {
+        let comp = config?.wrapper ? config.wrapper(component) : component;
+        Navigation.registerComponent(screenName, () => comp);
       },
-      registerActionSheet: (componentName: string, component: React.ComponentType<any>) => {
-        Navigation.registerComponentWithRedux(
-          componentName,
-          () => RNNDrawer(withProfile(component)),
-          Wrapper,
-          null as any
-        );
+      registerActionSheet: (componentName: string, component: React.ComponentType<any>, config) => {
+        let comp = config?.wrapper ? config.wrapper(component) : component;
+        Navigation.registerComponent(componentName, () => RNNDrawer(comp));
       },
       setRoot: (layout: LayoutRoot) => {
         return Navigation.setRoot(layout);
@@ -312,12 +114,12 @@ function initializeUnifier() {
       },
       goToAuth: () => {
         console.debug("[App] going to auth");
-        Navigation.setRoot(AuthRoot);
+        Navigation.setRoot(Unifier.layout.auth);
       },
       goToMain: async () => {
         console.debug("[App] going to main");
         // PushService.init(store);
-        Navigation.setRoot(MainRoot);
+        Navigation.setRoot(Unifier.layout.main);
         if (Platform.OS === "ios") {
           try {
             // await requestPermissions("notification");
@@ -333,19 +135,21 @@ function initializeUnifier() {
         //   isProduction = false;
         // }
         if (!isProduction) {
-          Navigation.setRoot(MainRoot);
+          Navigation.setRoot(Unifier.layout.main);
         } else {
-          Navigation.setRoot(PaymentRoot);
+          Navigation.setRoot(Unifier.layout.payment);
         }
         // Navigation.setRoot(MainRoot);
       },
       clearNotificationsForTab: (tab: "log" | "feed" | "chat" | "profile") => {
-        console.warn("Clear notifications not supported yet.");
+        // console.warn("Clear notifications not supported yet.");
         // clearNotificationsForTab(tab);
       },
     },
   });
 }
+
+initializeUnifier();
 
 // Pass "onSave" in passProps to create the save right nav button
 export function showFullPageModal(
@@ -359,7 +163,7 @@ export function showFullPageModal(
       children: [
         {
           component: {
-            name: Screens.FullPageModal,
+            name: UnifierScreens.FullPageModal,
             passProps: {
               component,
               ...passProps,

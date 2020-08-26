@@ -85,20 +85,20 @@ export class Box extends React.Component<BoxProps, {}> {
     right: (right) => ({right}),
     left: (left) => ({left}),
     rounding: (rounding, allProps) => {
-      if (typeof rounding === "number") {
-        return {borderRadius: rounding * 4};
-      }
-
       if (rounding === "circle") {
         if (!allProps.height && !allProps.width) {
           console.warn("Cannot use Box rounding='circle' without height or width.");
           return {borderRadius: undefined};
         }
-        return {borderRadius: (allProps.height || allProps.width) / 2};
+        return {borderRadius: allProps.height || allProps.width};
       }
 
       if (rounding === "pill") {
         return {borderRadius: 999};
+      }
+
+      if (typeof rounding === "number") {
+        return {borderRadius: rounding * 4};
       }
 
       return {borderRadius: undefined};
@@ -137,21 +137,6 @@ export class Box extends React.Component<BoxProps, {}> {
       } else {
         return {elevation: 4};
       }
-    },
-    shape: (value) => {
-      switch (value) {
-        case "rounded":
-          return {borderRadius: 10};
-        case "pill":
-          return {borderRadius: 10000};
-        case "circle":
-        case "roundedTop":
-        case "roundedBottom":
-        case "roundedLeft":
-        case "roundedRight":
-          console.warn("Unsupported box shape", value);
-      }
-      return {};
     },
     border: (value) => {
       if (!value) {
@@ -241,7 +226,6 @@ export class Box extends React.Component<BoxProps, {}> {
         </TouchableOpacity>
       );
     } else {
-      console.log("PROPS", this.propsToStyle());
       box = <View style={this.propsToStyle()}>{this.props.children}</View>;
     }
 

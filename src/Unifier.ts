@@ -100,6 +100,12 @@ export type UnifiedLayout = Layout;
 export type UnifiedLayoutOptions = Options;
 export type UnifiedLayoutRoot = LayoutRoot;
 
+export interface UnifiedLayoutConfig {
+  main: UnifiedLayoutRoot;
+  auth: UnifiedLayoutRoot;
+  payment: UnifiedLayoutRoot;
+}
+
 export interface UnifiedStorage {
   getItem: (key: string) => Promise<any>;
   setItem: (key: string, item: any) => void;
@@ -124,10 +130,16 @@ export interface UnifiedUtils {
   platform: () => PlatformOS;
 }
 
+const StubLayout: UnifiedLayoutConfig = {
+  auth: {root: {}},
+  main: {root: {}},
+  payment: {root: {}},
+};
+
 const StubUtils: UnifiedUtils = {
   dismissKeyboard: () => {},
   dimensions: () => {
-    console.warn("[unifier] STUB DIMENSIONS");
+    console.warn("[unifier] Using stub dimensions, this is probably not what you want.");
     return {height: 1, width: 1};
   },
   copyToClipboard: (text: string) => {},
@@ -233,6 +245,7 @@ export interface AppConfig {
   tracking: TrackerInterface;
   utils: UnifiedUtils;
   storage: UnifiedStorage;
+  layout?: UnifiedLayoutConfig;
 }
 
 class UnifierClass {
@@ -241,6 +254,7 @@ class UnifierClass {
   private _tracking?: TrackerInterface;
   private _utils?: UnifiedUtils;
   private _storage?: UnifiedStorage;
+  private _layout?: UnifiedLayoutConfig;
   private _web = false;
   private _dev = false;
 
@@ -253,7 +267,6 @@ class UnifierClass {
   }
 
   get theme(): UnifiedTheme {
-    console.log("GET THEME", DefaultTheme);
     return {
       ...DefaultTheme,
       // Custom per project
@@ -303,6 +316,7 @@ class UnifierClass {
 
   get navigation(): UnifiedNavigation {
     if (!this._nav) {
+      console.warn("[unifier] Using stub navigation");
       // throw new Error("[unifier] You must call setConfig before using navigation.");
       return StubNav;
     }
@@ -335,6 +349,13 @@ class UnifierClass {
     return this._storage;
   }
 
+  get layout(): UnifiedLayoutConfig {
+    if (!this._layout) {
+      return StubLayout;
+    }
+    return this._layout;
+  }
+
   constructor() {
     console.debug("[unifier] Setting up Unifier");
   }
@@ -346,14 +367,26 @@ class UnifierClass {
   setConfig(config: Partial<AppConfig>) {
     // console.debug("[unifier] Setting config", config);
     if (config.theme) {
-      console.log("CONFIG THEME", config.theme);
       this._theme = config.theme;
     }
-    this._utils = config.utils;
-    this._nav = config.navigation;
-    this._tracking = config.tracking;
-    this._web = Boolean(config.web);
-    this._dev = Boolean(config.dev);
+    if (config.utils) {
+      this._utils = config.utils;
+    }
+    if (config.navigation) {
+      this._nav = config.navigation;
+    }
+    if (config.tracking) {
+      this._tracking = config.tracking;
+    }
+    if (config.web !== undefined) {
+      this._web = Boolean(config.web);
+    }
+    if (config.dev !== undefined) {
+      this._dev = Boolean(config.dev);
+    }
+    if (config.layout) {
+      this._layout = config.layout;
+    }
   }
 }
 
