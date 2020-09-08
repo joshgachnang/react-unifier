@@ -470,7 +470,7 @@ export interface ActionBannerProps {
   textColor?: TextColor;
   negativeXMargin?: number;
   onClick: () => void;
-  shape?: BoxShape;
+  shape?: Rounding;
 }
 
 export interface ActionSheetProps {
@@ -488,7 +488,9 @@ export interface BannerProps {
   textColor?: TextColor;
   negativeXMargin?: number;
   bold?: boolean;
-  shape?: BoxShape;
+  shape?: Rounding;
+  type?: "dismiss" | "action";
+  onClick?: () => void;
 }
 
 export interface BlurBoxProps extends BoxProps {
@@ -510,16 +512,6 @@ export interface ModalProps {
   role?: "alertdialog" | "dialog";
   size?: "sm" | "md" | "lg" | number;
 }
-
-export type BoxShape =
-  | "square"
-  | "rounded"
-  | "pill"
-  | "circle"
-  | "roundedTop"
-  | "roundedBottom"
-  | "roundedLeft"
-  | "roundedRight";
 
 export interface BoxProps {
   alignContent?: AlignContent;
@@ -699,6 +691,7 @@ export interface PageProps {
   padding?: UnsignedUpTo12;
   color?: Color;
   maxWidth?: number | string;
+  keyboardOffset?: number;
 }
 
 export interface PillProps {
@@ -853,7 +846,7 @@ export interface LinkProps {
   target?: null | "blank";
 }
 
-export type Rounding = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | "circle";
+export type Rounding = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | "circle" | "pill";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HeadingProps {

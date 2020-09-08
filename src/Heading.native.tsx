@@ -17,7 +17,7 @@ export class Heading extends React.Component<HeadingProps, {}> {
     // if (this.props.bold) {
     //   font += "Bold";
     // }
-    style.fontFamily = Unifier.theme.primaryFont;
+    style.fontFamily = Unifier.theme.primaryBoldFont;
 
     style.fontSize = this.fontSizes[this.props.size || "md"];
     if (this.props.align) {

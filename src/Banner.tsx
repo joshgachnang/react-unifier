@@ -6,8 +6,10 @@ import {BannerProps, ButtonColor} from "./Common";
 import {Unifier} from "./Unifier";
 
 import {library} from "@fortawesome/fontawesome-svg-core";
-import {faTimesCircle} from "@fortawesome/free-solid-svg-icons";
+import {faTimesCircle, faArrowRight} from "@fortawesome/free-solid-svg-icons";
+
 library.add(faTimesCircle);
+library.add(faArrowRight);
 
 interface BannerState {
   show: boolean;
@@ -37,7 +39,13 @@ export class Banner extends React.Component<BannerProps, BannerState> {
     if (!this.state.show) {
       return null;
     }
+    let type = this.props.type || "dismiss";
+
+    if (type === "action" && !this.props.onClick) {
+      console.warn("Banners with type action require an onClick property.");
+    }
     const negativeMargin = (this.props.negativeXMargin || 0) * -4;
+
     return (
       <Box
         onClick={this.dismiss}
@@ -46,21 +54,18 @@ export class Banner extends React.Component<BannerProps, BannerState> {
         marginBottom={3}
         color={this.props.color || "secondaryDark"}
         direction="row"
-        display="flex"
-        shape={this.props.shape}
+        rounding={this.props.shape}
         dangerouslySetInlineStyle={{
-          __style: {marginLeft: negativeMargin, marginRight: negativeMargin},
+          __style: {
+            marginLeft: negativeMargin,
+            marginRight: negativeMargin,
+          },
         }}
-        width="100%"
+        width={Unifier.utils.dimensions().width}
+        paddingX={3}
+        justifyContent="between"
       >
-        <Box
-          marginLeft={3}
-          flex="grow"
-          display="flex"
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Box direction="column" justifyContent="center" alignItems="center" flex="shrink">
           <Box paddingY={1}>
             <Text align="center" color={this.props.textColor || "white"} weight="bold">
               {this.props.text}
@@ -74,15 +79,27 @@ export class Banner extends React.Component<BannerProps, BannerState> {
             </Box>
           )}
         </Box>
-        <Box alignItems="center" justifyContent="center">
-          <IconButton
-            prefix="fas"
-            icon="times-circle"
-            size="lg"
-            onClick={() => this.dismiss()}
-            accessibilityLabel=""
-            iconColor={(this.props.textColor || "white") as ButtonColor}
-          />
+        <Box display="block" width={40} alignItems="center" justifyContent="center">
+          {type === "dismiss" && (
+            <IconButton
+              prefix="fas"
+              icon="times-circle"
+              // size="lg"
+              onClick={() => this.dismiss()}
+              accessibilityLabel=""
+              iconColor={(this.props.textColor || "white") as ButtonColor}
+            />
+          )}
+          {type === "action" && (
+            <IconButton
+              prefix="fas"
+              icon="arrow-right"
+              // size="lg"
+              onClick={() => this.props.onClick && this.props.onClick()}
+              accessibilityLabel=""
+              iconColor={(this.props.textColor || "white") as ButtonColor}
+            />
+          )}
         </Box>
       </Box>
     );

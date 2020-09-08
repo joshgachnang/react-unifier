@@ -35,7 +35,7 @@ export class Box extends React.Component<BoxProps, {}> {
     if (props.scroll) {
       props.overflow = "scrollY";
     }
-    let rounding: "pill" | "circle" | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | undefined = undefined;
+    let rounding: Rounding | undefined = undefined;
 
     let body = (
       <GestaltBox

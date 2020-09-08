@@ -103,7 +103,6 @@ export class Box extends React.Component<BoxProps, {}> {
 
       return {borderRadius: undefined};
     },
-    // scroll: () => ({flex: 1}),
     overflow: (value) => {
       if (value === "scrollY" || value === "scroll") {
         return {overflow: "scroll"};

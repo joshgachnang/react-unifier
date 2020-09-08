@@ -1,4 +1,3 @@
-export * from "./ActionBanner";
 export * from "./Banner";
 export * from "./BlurBox";
 export * from "./Body";

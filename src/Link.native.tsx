@@ -1,6 +1,6 @@
 import React from "react";
-
-interface LinkProps {}
+import {Text} from "./Text";
+import {LinkProps} from "./Common";
 
 interface LinkState {}
 
@@ -11,6 +11,6 @@ export class Link extends React.Component<LinkProps, LinkState> {
   }
 
   render() {
-    return this.props.children;
+    return <Text>this.props.children</Text>;
   }
 }

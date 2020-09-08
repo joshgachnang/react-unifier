@@ -39,16 +39,13 @@ export class Page extends React.Component<PageProps, {}> {
   }
 
   render() {
-    let overflow: "scrollY" | undefined = undefined;
-    if (this.props.scroll) {
-      overflow = "scrollY";
-    }
     return (
       <ErrorBoundary>
         <Box
-          overflow={overflow}
+          scroll={true}
           padding={this.props.padding !== undefined ? this.props.padding : 2}
           avoidKeyboard={true}
+          keyboardOffset={this.props.keyboardOffset}
           display={this.props.display || "flex"}
           height="100%"
           width="100%"
