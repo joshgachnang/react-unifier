@@ -61,7 +61,7 @@ export class Banner extends React.Component<BannerProps, BannerState> {
             marginRight: negativeMargin,
           },
         }}
-        width={Unifier.utils.dimensions().width}
+        width={Unifier.utils.dimensions().width || "100%"}
         paddingX={3}
         justifyContent="between"
       >

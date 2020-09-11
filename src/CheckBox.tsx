@@ -22,7 +22,14 @@ export class CheckBox extends React.Component<CheckBoxProps, {}> {
           this.props.onClick && this.props.onClick();
         }}
       >
-        <Box display="flex" direction="column" justifyContent="center" alignItems="center">
+        <Box
+          display="flex"
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          height="100%"
+          width="100%"
+        >
           {this.props.checked && (
             <Icon
               prefix="fas"

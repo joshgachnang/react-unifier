@@ -140,7 +140,7 @@ const StubUtils: UnifiedUtils = {
   dismissKeyboard: () => {},
   dimensions: () => {
     console.warn("[unifier] Using stub dimensions, this is probably not what you want.");
-    return {height: 1, width: 1};
+    return {height: 0, width: 0};
   },
   copyToClipboard: (text: string) => {},
   requestPermissions: async (permission: PermissionKind) => "denied",

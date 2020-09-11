@@ -37,7 +37,7 @@ export class SegmentedControl extends React.Component<SegmentedControlProps, {}>
               display="flex"
               alignItems="center"
               justifyContent="center"
-              onClick={() => this.props.onChange({value: String(index)})}
+              onClick={() => this.props.onChange({activeIndex: index})}
             >
               {this.renderItem(item)}
             </Box>
