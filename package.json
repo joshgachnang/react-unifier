@@ -8,7 +8,8 @@
     "build-storybook": "build-storybook -s public",
     "deploy": "storybook-to-ghpages",
     "dev": "tsc -w",
-    "lint": "eslint \"src/**/*.ts*\"",
+    "lint": "prettier --list-different \"src/**/*.ts\" && eslint \"src/**/*.ts*\"",
+    "lintfix": "eslint \"src/**/*.ts*\"",
     "start": "yarn dev",
     "storybook": "start-storybook -p 9009 -s public",
     "test": "node checkDeps.js"

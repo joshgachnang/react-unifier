@@ -127,9 +127,8 @@ export class TextField extends React.Component<TextFieldProps, TextFieldState> {
     if (this.props.type === "date") {
       value = moment(this.props.value).format("MM/DD/YYYY");
     } else if (this.props.type === "height") {
-      value = `${Math.floor(Number(this.props.value) / 12)} ft, ${
-        Number(this.props.value) % 12
-      } in`;
+      value = `${Math.floor(Number(this.props.value) / 12)} ft, ${Number(this.props.value) %
+        12} in`;
     }
     return (
       <>
