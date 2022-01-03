@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {PillProps} from "./Common";
 import {Box} from "./Box";
 import {Text} from "./Text";

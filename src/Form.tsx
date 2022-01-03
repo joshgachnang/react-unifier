@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {Box} from "./Box";
 import {Text} from "./Text";
 import {Switch} from "./Switch";
@@ -112,10 +112,10 @@ export class FormLine extends React.Component<FormLineProps, FormLineState> {
         </Box>
         <SelectList
           id={this.props.name}
-          options={(this.props.options || []).map((o) => ({label: o, value: o}))}
+          options={(this.props.options || []).map((o) => ({label: o ?? "---", value: o}))}
           value={this.state.value}
           onChange={(result) => {
-            this.setState({value: result.value});
+            this.setState({value: result});
           }}
         />
       </>

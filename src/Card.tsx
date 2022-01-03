@@ -1,5 +1,5 @@
 import {BoxProps} from "./Common";
-import * as React from "react";
+import React from "react";
 import {Box} from "./Box";
 
 export class Card extends React.Component<BoxProps, {}> {

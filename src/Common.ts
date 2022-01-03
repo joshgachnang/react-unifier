@@ -1,4 +1,5 @@
 import {SyntheticEvent} from "react";
+import {SelectListOptions} from "./SelectList";
 
 export interface BaseProfile {
   email: string;
@@ -12,79 +13,64 @@ export interface TrackingConfig {
   MIXPANEL_TOKEN: string;
   SENTRY_WEB_DSN: string;
   SENTRY_MOBILE_DSN: string;
+  USER_PROPERTY_KEYS: string[];
 }
 
-// For configuring a theme.
-export interface UnifiedThemeConfig {
-  blue?: string;
-  darkGray?: string;
-  eggplant?: string;
-  gray?: string;
-  green?: string;
-  lightGray?: string;
-  maroon?: string;
-  midnight?: string;
-  navy?: string;
-  olive?: string;
-  orange?: string;
-  orchid?: string;
-  pine?: string;
-  purple?: string;
-  red?: string;
-  watermelon?: string;
-  white?: string;
+export interface IConfig extends TrackingConfig {
+  FEEDBACK_URL: string;
+  PRIVACY_POLICY_URL: string;
+  // The collection name to store profiles in for Firebase/redux.
+  PROFILE_COLLECTION: string;
+  TERMS_URL: string;
+  BASE_URL: string;
+  PRODUCTION: boolean;
 
-  primaryLighter?: string;
-  primaryLight?: string;
-  primary: string;
-  primaryDark?: string;
-  primaryDarker?: string;
+  // Useful for generating:
+  // http://paletton.com/#uid=72Q0u0kw0u8khBrpJx0z7nUEPiG
+  primaryLighterColor: string;
+  primaryLightColor: string;
+  primaryColor: string;
+  primaryDarkColor: string;
+  primaryDarkerColor: string;
 
-  secondaryLighter?: string;
-  secondaryLight?: string;
-  secondary: string;
-  secondaryDark?: string;
-  secondaryDarker?: string;
+  secondaryLighterColor: string;
+  secondaryLightColor: string;
+  secondaryColor: string;
+  secondaryDarkColor: string;
+  secondaryDarkerColor: string;
 
-  accentLighter?: string;
-  accentLight?: string;
-  accent: string;
-  accentDark?: string;
-  accentDarker?: string;
+  accentLighterColor: string;
+  accentLightColor: string;
+  accentColor: string;
+  accentDarkColor: string;
+  accentDarkerColor: string;
 
-  tertiaryLighter?: string;
-  tertiaryLight?: string;
-  tertiary: string;
-  tertiaryDark?: string;
-  tertiaryDarker?: string;
+  tertiaryLighterColor: string;
+  tertiaryLightColor: string;
+  tertiaryColor: string;
+  tertiaryDarkColor: string;
+  tertiaryDarkerColor: string;
 
-  neutral900?: string;
-  neutral800?: string;
-  neutral700?: string;
-  neutral600?: string;
-  neutral500?: string;
-  neutral400?: string;
-  neutral300?: string;
-  neutral200?: string;
-  neutral100?: string;
-  neutral90?: string;
-  neutral80?: string;
-  neutral70?: string;
-  neutral60?: string;
-  neutral50?: string;
-  neutral40?: string;
-  neutral30?: string;
-  neutral20?: string;
-  neutral10?: string;
+  // firebaseConfig: any;
 
-  primaryFont: string;
-  primaryBoldFont?: string;
-  secondaryFont?: string;
-  secondaryBoldFont?: string;
-  buttonFont?: string;
-  accentFont?: string;
-  accentBoldFont?: string;
-  titleFont?: string;
+  neutral900: string;
+  neutral800: string;
+  neutral700: string;
+  neutral600: string;
+  neutral500: string;
+  neutral400: string;
+  neutral300: string;
+  neutral200: string;
+  neutral100: string;
+  neutral90: string;
+  neutral80: string;
+  neutral70: string;
+  neutral60: string;
+  neutral50: string;
+  neutral40: string;
+  neutral30: string;
+  neutral20: string;
+  neutral10: string;
 }
 
 // For using a theme.
@@ -107,6 +93,7 @@ export interface UnifiedTheme {
   red: string;
   watermelon: string;
   white: string;
+  black: string;
 
   primaryLighter: string;
   primaryLight: string;
@@ -190,7 +177,8 @@ export type Color =
   | "purple"
   | "red"
   | "watermelon"
-  | "white";
+  | "white"
+  | "black";
 export type ThemeColor =
   | "primaryLighter"
   | "primaryLight"
@@ -352,34 +340,37 @@ export type TextFieldType =
   | "date"
   | "email"
   | "number"
+  | "numberRange"
+  | "decimalRange"
   | "decimal"
   | "username"
   | "password"
   | "search"
   | "text"
-  | "url";
+  | "url"
+  | "height";
 
 export type IconSize = "xs" | "sm" | "md" | "lg" | "xl";
 
 export const iconSizeToNumber = (size?: IconSize) => {
   return {
-    xs: 10,
-    sm: 14,
-    md: 16,
-    lg: 24,
-    xl: 32,
+    xs: 8,
+    sm: 12,
+    md: 14,
+    lg: 20,
+    xl: 26,
   }[size || "md"];
 };
 
 export const iconNumberToSize = (size = 16): IconSize => {
   let iconSize: IconSize;
-  if (size < 10) {
+  if (size < 8) {
     iconSize = "xs";
-  } else if (size < 14) {
+  } else if (size < 12) {
     iconSize = "sm";
-  } else if (size < 16) {
+  } else if (size < 14) {
     iconSize = "md";
-  } else if (size < 24) {
+  } else if (size < 20) {
     iconSize = "lg";
   } else {
     iconSize = "xl";
@@ -471,26 +462,6 @@ export interface ActionBannerProps {
   negativeXMargin?: number;
   onClick: () => void;
   shape?: Rounding;
-}
-
-export interface ActionSheetProps {
-  height: number;
-  dismiss: () => void;
-  title?: string;
-  keyboardVerticalOffset?: number;
-}
-
-export interface BannerProps {
-  id: string;
-  text: string;
-  subtext?: string;
-  color?: BoxColor;
-  textColor?: TextColor;
-  negativeXMargin?: number;
-  bold?: boolean;
-  shape?: Rounding;
-  type?: "dismiss" | "action";
-  onClick?: () => void;
 }
 
 export interface BlurBoxProps extends BoxProps {
@@ -625,13 +596,13 @@ export interface ButtonProps {
   // Pattern Addition
   type?: "solid" | "ghost" | "outline";
   loading?: boolean;
-  onClick?: any;
+  onClick: any;
   icon?: GestaltIconName | string;
   iconPrefix?: IconPrefix;
+  iconColor?: ButtonColor | Color;
 }
 
 export interface DrawerProps {
-  componentId: string;
   animationOpenTime: number;
   animationCloseTime: number;
   direction: Direction;
@@ -640,7 +611,7 @@ export interface DrawerProps {
   drawerScreenWidth: number;
   drawerScreenHeight: number;
   style?: any;
-  parentComponentId: string;
+  parent: any;
   dismiss?: any;
 }
 
@@ -680,20 +651,6 @@ export interface NavigatorProps {
   config?: any;
 }
 
-export interface PageProps {
-  componentId: string;
-  scroll?: boolean;
-  loading?: boolean;
-  display?: "flex" | "none" | "block" | "inlineBlock";
-  title?: string;
-  backButton?: boolean;
-  direction?: "row" | "column";
-  padding?: UnsignedUpTo12;
-  color?: Color;
-  maxWidth?: number | string;
-  keyboardOffset?: number;
-}
-
 export interface PillProps {
   text: string;
   color: AllColors;
@@ -723,6 +680,7 @@ export interface FieldWithLabelsProps {
 export interface FieldProps extends FieldWithLabelsProps {
   name: string;
   label?: string;
+  subLabel?: string;
   initialValue?: any;
   handleChange: any;
   // Additional validation
@@ -777,19 +735,13 @@ export interface TextFieldProps extends FieldWithLabelsProps {
   height?: number;
   paddingX?: number;
   paddingY?: number;
+
+  // Required for type=numberRange
+  min?: number;
+  max?: number;
 }
 
-export interface TextAreaProps extends FieldWithLabelsProps {
-  id: string;
-  onChange: (value: string) => void;
-  disabled?: boolean;
-  name?: string;
-  onBlur?: (value: string) => void;
-  onFocus?: (value: string) => void;
-  placeholder?: string;
-  rows?: number;
-  value?: string;
-}
+export type TextAreaProps = TextFieldProps;
 
 export interface WithLabelProps {
   show?: boolean;
@@ -871,6 +823,8 @@ export interface ImageProps {
   color: BoxColor;
   naturalHeight?: number;
   naturalWidth?: number;
+  maxWidth?: number;
+  maxHeight?: number;
   src: string;
   children?: React.ReactNode;
   fit?: "cover" | "contain" | "none";
@@ -882,25 +836,12 @@ export interface ImageProps {
   style?: any;
 }
 
-export type SelectListOptions = {label: string; value: string}[];
-export interface SelectListProps extends FieldWithLabelsProps {
-  id?: string;
-  name?: string;
-  options: SelectListOptions;
-  onChange: (value: string) => void;
-  value?: string;
-  disabled?: boolean;
-  size?: "md" | "lg";
-  placeholder?: string;
-}
-
 export interface SearchButtonProps {
   color: ButtonColor;
   onClick: () => void;
 }
 
 export interface BackButtonInterface {
-  componentId: string;
   onBack: () => void;
 }
 
@@ -1405,11 +1346,12 @@ export interface TrackerInterface {
   init: (config: TrackingConfig) => void;
   trackPages: () => void;
   setUser: (user: BaseProfile) => void;
-  setUserProperty: (property: string, value: string | {object}) => void;
+  setUserProperty: (property: string, value: string | {object: {[id: string]: any}}) => void;
   track: (eventName: string, properties?: TrackingProperties) => void;
   trackNavigation: (screen: string, properties?: TrackingProperties) => void;
   trackLogin: (method: string, success: boolean, properties?: TrackingProperties) => void;
   trackSignup: (method: string, success: boolean, properties?: TrackingProperties) => void;
+  trackSignOut: () => void;
   log: (message: string, properties?: TrackingProperties, level?: LogLevel) => void;
   error: (message: string, properties?: TrackingProperties) => void;
   warn: (message: string, properties?: TrackingProperties) => void;
@@ -1422,4 +1364,11 @@ export interface TrackerInterface {
 export interface NavConfig {
   url?: string;
   wrapper?: (component: any) => any;
+  store?: any;
+  provider?: any;
+}
+
+export interface ProgressBarProps {
+  color: Color;
+  completed: number;
 }

@@ -1,55 +1,56 @@
-import * as React from "react";
+import {FontAwesome} from "@expo/vector-icons";
+import React from "react";
 import {IconProps, iconNumberToSize} from "./Common";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
+// // import {library} from "@fortawesome/fontawesome-svg-core";
 // import {library} from "@fortawesome/fontawesome-svg-core";
-import {library} from "@fortawesome/fontawesome-svg-core";
-// import {fal as proFal} from "@fortawesome/pro-light-svg-icons";
-import {
-  faHeart as farHeart,
-  // faPlus as farPlus,
-  faEdit as farEdit,
-  faNewspaper as farNewspaper,
-} from "@fortawesome/free-regular-svg-icons";
-import {
-  faChevronLeft,
-  faEnvelopeOpen,
-  faCarrot,
-  faComment,
-  faUserCircle,
-  faSearch,
-  faChevronRight,
-  faEllipsisV,
-  faPaperPlane,
-  faExclamationCircle,
-  faMailBulk,
-  faTrashAlt,
-  faTrashRestoreAlt,
-  faEnvelope,
-  faSpinner,
-} from "@fortawesome/free-solid-svg-icons";
+// // import {fal as proFal} from "@fortawesome/pro-light-svg-icons";
+// import {
+//   faHeart as farHeart,
+//   // faPlus as farPlus,
+//   faEdit as farEdit,
+//   faNewspaper as farNewspaper,
+// } from "@fortawesome/free-regular-svg-icons";
+// import {
+//   faChevronLeft,
+//   faEnvelopeOpen,
+//   faCarrot,
+//   faComment,
+//   faUserCircle,
+//   faSearch,
+//   faChevronRight,
+//   faEllipsisV,
+//   faPaperPlane,
+//   faExclamationCircle,
+//   faMailBulk,
+//   faTrashAlt,
+//   faTrashRestoreAlt,
+//   faEnvelope,
+//   faSpinner,
+// } from "@fortawesome/free-solid-svg-icons";
 import {Unifier} from "./Unifier";
-library.add(
-  farHeart,
-  // farPlus,
-  farEdit,
-  farNewspaper,
-  faChevronLeft,
-  faCarrot,
-  faComment,
-  faUserCircle,
-  faEnvelopeOpen,
-  faSearch,
-  faChevronRight,
-  faEllipsisV,
-  faPaperPlane,
-  faExclamationCircle,
-  faMailBulk,
-  faTrashAlt,
-  faTrashRestoreAlt,
-  faEnvelope,
-  faSpinner
-);
+// library.add(
+//   farHeart,
+//   // farPlus,
+//   farEdit,
+//   farNewspaper,
+//   faChevronLeft,
+//   faCarrot,
+//   faComment,
+//   faUserCircle,
+//   faEnvelopeOpen,
+//   faSearch,
+//   faChevronRight,
+//   faEllipsisV,
+//   faPaperPlane,
+//   faExclamationCircle,
+//   faMailBulk,
+//   faTrashAlt,
+//   faTrashRestoreAlt,
+//   faEnvelope,
+//   faSpinner
+// );
 
 export function initIcons() {
   console.log("Initializing icons");
@@ -78,12 +79,6 @@ export class Icon extends React.Component<IconProps, {}> {
     } else if (size === "md") {
       size = "1x";
     }
-    return (
-      <FontAwesomeIcon
-        icon={[this.props.prefix || "far", this.props.name as any]}
-        color={color}
-        size={size as any}
-      />
-    );
+    return <FontAwesome icon={this.props.name as any} color={color} size={size as any} />;
   }
 }

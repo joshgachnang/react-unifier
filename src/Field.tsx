@@ -1,14 +1,14 @@
 import isDate from "lodash/isDate";
 import isNumber from "lodash/isNumber";
-import moment from "moment";
-import * as React from "react";
-import {Box} from "./Box";
-import {SelectList} from "./SelectList";
-import {Switch} from "./Switch";
-import {TextArea} from "./TextArea";
-import {TextField} from "./TextField";
-import {OnChangeResult, TextFieldType, FieldProps} from "./Common";
-import {FieldWithLabels} from "./FieldWithLabels";
+import moment from "moment-timezone";
+import React from "react";
+import { Box } from "./Box";
+import { FieldProps, TextFieldType } from "./Common";
+import { FieldWithLabels } from "./FieldWithLabels";
+import { SelectList } from "./SelectList";
+import { Switch } from "./Switch";
+import { TextArea } from "./TextArea";
+import { TextField } from "./TextField";
 
 interface State {
   value: any;
@@ -17,37 +17,36 @@ interface State {
 export class Field extends React.Component<FieldProps, State> {
   constructor(props: FieldProps) {
     super(props);
-    this.state = {value: props.initialValue || ""};
+    this.state = { value: props.initialValue || "" };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: FieldProps) {
     if (nextProps.initialValue !== this.state.value) {
-      this.setState({value: nextProps.initialValue});
+      this.setState({ value: nextProps.initialValue });
     }
   }
 
-  handleChange = (result: OnChangeResult) => {
-    let value = result.value;
+  handleChange = (value: string) => {
     if (this.props.type === "currency") {
       value = value.replace("$", "");
     } else if (this.props.type === "percent") {
       value = value.replace("%", "");
     }
-    this.setState({value});
+    this.setState({ value });
     if (this.props.handleChange) {
       this.props.handleChange(this.props.name, value);
     }
   };
 
   handleSwitchChange = (value: boolean) => {
-    this.setState({value});
+    this.setState({ value });
     if (this.props.handleChange) {
       this.props.handleChange(this.props.name, value);
     }
   };
 
   validate = () => {
-    console.log("VALIDATE", this.props.validate && this.props.validate(this.state.value));
+    // console.log("VALIDATE", this.props.validate && this.props.validate(this.state.value));
     if (this.props.validate && !this.props.validate(this.state.value)) {
       return false;
     }
@@ -61,7 +60,8 @@ export class Field extends React.Component<FieldProps, State> {
       case "email":
         return (
           !this.state.value ||
-          (this.state.value.search("@") > -1 && this.state.value.search(".") > -1)
+          (this.state.value.search("@") > -1 &&
+            this.state.value.search(".") > -1)
         );
       case "number":
         return !this.state.value || isNumber(this.state.value);
@@ -103,7 +103,7 @@ export class Field extends React.Component<FieldProps, State> {
         <TextArea
           id={this.props.name}
           placeholder={this.props.placeholder}
-          onChange={this.handleChange}
+          onChange={({ value }) => this.handleChange(value)}
           value={String(this.state.value)}
           disabled={this.props.disabled}
           rows={this.props.rows}
@@ -123,12 +123,11 @@ export class Field extends React.Component<FieldProps, State> {
       let value = this.state.value.seconds
         ? moment(this.state.value.seconds * 1000)
         : moment(this.state.value);
-      console.log("DATE", value, this.state.value, value.format("MM/DD/YYYY HH:mmA"));
       return (
         <TextField
           id={this.props.name}
           placeholder={this.props.placeholder}
-          onChange={this.handleChange}
+          onChange={(result) => this.handleChange(result.value)}
           value={value.format("MM/DD/YYYY HH:mmA")}
           // TODO: allow editing with a date picker
           disabled={true}
@@ -139,9 +138,15 @@ export class Field extends React.Component<FieldProps, State> {
       let type: TextFieldType = "text";
       // Number is supported differently because we need fractional numbers and they don't work
       // well on iOS.
-      if (this.props.type && ["date", "email", "password", "url"].includes(this.props.type)) {
+      if (
+        this.props.type &&
+        ["date", "email", "password", "url"].indexOf(this.props.type) > -1
+      ) {
         type = this.props.type as TextFieldType;
-      } else if (this.props.type === "percent" || this.props.type === "currency") {
+      } else if (
+        this.props.type === "percent" ||
+        this.props.type === "currency"
+      ) {
         type = "text";
       }
       let autoComplete: "on" | "current-password" | "username" = "on";
@@ -162,10 +167,12 @@ export class Field extends React.Component<FieldProps, State> {
           id={this.props.name}
           placeholder={this.props.placeholder}
           autoComplete={autoComplete}
-          onChange={this.handleChange}
+          onChange={(result) => this.handleChange(result.value)}
           value={value}
           disabled={this.props.disabled}
-          type={type as "date" | "email" | "number" | "password" | "text" | "url"}
+          type={
+            type as "date" | "email" | "number" | "password" | "text" | "url"
+          }
         />
       );
     }
@@ -184,7 +191,14 @@ export class Field extends React.Component<FieldProps, State> {
     return (
       <Box marginBottom={5}>
         <FieldWithLabels
-          {...{errorMessage, errorMessageColor, helperText, helperTextColor, label, labelColor}}
+          {...{
+            errorMessage,
+            errorMessageColor,
+            helperText,
+            helperTextColor,
+            label,
+            labelColor,
+          }}
         >
           {children}
         </FieldWithLabels>

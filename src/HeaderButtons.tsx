@@ -1,10 +1,32 @@
 import {IconButton} from "./IconButton";
-import * as React from "react";
+import React from "react";
 import {Box} from "./Box";
 import {Button} from "./Button";
 import {Text} from "./Text";
 import {BackButtonInterface, SearchButtonProps} from "./Common";
 import {Unifier} from "./Unifier";
+
+interface HeaderButtonProps {
+  onClick: () => void;
+  text: string;
+}
+
+interface HeaderButtonState {}
+
+export class HeaderButton extends React.Component<HeaderButtonProps, HeaderButtonState> {
+  constructor(props: HeaderButtonProps) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <Box marginRight={2}>
+        <Button text={this.props.text} type="ghost" color="primary" onClick={this.props.onClick} />
+      </Box>
+    );
+  }
+}
 
 export class SearchButton extends React.Component<SearchButtonProps, {}> {
   render() {

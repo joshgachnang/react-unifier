@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {Box} from "./Box";
 import {Button} from "./Button";
 import {Text} from "./Text";
@@ -29,8 +29,8 @@ export class ErrorPage extends React.Component<ErrorPageProps, {}> {
         </Text>
         <Box paddingY={3}>
           <Text align="center">
-            There's an error. Sorry! Josh just got a notification about the error so he can fix it
-            as soon as possible!
+            There&apos;s an error. Sorry! Josh just got a notification about the error so he can fix
+            it as soon as possible!
           </Text>
         </Box>
         <Box paddingY={3}>

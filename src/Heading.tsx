@@ -1,53 +1,52 @@
-// Originally based on https://github.com/pinterest/gestalt
-// Forked, updated to Typescript, and added features.
-import cx from "classnames";
-import * as React from "react";
+import React from "react";
+import {Text as NativeText} from "react-native";
 import {HeadingProps} from "./Common";
-import styles from "./Heading.module.css";
-import typography from "./Typography.module.css";
 import {Unifier} from "./Unifier";
 
-const defaultHeadingLevels = {
-  sm: 3,
-  md: 2,
-  lg: 1,
-};
-
-const SIZE_SCALE: {[size: string]: number} = {
-  sm: 1,
-  md: 2,
-  lg: 3,
-};
-
-export function Heading(props: HeadingProps) {
-  const {
-    align = "left",
-    children,
-    color = "darkGray",
-    overflow = "normal",
-    size = "lg",
-    truncate = false,
-  } = props;
-
-  const cs = cx(
-    styles.Heading,
-    styles[`fontSize${SIZE_SCALE[size]}`],
-    align === "center" && typography.alignCenter,
-    align === "justify" && typography.alignJustify,
-    align === "left" && typography.alignLeft,
-    align === "right" && typography.alignRight,
-    overflow === "breakWord" && typography.breakWord,
-    truncate && typography.truncate
-  );
-
-  const headingLevel = defaultHeadingLevels[size];
-  let newProps: {[key: string]: any} = {
-    className: cs,
-    style: {color: Unifier.theme[color]},
+export class Heading extends React.Component<HeadingProps, {}> {
+  fontSizes = {
+    sm: 20,
+    md: 28,
+    lg: 36,
   };
 
-  if (truncate && typeof children === "string") {
-    newProps = {...newProps, title: children};
+  propsToStyle(): any {
+    const style: any = {};
+
+    // let font = this.props.font || "primary";
+    // if (this.props.bold) {
+    //   font += "Bold";
+    // }
+    style.fontFamily = Unifier.theme.primaryBoldFont;
+
+    style.fontSize = this.fontSizes[this.props.size || "md"];
+    if (this.props.align) {
+      style.textAlign = this.props.align;
+    }
+    if (this.props.color) {
+      style.color = Unifier.theme[this.props.color];
+    } else {
+      style.color = Unifier.theme.darkGray;
+    }
+    // TODO: might be useful for wrapping/truncating
+    // if (this.props.numberOfLines !== 1 && !this.props.inline) {
+    //   style.flexWrap = "wrap";
+    // }
+
+    return style;
   }
-  return React.createElement(`h${headingLevel}`, newProps, children);
+
+  render() {
+    let lines = 0;
+    // if (this.props.numberOfLines) {
+    //   lines = this.props.numberOfLines;
+    // } else if (this.props.inline) {
+    //   lines = 1;
+    // }
+    return (
+      <NativeText numberOfLines={lines} style={this.propsToStyle()}>
+        {this.props.children}
+      </NativeText>
+    );
+  }
 }

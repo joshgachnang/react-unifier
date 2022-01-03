@@ -1,24 +1,38 @@
-import * as React from "react";
+import React from "react";
 import {Box} from "./Box";
 import {IconButton} from "./IconButton";
 import {Text} from "./Text";
-import {BannerProps, ButtonColor} from "./Common";
+import {BoxColor, ButtonColor, Rounding, TextColor} from "./Common";
 import {Unifier} from "./Unifier";
 
-import {library} from "@fortawesome/fontawesome-svg-core";
-import {faTimesCircle, faArrowRight} from "@fortawesome/free-solid-svg-icons";
+// import {faTimesCircle, faArrowRight} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faTimesCircle);
-library.add(faArrowRight);
+export interface BannerProps {
+  id: string;
+  text: string;
+  subtext?: string;
+  color?: BoxColor;
+  textColor?: TextColor;
+  negativeXMargin?: number;
+  bold?: boolean;
+  shape?: Rounding;
+  type?: "dismiss" | "action";
+  onClick?: () => void;
+}
+
+// library.add(faTimesCircle);
+// library.add(faArrowRight);
 
 interface BannerState {
   show: boolean;
 }
 
 function getKey(id: string) {
-  return `@Pattern:${id}`;
+  return `@ReactUnifier:${id}`;
 }
+
 export const hideBanner = (id: string) => {
+  console.debug(`[banner] Hiding ${getKey(id)} `);
   Unifier.storage.setItem(getKey(id), "true");
 };
 
@@ -27,6 +41,7 @@ export class Banner extends React.Component<BannerProps, BannerState> {
 
   async componentDidMount() {
     const seen = await Unifier.storage.getItem(getKey(this.props.id));
+    console.debug(`[banner] ${getKey(this.props.id)} seen? ${seen}`);
     this.setState({show: !seen});
   }
 
@@ -64,6 +79,7 @@ export class Banner extends React.Component<BannerProps, BannerState> {
         width={Unifier.utils.dimensions().width || "100%"}
         paddingX={3}
         justifyContent="between"
+        shadow={true}
       >
         <Box direction="column" justifyContent="center" alignItems="center" flex="shrink">
           <Box paddingY={1}>

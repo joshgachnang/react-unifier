@@ -1,7 +1,6 @@
 import React from "react";
 import {Box} from "./Box";
-import {SelectListOptions} from "./Common";
-import {SelectList} from "./SelectList";
+import {SelectList, SelectListOptions} from "./SelectList";
 
 export default {
   title: "SelectList",

@@ -2,15 +2,15 @@ import React from "react";
 import {Box} from "./Box";
 import {Icon} from "./Icon";
 
-import {library} from "@fortawesome/fontawesome-svg-core";
-import {
-  faHeart as fasHeart,
-  faPlus as fasPlus,
-  faEdit as fasEdit,
-} from "@fortawesome/free-solid-svg-icons";
-import {faHeart, faEdit} from "@fortawesome/free-regular-svg-icons";
+// import {library} from "@fortawesome/fontawesome-svg-core";
+// import {
+//   faHeart as fasHeart,
+//   faPlus as fasPlus,
+//   faEdit as fasEdit,
+// } from "@fortawesome/free-solid-svg-icons";
+// import {faHeart, faEdit} from "@fortawesome/free-regular-svg-icons";
 
-library.add(fasHeart, fasPlus, fasEdit, faHeart, faEdit);
+// library.add(fasHeart, fasPlus, fasEdit, faHeart, faEdit);
 
 export default {
   title: "Icon",

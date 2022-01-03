@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import {Box} from "./Box";
 import {Button} from "./Button";
 import {Icon} from "./Icon";

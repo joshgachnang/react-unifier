@@ -1,6 +1,6 @@
-import * as Sentry from "@sentry/browser";
+import * as Sentry from "@sentry/react-native";
 import {ErrorBoundaryProps} from "./Common";
-import * as React from "react";
+import React from "react";
 import {ErrorPage} from "./ErrorPage";
 
 interface State {

@@ -1,19 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import {Layout, Options, LayoutRoot} from "./navigation";
-import {
-  NavConfig,
-  TrackerInterface,
-  TrackingProperties,
-  LogLevel,
-  PermissionKind,
-  PermissionStatus,
-  BaseProfile,
-  TrackingConfig,
-  UnifiedTheme,
-  UnifiedThemeConfig,
-} from "./Common";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Clipboard, Dimensions, Keyboard, Linking, Vibration} from "react-native";
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
+import {PermissionKind, UnifiedTheme} from "./Common";
+import {requestPermissions} from "./Permissions";
 
 const DEFAULT_FONT = "Cochin";
 const DEFAULT_BOLD_FONT = "Cochin";
@@ -38,6 +30,7 @@ const DefaultTheme: UnifiedTheme = {
   maroon: "#6e0f3c",
   watermelon: "#f13535",
   orange: "#e3780c",
+  black: "#000000",
 
   primaryLighter: "#4ED456",
   primaryLight: "#28CA32",
@@ -96,165 +89,10 @@ const DefaultTheme: UnifiedTheme = {
   titleFont: DEFAULT_FONT,
 };
 
-export type UnifiedLayout = Layout;
-export type UnifiedLayoutOptions = Options;
-export type UnifiedLayoutRoot = LayoutRoot;
-
-export interface UnifiedLayoutConfig {
-  main: UnifiedLayoutRoot;
-  auth: UnifiedLayoutRoot;
-  payment: UnifiedLayoutRoot;
-}
-
-export interface UnifiedStorage {
-  getItem: (key: string) => Promise<any>;
-  setItem: (key: string, item: any) => void;
-}
-
-const StubStorage: UnifiedStorage = {
-  getItem: async () => {},
-  setItem: () => {},
-};
-
 export type PlatformOS = "ios" | "android" | "web";
-export interface UnifiedUtils {
-  dismissKeyboard: () => void;
-  dimensions: () => {height: number; width: number};
-  copyToClipboard: (text: string) => void;
-  requestPermissions: (permission: PermissionKind) => Promise<PermissionStatus>;
-  makePurchase: (profile: any, sku: any) => void;
-  PaymentService: any;
-  vibrate: (pattern?: number[]) => void;
-  haptic: () => void;
-  openUrl: (url: string) => Promise<void>;
-  platform: () => PlatformOS;
-}
-
-const StubLayout: UnifiedLayoutConfig = {
-  auth: {root: {}},
-  main: {root: {}},
-  payment: {root: {}},
-};
-
-const StubUtils: UnifiedUtils = {
-  dismissKeyboard: () => {},
-  dimensions: () => {
-    console.warn("[unifier] Using stub dimensions, this is probably not what you want.");
-    return {height: 0, width: 0};
-  },
-  copyToClipboard: (text: string) => {},
-  requestPermissions: async (permission: PermissionKind) => "denied",
-  makePurchase: (profile: any, sku: any) => {},
-  PaymentService: {},
-  vibrate: (pattern?: number[]) => {},
-  haptic: () => {},
-  openUrl: async (url: string) => {},
-  platform: () => "web",
-};
-
-const StubTracking: TrackerInterface = {
-  initFinished: true,
-  init: (config: TrackingConfig) => {
-    console.warn("Initializing stub tracking.");
-  },
-  trackPages: () => {},
-  setUser: (user: BaseProfile) => {},
-  setUserProperty: (property: string, value: string | object) => {},
-  track: (eventName: string, properties?: TrackingProperties) => {},
-  trackNavigation: (screen: string, properties?: TrackingProperties) => {},
-  trackLogin: (method: string, success: boolean, properties?: TrackingProperties) => {},
-  log: (message: string, properties?: TrackingProperties, level?: LogLevel) => {},
-  error: (message: string, properties?: TrackingProperties) => {},
-  debug: (message: string, properties?: TrackingProperties) => {},
-  warn: (message: string, properties?: TrackingProperties) => {},
-  trackSignup: (method: string, success: boolean, properties?: TrackingProperties) => {},
-  handleErrorAlert: (text: string, exception?: Error, showAlert?: boolean) => {},
-  trackPermission: (kind: PermissionKind, status: PermissionStatus, requested: boolean) => {},
-  updateAppInfo: () => {},
-};
-
-const StubNav = {
-  bindComponent: (component: React.Component<any>, componentId?: string) => {},
-  registerScreen: (
-    componentName: string,
-    component: React.ComponentType<any>,
-    config?: NavConfig
-  ) => {
-    throw new Error("Tried to register with stub.");
-  },
-  registerActionSheet: (
-    componentName: string,
-    component: React.ComponentType<any>,
-    config?: NavConfig
-  ) => {
-    throw new Error("Tried to register action sheet with stub.");
-  },
-  setRoot: async (layout: UnifiedLayoutRoot) => {},
-  setDefaultOptions: (options: UnifiedLayoutOptions) => {},
-  mergeOptions: (componentId: string, layout: UnifiedLayoutOptions) => {},
-  push: async (componentId: string, passProps?: any) => {},
-  pop: async (componentId: string) => {},
-  popToRoot: async (componentId: string) => {},
-  showOverlay: async (layout: UnifiedLayout) => {},
-  dismissOverlay: async (componentId: string) => {},
-  showModal: async (layout: UnifiedLayout) => {},
-  dismissModal: async (componentId: string) => {},
-  dismissAllModals: async () => {},
-  goToAuth: () => {},
-  goToMain: () => {},
-  goToPayment: () => {},
-  // TODO figure out something better here.
-  clearNotificationsForTab: (tab: "log" | "feed" | "chat" | "profile") => {},
-};
-
-export interface UnifiedNavigation {
-  bindComponent: (t: any) => void;
-  registerScreen: (
-    componentName: string,
-    component: React.ComponentType<any>,
-    config?: NavConfig
-  ) => void;
-  registerActionSheet: (
-    componentName: string,
-    component: React.ComponentType<any>,
-    config?: NavConfig
-  ) => void;
-  setRoot: (layout: UnifiedLayoutRoot) => Promise<any>;
-  setDefaultOptions: (options: UnifiedLayoutOptions) => void;
-  mergeOptions: (componentId: string, layout: UnifiedLayoutOptions) => void;
-  push: (componentId: string, passProps?: any) => Promise<any>;
-  pop: (componentId: string) => Promise<any>;
-  popToRoot: (componentId: string) => Promise<any>;
-  showOverlay: (layout: UnifiedLayout) => Promise<any>;
-  dismissOverlay: (componentId: string) => Promise<any>;
-  showModal: (layout: UnifiedLayout) => Promise<any>;
-  dismissModal: (componentId: string) => Promise<any>;
-  dismissAllModals: () => Promise<any>;
-  goToAuth: () => void;
-  goToMain: () => void;
-  goToPayment: () => void;
-  // TODO figure out something better here.
-  clearNotificationsForTab: (tab: "log" | "feed" | "chat" | "profile") => void;
-}
-
-export interface AppConfig {
-  web?: boolean;
-  dev?: boolean;
-  theme?: UnifiedThemeConfig;
-  navigation: UnifiedNavigation;
-  tracking: TrackerInterface;
-  utils: UnifiedUtils;
-  storage: UnifiedStorage;
-  layout?: UnifiedLayoutConfig;
-}
 
 class UnifierClass {
-  private _nav?: UnifiedNavigation;
-  private _theme?: UnifiedThemeConfig;
-  private _tracking?: TrackerInterface;
-  private _utils?: UnifiedUtils;
-  private _storage?: UnifiedStorage;
-  private _layout?: UnifiedLayoutConfig;
+  private _theme?: Partial<UnifiedTheme>;
   private _web = false;
   private _dev = false;
 
@@ -264,6 +102,10 @@ class UnifierClass {
 
   get dev(): boolean {
     return this._dev;
+  }
+
+  setTheme(theme: Partial<UnifiedTheme>) {
+    this._theme = theme;
   }
 
   get theme(): UnifiedTheme {
@@ -314,89 +156,111 @@ class UnifierClass {
     };
   }
 
-  get navigation(): UnifiedNavigation {
-    if (!this._nav) {
-      console.warn("[unifier] Using stub navigation");
-      // throw new Error("[unifier] You must call setConfig before using navigation.");
-      return StubNav;
-    }
-    return this._nav;
-  }
-
-  get tracking(): TrackerInterface {
-    if (!this._tracking) {
-      // throw new Error("[unifier] You must call setConfig before using tracking.");
-      return StubTracking;
-    }
-    return this._tracking;
-  }
-
-  get utils(): UnifiedUtils {
-    if (!this._utils) {
-      // throw new Error("[unifier] You must call setConfig before using navigation.");
-      return StubUtils;
-    }
-    // if (!this._utils) {
-    //   throw new Error("[unifier] You must call setConfig before using utils.");
-    // }
-    return this._utils;
-  }
-
-  get storage(): UnifiedStorage {
-    if (!this._storage) {
-      return StubStorage;
-    }
-    return this._storage;
-  }
-
-  get layout(): UnifiedLayoutConfig {
-    if (!this._layout) {
-      return StubLayout;
-    }
-    return this._layout;
-  }
-
   constructor() {
     console.debug("[unifier] Setting up Unifier");
   }
 
+  navigation = {
+    dismissOverlay: () => {
+      console.warn("Dismiss overlay not supported.");
+    },
+  };
+
+  // tracking: Tracking,
+  utils = {
+    dismissKeyboard: () => {
+      Keyboard.dismiss();
+    },
+    dimensions: () => ({
+      width: Dimensions.get("window").width,
+      height: Dimensions.get("window").height,
+    }),
+    copyToClipboard: (text: string) => {
+      Clipboard.setString(text);
+    },
+    orientationChange: (callback: (orentation: "portrait" | "landscape") => void) => {
+      Dimensions.addEventListener("change", () => {
+        const screen = Dimensions.get("screen");
+        const isPortrait = screen.width < screen.height;
+        console.log("Orientation change, isPortrait:", isPortrait);
+        callback(isPortrait ? "portrait" : "landscape");
+      });
+    },
+    requestPermissions: async (_perm: PermissionKind) => {
+      return requestPermissions(_perm);
+      // return requestPermissions(perm);
+    },
+    makePurchase: () => {
+      console.warn("Make purchase not supported yet.");
+    },
+    PaymentService: () => {
+      console.warn("Make purchase not supported yet.");
+    },
+    vibrate: (pattern?: number[]) => {
+      Vibration.vibrate(pattern || [100], false);
+    },
+    haptic: () => {
+      const options = {
+        enableVibrateFallback: true,
+        ignoreAndroidSystemSettings: false,
+      };
+      ReactNativeHapticFeedback.trigger("impactLight", options);
+    },
+    openUrl: async (url: string) => {
+      return Linking.openURL(url);
+    },
+    // keepAwake: (activate: boolean) => {
+    //   if (activate) {
+    //     activateKeepAwake();
+    //   } else {
+    //     deactivateKeepAwake();
+    //   }
+    // },
+  };
+
+  storage = {
+    getItem: async (key: string, defaultValue?: any) => {
+      try {
+        const jsonValue = await AsyncStorage.getItem(key);
+        if (jsonValue) {
+          let value = JSON.parse(jsonValue);
+          if (value === null || value === undefined) {
+            return defaultValue;
+          } else {
+            return value;
+          }
+        } else if (defaultValue !== undefined) {
+          return defaultValue;
+        } else {
+          return null;
+        }
+      } catch (e) {
+        console.error(`[storage] Error reading ${key}`, e);
+        return defaultValue || null;
+      }
+    },
+    setItem: async (key: string, item: any) => {
+      try {
+        const jsonValue = JSON.stringify(item);
+        await AsyncStorage.setItem(key, jsonValue);
+      } catch (e) {
+        console.error(`[storage] Error storing ${key}`, item, e);
+        throw new Error(e as any);
+      }
+    },
+  };
+
+  tracking = {
+    log: (message: string) => {
+      console.log(message);
+    },
+  };
+
   initIcons = () => {
     console.debug("[unifier] Initializing icons");
   };
-
-  setConfig(config: Partial<AppConfig>) {
-    // console.debug("[unifier] Setting config", config);
-    if (config.theme) {
-      this._theme = config.theme;
-    }
-    if (config.utils) {
-      this._utils = config.utils;
-    }
-    if (config.navigation) {
-      this._nav = config.navigation;
-    }
-    if (config.tracking) {
-      this._tracking = config.tracking;
-    }
-    if (config.web !== undefined) {
-      this._web = Boolean(config.web);
-    }
-    if (config.dev !== undefined) {
-      this._dev = Boolean(config.dev);
-    }
-    if (config.layout) {
-      this._layout = config.layout;
-    }
-  }
 }
+
+const NOTIFICATION_TAB_KEY = "@unifier/tabNotifications";
 
 export const Unifier = new UnifierClass();
-
-export function navPush(componentId: string, screen: string, passProps?: any) {
-  Unifier.navigation.push(componentId, {
-    component: {
-      name: screen,
-      passProps,
-    },
-  });
-}

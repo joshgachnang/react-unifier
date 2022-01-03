@@ -1,19 +1,35 @@
-import * as React from "react";
+import React from "react";
+import {ActivityIndicator, View} from "react-native";
 import {SpinnerProps} from "./Common";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {Unifier} from "./Unifier";
 
 export class LoadingOverlay extends React.Component<SpinnerProps, {}> {
-  render() {
-    return null;
+  componentId?: string = undefined;
+  async showHide() {
+    if (this.componentId) {
+      try {
+        await Unifier.navigation.dismissOverlay();
+      } catch (e) {
+        console.debug(`[spinner] could not dismiss spinner overlay`, e);
+      }
+    }
   }
-}
 
-export class Spinner extends React.Component<SpinnerProps, {}> {
+  componentDidMount() {
+    this.showHide();
+  }
+
+  componentDidUpdate() {
+    this.showHide();
+  }
+
+  componentWillUnmount() {
+    this.showHide();
+  }
+
   render() {
-    const size = this.props.size === "sm" ? "1x" : "2x";
     return (
-      <div
+      <View
         style={{
           width: "100%",
           height: "100%",
@@ -24,14 +40,28 @@ export class Spinner extends React.Component<SpinnerProps, {}> {
           opacity: 0.5,
         }}
       >
-        <FontAwesomeIcon
-          icon={["fas", "spinner"]}
-          spin={true}
-          color={this.props.color || "#666"}
-          size={size}
-          style={{justifySelf: "center", alignSelf: "center"}}
-        />
-      </div>
+        <Spinner />
+      </View>
     );
+  }
+}
+
+interface SpinnerState {
+  show: boolean;
+}
+export class Spinner extends React.Component<SpinnerProps, SpinnerState> {
+  state = {show: false};
+
+  // The delay is for perceived performance so you should rarely need to remove it.
+  componentDidMount() {
+    setTimeout(() => this.setState({show: true}), 300);
+  }
+
+  render() {
+    if (!this.state.show) {
+      return null;
+    }
+    let size: "small" | "large" = this.props.size === "sm" ? "small" : "large";
+    return <ActivityIndicator color={this.props.color || "darkGray"} size={size} />;
   }
 }

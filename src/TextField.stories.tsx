@@ -1,7 +1,6 @@
 import React from "react";
 import {Box} from "./Box";
 import {TextField} from "./TextField";
-import {WithLabel} from "./WithLabel";
 
 export default {
   title: "TextField",

@@ -1,131 +1,47 @@
-import {library} from "@fortawesome/fontawesome-svg-core";
-import {faArrowDown} from "@fortawesome/free-solid-svg-icons";
-import classnames from "classnames";
-import * as React from "react";
-import {Box} from "./Box";
-import {Icon} from "./Icon";
-import {SelectListProps} from "./Common";
-import {FieldWithLabels} from "./FieldWithLabels";
+import React from "react";
+import RNPickerSelect from "./PickerSelect";
+import {FieldWithLabelsProps} from "./Common";
+import {Unifier} from "./Unifier";
 
-import layout from "./Layout.module.css";
-import formElement from "./FormElement.module.css";
-import styles from "./SelectList.module.css";
-
-library.add(faArrowDown);
-
-interface State {
-  focused: boolean;
+export type SelectListOptions = {label: string; value: string | undefined}[];
+export interface SelectListProps extends FieldWithLabelsProps {
+  id?: string;
+  name?: string;
+  options: SelectListOptions;
+  onChange: (value: string) => void;
+  value?: string;
+  disabled?: boolean;
+  size?: "md" | "lg";
+  placeholder?: string;
 }
 
-export class SelectList extends React.Component<SelectListProps, State> {
-  select: HTMLSelectElement | null | undefined;
-
-  static defaultProps = {
-    disabled: false,
-    size: "md",
-    options: [],
-    id: "select",
-  };
-
-  state = {
-    focused: false,
-  };
-
-  setSelectListRef = (ref: HTMLSelectElement | null | undefined) => {
-    this.select = ref;
-  };
-
-  handleOnChange = (event: React.SyntheticEvent) => {
-    const {onChange, value} = this.props;
-    if (event.target instanceof HTMLSelectElement && value !== event.target.value) {
-      onChange(event.target.value);
-    }
-  };
+export class SelectList extends React.Component<SelectListProps, {}> {
+  state = {showing: false};
 
   render() {
-    const {
-      disabled,
-      id,
-      name,
-      options,
-      value,
-      size,
-      placeholder,
-      // FieldWithLabels
-      errorMessage,
-      errorMessageColor,
-      helperText,
-      helperTextColor,
-      label,
-      labelColor,
-    } = this.props;
-
-    const {focused} = this.state;
-
-    const classes = classnames(
-      styles.select,
-      formElement.base,
-      disabled ? formElement.disabled : formElement.enabled,
-      errorMessage ? formElement.errored : formElement.normal,
-      size === "md" ? layout.medium : layout.large
-    );
-
     return (
-      <Box>
-        <FieldWithLabels
-          {...{errorMessage, errorMessageColor, helperText, helperTextColor, label, labelColor}}
-        >
-          <Box
-            color={disabled ? "lightGray" : "white"}
-            display="flex"
-            position="relative"
-            rounding={4}
-            width="100%"
-          >
-            <Box
-              alignItems="center"
-              bottom
-              dangerouslySetInlineStyle={{
-                __style: {paddingRight: 14, paddingTop: 2},
-              }}
-              display="flex"
-              position="absolute"
-              right
-              top
-            >
-              <Icon
-                prefix="fas"
-                name="arrow-down"
-                size={12}
-                color={disabled ? "gray" : "darkGray"}
-              />
-            </Box>
-            <select
-              aria-describedby={errorMessage && focused ? `${id}-error` : undefined}
-              aria-invalid={errorMessage ? "true" : "false"}
-              className={classes}
-              disabled={disabled}
-              id={id}
-              name={name}
-              onBlur={this.handleOnChange}
-              onChange={this.handleOnChange}
-              ref={this.setSelectListRef}
-              value={value}
-            >
-              {placeholder && !value && (
-                <option selected disabled value={value} hidden>
-                  {placeholder}
-                </option>
-              )}
-              {options.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </Box>
-        </FieldWithLabels>
-      </Box>
+      <RNPickerSelect
+        placeholder={{}}
+        style={{
+          viewContainer: {
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: 50,
+            width: "100%",
+            // Add padding so the border doesn't mess up layouts
+            paddingHorizontal: 6,
+            paddingVertical: 4,
+            borderColor: Unifier.theme.gray,
+            borderWidth: 1,
+            borderRadius: 5,
+            backgroundColor: Unifier.theme.white,
+          },
+        }}
+        items={this.props.options}
+        onValueChange={this.props.onChange}
+        value={this.props.value}
+      />
     );
   }
 }

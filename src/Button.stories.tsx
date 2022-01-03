@@ -44,7 +44,7 @@ export default {
 
 // export const GhostButton = () => allColorButtons({type: "ghost"});
 
-const Template = (args) => <Button onClick={action("clicked")} text="Button" {...args} />;
+const Template = (args: any) => <Button onClick={action("clicked")} text="Button" {...args} />;
 
 export const Primary: any = Template.bind({});
 

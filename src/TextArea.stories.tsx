@@ -1,7 +1,6 @@
 import React from "react";
 import {Box} from "./Box";
 import {TextArea} from "./TextArea";
-import {WithLabel} from "./WithLabel";
 
 export default {
   title: "TextArea",

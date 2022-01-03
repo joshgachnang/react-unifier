@@ -1,10 +1,11 @@
 import React from "react";
 import {Box} from "./Box";
-import {Checkbox, CheckBoxWithLabel} from "./CheckBox";
+import {CheckBox} from "./CheckBox";
+import {WithLabel} from "./WithLabel";
 
 export default {
   title: "Checkbox",
-  component: Checkbox,
+  component: CheckBox,
 };
 
 interface State {
@@ -28,32 +29,38 @@ class Forms extends React.Component<{}, State> {
   render() {
     return (
       <Box width="100%" height="100%" display="flex" direction="column">
-        <Checkbox
+        <CheckBox
           id="check"
           checked={this.state.boolean}
           onChange={(result) => this.setState({boolean: result.value})}
         />
-        <CheckBoxWithLabel
-          id="withLabel"
-          checked={this.state.withLabel}
-          label="With A Label"
-          onChange={(result) => this.setState({withLabel: result.value})}
-        />
-        <CheckBoxWithLabel
-          id="primary"
-          checked={this.state.primary}
-          label="Primary Color"
-          color="primary"
-          labelColor="primary"
-          onChange={(result) => this.setState({primary: result.value})}
-        />
-        <CheckBoxWithLabel
-          id="small"
-          checked={this.state.small}
-          label="Small"
-          size="sm"
-          onChange={(result) => this.setState({small: result.value})}
-        />
+        <WithLabel label="With A Label">
+          <CheckBox
+            id="withLabel"
+            checked={this.state.withLabel}
+            onChange={(result) => this.setState({withLabel: result.value})}
+          />
+        </WithLabel>
+
+        <WithLabel label="Primary Color">
+          <CheckBox
+            id="primary"
+            checked={this.state.primary}
+            label="Primary Color"
+            color="primary"
+            labelColor="primary"
+            onChange={(result) => this.setState({primary: result.value})}
+          />
+        </WithLabel>
+        <WithLabel label="Small">
+          <CheckBox
+            id="small"
+            checked={this.state.small}
+            label="Small"
+            size="sm"
+            onChange={(result) => this.setState({small: result.value})}
+          />
+        </WithLabel>
       </Box>
     );
   }

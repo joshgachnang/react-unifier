@@ -1,13 +1,7 @@
-import {library} from "@fortawesome/fontawesome-svg-core";
-import {far} from "@fortawesome/free-regular-svg-icons";
-import {fas} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
-import * as React from "react";
+import {FontAwesome} from "@expo/vector-icons";
+import React from "react";
 import {iconNumberToSize, IconProps, iconSizeToNumber} from "./Common";
 import {Unifier} from "./Unifier";
-
-library.add(fas);
-library.add(far);
 
 export function initIcons() {}
 
@@ -17,7 +11,7 @@ export class Icon extends React.Component<IconProps, {}> {
     // Standardize the size (pretty hacky..)
     let size = iconSizeToNumber(iconNumberToSize(this.props.size));
     return (
-      <FontAwesomeIcon
+      <FontAwesome
         icon={[this.props.prefix || "far", this.props.name as any]}
         color={color}
         size={size}

@@ -1,52 +1,23 @@
-// Originally based on https://github.com/pinterest/gestalt
-// Forked, updated to Typescript, and added features.
-import cx from "classnames";
-import * as React from "react";
-import borders from "./Borders.module.css";
-import {MaskProps, Rounding} from "./Common";
-import styles from "./Mask.module.css";
-import {bind, fromClassName, identity, range, Style, toProps} from "./Utilities";
+import React from "react";
+import {MaskProps} from "./Common";
 
-import "./Typography.module.css";
-
-const getRoundingStyle = (r: Rounding): Style => {
-  if (typeof r === "number") {
-    return bind(range("rounding"), borders as any)(r);
+export class Mask extends React.Component<MaskProps, {}> {
+  render() {
+    // if (this.props.shape === "rounded") {
+    //   return <Box style={{overflow: "hidden", borderRadius: 12}}>{this.props.children}</Box>;
+    // } else if (this.props.shape === "circle") {
+    //   return <Box style={{overflow: "hidden", borderRadius: 1000}}>{this.props.children}</Box>;
+    // }
+    // if (this.props.rounding) {
+    //   let rounding = this.props.rounding === "circle" ? 100 : this.props.rounding;
+    //   // Subtract 1 from rounding because of some very odd rendering.
+    //   return (
+    //     // <View style={{borderRadius: (rounding - 1) * 4, overflow: "visible"}}>
+    //       <View>{this.props.children}</View>
+    //     // </View>
+    //   );
+    // } else {
+    return this.props.children;
+    // }
   }
-
-  if (r === "circle") {
-    return fromClassName(borders.circle);
-  }
-
-  return identity();
-};
-
-export function Mask(props: MaskProps) {
-  let {
-    children,
-    rounding = 0,
-    width,
-    height,
-    maxWidth,
-    maxHeight,
-    willChangeTransform = true,
-    wash = false,
-    shape,
-  } = props;
-  if (shape === "rounded") {
-    rounding = 4;
-  } else if (shape === "circle") {
-    rounding = "circle";
-  }
-  return (
-    <div
-      className={cx(styles.Mask, toProps(getRoundingStyle(rounding)).className, {
-        [styles.willChangeTransform]: willChangeTransform,
-      })}
-      style={{width, height, maxWidth, maxHeight}}
-    >
-      {children}
-      {wash && <div className={styles.wash} />}
-    </div>
-  );
 }

@@ -1,12 +1,32 @@
-import * as React from "react";
+import React from "react";
 import {Box} from "./Box";
+import {Button} from "./Button";
+import {Color, UnsignedUpTo12} from "./Common";
 import {ErrorBoundary} from "./ErrorBoundary";
 import {Heading} from "./Heading";
 import {IconButton} from "./IconButton";
 // import {KeyboardAccessoryNavigation} from "react-native-keyboard-accessory";
-import {PageProps} from "./Common";
 import {Spinner} from "./Spinner";
 import {Unifier} from "./Unifier";
+
+interface PageProps {
+  // TODO: figure out navigation
+  navigation: any;
+  scroll?: boolean;
+  loading?: boolean;
+  display?: "flex" | "none" | "block" | "inlineBlock";
+  title?: string;
+  backButton?: boolean;
+  closeButton?: boolean;
+  direction?: "row" | "column";
+  padding?: UnsignedUpTo12;
+  color?: Color;
+  maxWidth?: number | string;
+  keyboardOffset?: number;
+  footer?: any;
+  rightButton?: string;
+  rightButtonOnClick?: () => void;
+}
 
 export class Page extends React.Component<PageProps, {}> {
   actionSheetRef: React.RefObject<any> = React.createRef();
@@ -23,7 +43,19 @@ export class Page extends React.Component<PageProps, {}> {
               prefix="fas"
               icon="chevron-left"
               size="md"
-              onClick={() => Unifier.navigation.pop(this.props.componentId)}
+              onClick={() => this.props.navigation.goBack()}
+              accessibilityLabel=""
+              iconColor="darkGray"
+            />
+          </Box>
+        )}
+        {this.props.closeButton && (
+          <Box paddingY={3} justifyContent="center" alignItems="center" display="block">
+            <IconButton
+              prefix="fas"
+              icon="times"
+              size="md"
+              onClick={() => this.props.navigation.goBack()}
               accessibilityLabel=""
               iconColor="darkGray"
             />
@@ -34,6 +66,16 @@ export class Page extends React.Component<PageProps, {}> {
             <Heading align="center">{this.props.title}</Heading>
           </Box>
         )}
+        {this.props.rightButton && (
+          <Box paddingY={3} justifyContent="center" alignItems="center" display="block">
+            <Button
+              type="ghost"
+              text={this.props.rightButton}
+              color="gray"
+              onClick={() => this.props.rightButtonOnClick && this.props.rightButtonOnClick()}
+            />
+          </Box>
+        )}
       </Box>
     );
   }
@@ -42,17 +84,17 @@ export class Page extends React.Component<PageProps, {}> {
     return (
       <ErrorBoundary>
         <Box
-          scroll={true}
+          scroll={this.props.scroll === undefined ? true : this.props.scroll}
           padding={this.props.padding !== undefined ? this.props.padding : 2}
           avoidKeyboard={true}
           keyboardOffset={this.props.keyboardOffset}
           display={this.props.display || "flex"}
-          height="100%"
           width="100%"
+          flex="grow"
           maxWidth={this.props.maxWidth || 800}
           alignSelf="center"
           direction={this.props.direction || "column"}
-          color={this.props.color || "white"}
+          color={this.props.color || "lightGray"}
           // color="ligh"
         >
           {this.renderHeader()}
@@ -68,6 +110,22 @@ export class Page extends React.Component<PageProps, {}> {
 
           {this.props.children}
         </Box>
+        {Boolean(this.props.footer) && (
+          <Box
+            width="100%"
+            maxWidth={this.props.maxWidth || 800}
+            marginBottom={8}
+            paddingY={this.props.padding !== undefined ? this.props.padding : 2}
+            paddingX={this.props.padding !== undefined ? this.props.padding : 6}
+            display={this.props.display || "flex"}
+            flex="shrink"
+            alignSelf="center"
+            direction={this.props.direction || "column"}
+            color={this.props.color || "lightGray"}
+          >
+            {this.props.footer}
+          </Box>
+        )}
       </ErrorBoundary>
     );
   }
