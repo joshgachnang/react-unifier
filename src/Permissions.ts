@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // import {Tracking} from "./Tracking";
 // import capitalize from "lodash/capitalize";
-import {Platform} from "react-native";
 // import Permissions from "react-native-permissions";
 import {PermissionKind, PermissionStatus} from "./Common";
 

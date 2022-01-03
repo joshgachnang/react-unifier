@@ -8,12 +8,6 @@ require("esbuild")
     // minify: true,
     sourcemap: true,
     external: [
-      "@fortawesome/fontawesome-svg-core",
-      "@fortawesome/free-brands-svg-icons",
-      "@fortawesome/free-regular-svg-icons",
-      "@fortawesome/free-solid-svg-icons",
-      "@fortawesome/react-fontawesome",
-      "@fortawesome/react-native-fontawesome",
       "@react-native-community/async-storage",
       "@react-native-community/blur",
       "@react-native-community/datetimepicker",

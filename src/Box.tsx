@@ -53,10 +53,13 @@ export class Box extends React.Component<BoxProps, {}> {
     alignSelf: (value: AlignSelf) => ({alignSelf: ALIGN_SELF[value]}),
     color: (value: keyof UnifiedTheme) => ({backgroundColor: Unifier.theme[value]}),
     direction: (value: any) => ({flexDirection: value, display: "flex"}),
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     smDirection: (value: any, all: any) =>
       mediaQueryLargerThan("sm") ? {flexDirection: value, display: "flex"} : {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     mdDirection: (value: any, all: any) =>
       mediaQueryLargerThan("md") ? {flexDirection: value, display: "flex"} : {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     lgDirection: (value: any, all: any) =>
       mediaQueryLargerThan("lg") ? {flexDirection: value, display: "flex"} : {},
     display: (value: any) => {
