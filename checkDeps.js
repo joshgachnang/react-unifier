@@ -1,12 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkg = require("./package.json");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const peerPkg = require("./src/package.json");
 if (require.main === module) {
-  const errors = 0;
-  for (let peerDep of Object.keys(pkg.peerDependencies)) {
+  let errors = 0;
+  for (let peerDep of Object.keys(peerPkg.peerDependencies)) {
     console.log(peerDep);
-    if (pkg.devDependencies[peerDep] !== pkg.peerDependencies[peerDep]) {
+    if (pkg.devDependencies[peerDep] !== peerPkg.peerDependencies[peerDep]) {
       console.error(
-        `Peer Dependency ${peer} is ${pkg.peerDependencies[peerDep]} not equal to ` +
+        `Peer Dependency ${peerDep} is ${pkg.peerDependencies[peerDep]} not equal to ` +
           `Dev Dependency ${pkg.devDependencies[peerDep]}`
       );
       errors += 1;
@@ -15,4 +17,6 @@ if (require.main === module) {
   if (errors > 0) {
     process.exit(1);
   }
+} else {
+  console.error("Must be run as a module");
 }

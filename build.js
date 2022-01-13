@@ -33,7 +33,7 @@ require("esbuild")
       "react-native-svg",
       "react-router",
       "react-router-dom",
-      "victory-native",
+      // "victory-native",
     ],
     inject: ["./react-shim.js"],
     watch: watch
