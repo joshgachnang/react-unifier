@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkg = require("./package.json");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const peerPkg = require("./src/unifier/package.json");
+const peerPkg = require("./src/package.json");
 if (require.main === module) {
   let errors = 0;
   for (let peerDep of Object.keys(peerPkg.peerDependencies)) {
