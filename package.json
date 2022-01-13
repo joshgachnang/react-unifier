@@ -4,8 +4,8 @@
   "version": "0.1.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "build": "cd src/unifier && yarn build",
-    "dev": "cd src/unifier && yarn dev",
+    "build": "cd src && yarn build",
+    "dev": "cd src && yarn dev",
     "lint": "prettier --list-different \"src/**/*.ts\" && eslint \"src/**/*.ts*\"",
     "lintfix": "eslint \"src/**/*.ts*\"",
     "test": "node checkDeps.js",
