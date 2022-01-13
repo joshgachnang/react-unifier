@@ -1,54 +1,46 @@
 import React from "react";
 import {Box} from "./Box";
-import {Icon} from "./Icon";
+import {Icon, IconExpo} from "./Icon";
+import {storiesOf} from "@storybook/react-native";
+import {StorybookContainer} from "./StorybookContainer";
 
-// import {library} from "@fortawesome/fontawesome-svg-core";
-// import {
-//   faHeart as fasHeart,
-//   faPlus as fasPlus,
-//   faEdit as fasEdit,
-// } from "@fortawesome/free-solid-svg-icons";
-// import {faHeart, faEdit} from "@fortawesome/free-regular-svg-icons";
+storiesOf("Icon", module)
+  .add("Solid Icons", () => (
+    <StorybookContainer>
+      <Box width="100%" height="100%" display="flex" direction="row" justifyContent="between">
+        <IconExpo prefix="fas" name="heart" />
+        <Icon prefix="fas" name="plus" />
+        <Icon prefix="fas" name="edit" />
+      </Box>
+    </StorybookContainer>
+  ))
+  .add("Regular Icons", () => (
+    <StorybookContainer>
+      <Box width="100%" height="100%" display="flex" direction="row" justifyContent="between">
+        <Icon prefix="far" name="heart" />
+        <Icon prefix="far" name="plus" />
+        <Icon prefix="far" name="edit" />
+        <Icon prefix="far" name="heart" />
+      </Box>
+    </StorybookContainer>
+  ))
+  .add("Icon Sizes", () => (
+    <StorybookContainer>
+      <Box width="100%" height="100%" display="flex" direction="row" justifyContent="between">
+        <Icon prefix="fas" name="heart" size={8} />
+        <Icon prefix="far" name="heart" size={8} />
 
-// library.add(fasHeart, fasPlus, fasEdit, faHeart, faEdit);
+        <Icon prefix="fas" name="heart" size={12} />
+        <Icon prefix="far" name="heart" size={12} />
 
-export default {
-  title: "Icon",
-  component: Icon,
-};
+        <Icon prefix="fas" name="heart" size={15} />
+        <Icon prefix="far" name="heart" size={15} />
 
-export const SolidIcons = () => (
-  <Box width="100%" height="100%" display="flex" direction="row" justifyContent="between">
-    <Icon prefix="fas" name="heart" />
-    <Icon prefix="fas" name="plus" />
-    <Icon prefix="fas" name="edit" />
-  </Box>
-);
+        <Icon prefix="fas" name="heart" size={22} />
+        <Icon prefix="far" name="heart" size={22} />
 
-export const RegularIcons = () => (
-  <Box width="100%" height="100%" display="flex" direction="row" justifyContent="between">
-    <Icon prefix="far" name="heart" />
-    <Icon prefix="far" name="plus" />
-    <Icon prefix="far" name="edit" />
-    <Icon prefix="far" name="heart" />
-  </Box>
-);
-
-export const IconSizes = () => (
-  <Box width="100%" height="100%" display="flex" direction="row" justifyContent="between">
-    <Icon prefix="fas" name="heart" size={8} />
-    <Icon prefix="far" name="heart" size={8} />
-
-    <Icon prefix="fas" name="heart" size={12} />
-    <Icon prefix="far" name="heart" size={12} />
-
-    <Icon prefix="fas" name="heart" size={15} />
-    <Icon prefix="far" name="heart" size={15} />
-
-    <Icon prefix="fas" name="heart" size={22} />
-    <Icon prefix="far" name="heart" size={22} />
-
-    <Icon prefix="fas" name="heart" size={28} />
-    <Icon prefix="far" name="heart" size={28} />
-  </Box>
-);
+        <Icon prefix="fas" name="heart" size={28} />
+        <Icon prefix="far" name="heart" size={28} />
+      </Box>
+    </StorybookContainer>
+  ));

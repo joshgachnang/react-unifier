@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkg = require("./package.json");
 if (require.main === module) {
-  const errors = 0;
-  for (let peerDep of Object.keys(pkg.peerDependencies)) {
+  let errors = 0;
+  for (let peerDep of Object.keys(pkg.devDependencies)) {
     console.log(peerDep);
     if (pkg.devDependencies[peerDep] !== pkg.peerDependencies[peerDep]) {
       console.error(

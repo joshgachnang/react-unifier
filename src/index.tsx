@@ -43,7 +43,7 @@ export * from "./WithLabel";
 export * from "./DecimalRangeActionSheet";
 export * from "./HeightActionSheet";
 export * from "./NumberPickerActionSheet";
-export * from "./Chart";
+// export * from "./Chart";
 export * from "./ModalSheet";
 export * from "./ProgressBar";
 

@@ -1,6 +1,7 @@
 import React from "react";
 import {Box} from "./Box";
 import {TextArea} from "./TextArea";
+import {StorybookContainer} from "./StorybookContainer";
 
 export default {
   title: "TextArea",
@@ -9,36 +10,36 @@ export default {
 
 export const TextAreas = () => {
   return (
-    <Box width="100%" height="100%" display="flex" direction="column">
+    <StorybookContainer>
       <TextArea id="none" onChange={() => {}} placeholder="Here's some placeholder text." />
-    </Box>
+    </StorybookContainer>
   );
 };
 
 export const WithLabelTextArea = () => {
   return (
-    <Box width="100%" height="100%" display="flex" direction="column">
+    <StorybookContainer>
       <TextArea
         label="Enter a bunch of text"
         helperText="And some subtext"
         id="none"
         onChange={() => {}}
       />
-    </Box>
+    </StorybookContainer>
   );
 };
 
-export const Disabled = () => {
+export const TextAreaDisabled = () => {
   return (
-    <Box width="100%" height="100%" display="flex" direction="column">
+    <StorybookContainer>
       <TextArea id="none" onChange={() => {}} disabled={true} placeholder="This is disabled" />
-    </Box>
+    </StorybookContainer>
   );
 };
 
-export const Errored = () => {
+export const TextAreaErrored = () => {
   return (
-    <Box width="100%" height="100%" display="flex" direction="column">
+    <StorybookContainer>
       <TextArea
         label="Enter a bunch of text"
         helperText="And some subtext"
@@ -46,6 +47,6 @@ export const Errored = () => {
         id="none"
         onChange={() => {}}
       />
-    </Box>
+    </StorybookContainer>
   );
 };

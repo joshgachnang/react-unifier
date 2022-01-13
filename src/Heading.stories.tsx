@@ -2,11 +2,8 @@ import React from "react";
 import {Box} from "./Box";
 import {Heading} from "./Heading";
 import {HeadingProps} from "./Common";
-
-export default {
-  title: "Heading",
-  component: Heading,
-};
+import {storiesOf} from "@storybook/react-native";
+import {StorybookContainer} from "./StorybookContainer";
 
 function renderText(text: string, props: Partial<HeadingProps>) {
   return (
@@ -16,8 +13,8 @@ function renderText(text: string, props: Partial<HeadingProps>) {
   );
 }
 
-export const Headings = () => (
-  <Box width="100%" height="100%" display="flex" direction="column">
+storiesOf("Headings", module).add("Headings", () => (
+  <StorybookContainer>
     {renderText("Default Heading - h1", {})}
     {renderText("medium - h2", {size: "md"})}
     {renderText("small - h3", {size: "sm"})}
@@ -29,5 +26,5 @@ export const Headings = () => (
     {renderText("accent", {color: "accent"})}
     {renderText("red", {color: "red"})}
     {renderText("center", {align: "center"})}
-  </Box>
-);
+  </StorybookContainer>
+));

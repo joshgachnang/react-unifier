@@ -11,6 +11,6 @@ export class Link extends React.Component<LinkProps, LinkState> {
   }
 
   render() {
-    return <Text>this.props.children</Text>;
+    return <Text>{this.props.children}</Text>;
   }
 }

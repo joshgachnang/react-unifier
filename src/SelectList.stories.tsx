@@ -1,11 +1,8 @@
 import React from "react";
 import {Box} from "./Box";
 import {SelectList, SelectListOptions} from "./SelectList";
-
-export default {
-  title: "SelectList",
-  component: SelectList,
-};
+import {storiesOf} from "@storybook/react-native";
+import {StorybookContainer} from "./StorybookContainer";
 
 const options: SelectListOptions = [
   {label: "First", value: "first"},
@@ -13,52 +10,51 @@ const options: SelectListOptions = [
   {label: "Third, A Really Long Option", value: "third"},
 ];
 
-export const SelectLists = () => {
-  const [item, setItem] = React.useState(options[0].value);
+storiesOf("Select List", module)
+  .add("Select Lists", () => {
+    const [item, setItem] = React.useState(options[0].value);
 
-  return (
-    <Box width="100%" height="100%" display="flex" direction="column">
-      <SelectList
-        id="none"
-        options={options}
-        value={item}
-        onChange={(item) => setItem(item)}
-        placeholder="Here's some placeholder text."
-      />
-    </Box>
-  );
-};
+    return (
+      <StorybookContainer>
+        <SelectList
+          id="none"
+          options={options}
+          value={item}
+          onChange={(item) => setItem(item)}
+          placeholder="Here's some placeholder text."
+        />
+      </StorybookContainer>
+    );
+  })
+  .add("With Label", () => {
+    const [item, setItem] = React.useState(options[0].value);
 
-export const WithLabelSelectList = () => {
-  const [item, setItem] = React.useState(options[0].value);
+    return (
+      <StorybookContainer>
+        <SelectList
+          id="none"
+          label="Enter a bunch of text"
+          helperText="And some subtext"
+          options={options}
+          value={item}
+          onChange={(item) => setItem(item)}
+        />
+      </StorybookContainer>
+    );
+  })
+  .add("Disabled", () => {
+    const [item, setItem] = React.useState(options[0].value);
 
-  return (
-    <Box width="100%" height="100%" display="flex" direction="column">
-      <SelectList
-        id="none"
-        label="Enter a bunch of text"
-        helperText="And some subtext"
-        options={options}
-        value={item}
-        onChange={(item) => setItem(item)}
-      />
-    </Box>
-  );
-};
-
-export const Disabled = () => {
-  const [item, setItem] = React.useState(options[0].value);
-
-  return (
-    <Box width="100%" height="100%" display="flex" direction="column">
-      <SelectList
-        id="none"
-        options={options}
-        value={item}
-        onChange={(item) => setItem(item)}
-        disabled={true}
-        placeholder="This is disabled"
-      />
-    </Box>
-  );
-};
+    return (
+      <StorybookContainer>
+        <SelectList
+          id="none"
+          options={options}
+          value={item}
+          onChange={(item) => setItem(item)}
+          disabled={true}
+          placeholder="This is disabled"
+        />
+      </StorybookContainer>
+    );
+  });

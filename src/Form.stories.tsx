@@ -1,6 +1,8 @@
 import React from "react";
 import {Box} from "./Box";
 import {FormLine} from "./Form";
+import {storiesOf} from "@storybook/react-native";
+import {StorybookContainer} from "./StorybookContainer";
 
 export default {
   title: "FormLine",
@@ -29,7 +31,7 @@ class Forms extends React.Component<{}, State> {
 
   render() {
     return (
-      <Box width="100%" height="100%" display="flex" direction="column">
+      <StorybookContainer>
         <Box paddingY={2}>
           <FormLine
             name="name"
@@ -71,9 +73,9 @@ class Forms extends React.Component<{}, State> {
             options={[undefined, "ay", "bee", "see"]}
           />
         </Box>
-      </Box>
+      </StorybookContainer>
     );
   }
 }
 
-export const Form = () => <Forms />;
+storiesOf("Form", module).add("Forms", () => <Forms />);

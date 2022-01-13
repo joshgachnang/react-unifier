@@ -2,11 +2,8 @@ import React from "react";
 import {Box} from "./Box";
 import {AllColors} from "./Common";
 import {Pill} from "./Pill";
-
-export default {
-  title: "Pill",
-  component: Pill,
-};
+import {storiesOf} from "@storybook/react-native";
+import {StorybookContainer} from "./StorybookContainer";
 
 const renderPill = (color: AllColors) => (
   <Box display="flex" direction="row" alignItems="center" paddingY={1}>
@@ -45,8 +42,6 @@ const colors: AllColors[] = [
   "neutral10",
 ];
 
-export const Pills = () => (
-  <Box width="100%" height="100%" display="flex" direction="column">
-    {colors.map((c) => renderPill(c))}
-  </Box>
-);
+storiesOf("Pills", module).add("Pills", () => (
+  <StorybookContainer>{colors.map((c) => renderPill(c))}</StorybookContainer>
+));

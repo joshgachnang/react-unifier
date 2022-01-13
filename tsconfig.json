@@ -1,12 +1,19 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "outDir": "dist/",
     "sourceMap": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDirs": ["src", "stories"],
+    "rootDirs": [
+      "src",
+      "stories"
+    ],
     "baseUrl": "src",
     "allowJs": true,
     "skipLibCheck": true,
@@ -25,5 +32,8 @@
     "suppressImplicitAnyIndexErrors": true,
     "downlevelIteration": true
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ],
+  "extends": "expo/tsconfig.base"
 }

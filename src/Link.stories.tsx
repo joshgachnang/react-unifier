@@ -2,14 +2,11 @@ import React from "react";
 import {Box} from "./Box";
 import {Link} from "./Link";
 import {Text} from "./Text";
+import {storiesOf} from "@storybook/react-native";
+import {StorybookContainer} from "./StorybookContainer";
 
-export default {
-  title: "Link",
-  component: Link,
-};
-
-export const Links = () => (
-  <Box width="100%" height="100%" display="flex" direction="column">
+storiesOf("Links", module).add("Links", () => (
+  <StorybookContainer>
     <Link href="http://google.com">
       <Text>http://google.com</Text>
     </Link>
@@ -27,5 +24,5 @@ export const Links = () => (
       </Link>
       And a bit more text.
     </Text>
-  </Box>
-);
+  </StorybookContainer>
+));

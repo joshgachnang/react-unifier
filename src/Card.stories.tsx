@@ -1,13 +1,14 @@
 import React from "react";
 import {Box} from "./Box";
 import {Card} from "./Card";
+import {storiesOf} from "@storybook/react-native";
 
 export default {
   title: "Card",
   component: Card,
 };
 
-export const PlainCard = () => (
+storiesOf("Card", module).add("Plain", () => (
   <Box width="100%" height="100%" display="flex" direction="column" color="lightGray" padding={12}>
     <Card>
       <Box display="flex" direction="row" alignItems="center">
@@ -32,4 +33,4 @@ export const PlainCard = () => (
       </Box>
     </Card>
   </Box>
-);
+));

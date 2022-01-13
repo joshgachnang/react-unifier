@@ -2,11 +2,8 @@ import React from "react";
 import {Box} from "./Box";
 import {CheckBox} from "./CheckBox";
 import {WithLabel} from "./WithLabel";
-
-export default {
-  title: "Checkbox",
-  component: CheckBox,
-};
+import {storiesOf} from "@storybook/react-native";
+import {StorybookContainer} from "./StorybookContainer";
 
 interface State {
   boolean: boolean;
@@ -28,7 +25,7 @@ class Forms extends React.Component<{}, State> {
 
   render() {
     return (
-      <Box width="100%" height="100%" display="flex" direction="column">
+      <StorybookContainer>
         <CheckBox
           id="check"
           checked={this.state.boolean}
@@ -61,9 +58,9 @@ class Forms extends React.Component<{}, State> {
             onChange={(result) => this.setState({small: result.value})}
           />
         </WithLabel>
-      </Box>
+      </StorybookContainer>
     );
   }
 }
 
-export const PlainCheckbox = () => <Forms />;
+storiesOf("Check Box", module).add("Plain", () => <Forms />);
