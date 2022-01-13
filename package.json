@@ -6,6 +6,7 @@
   "scripts": {
     "build": "cd src && yarn build",
     "dev": "cd src && yarn dev",
+    "build:web": "expo build:web",
     "lint": "prettier --list-different \"src/**/*.ts\" && eslint \"src/**/*.ts*\"",
     "lintfix": "eslint \"src/**/*.ts*\"",
     "test": "node checkDeps.js",
