@@ -33,13 +33,13 @@ jobs:
       - run: git config --global user.name "GitHub CD bot"
       - run: git config --global user.email "github-cd-bot@nang.io"
       # upgrade npm version in package.json to the tag used in the release.
-      - run: cd src/unifier && npm version ${{ github.event.release.tag_name }}
+      - run: cd src && npm version ${{ github.event.release.tag_name }}
       # build the project
       - run: yarn build
       # run tests just in case
       - run: yarn test
       # publish to NPM -> there is one caveat, continue reading for the fix
-      - run: cd src/unifier && npm publish
+      - run: cd src && npm publish
         env:
           # Use a token to publish to NPM. See below for how to set it up
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
@@ -48,3 +48,12 @@ jobs:
         env:
           # The secret is passed automatically. Nothing to configure.
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: bots
+          SLACK_COLOR: "#4BB543"
+          # SLACK_MESSAGE: "Post Content :rocket:"
+          SLACK_TITLE: Released react-unifier@${{ github.event.release.target_commitish }}
+          SLACK_USERNAME: Flourish
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
