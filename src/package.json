@@ -1,6 +1,6 @@
 {
   "name": "react-unifier",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "main": "dist/index.js",
   "scripts": {
     "local": "tsc-watch --onSuccess \"cp -a dist/* ../totum/node_modules/react-unifier/dist\"",
