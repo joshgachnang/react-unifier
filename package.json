@@ -6,6 +6,7 @@
   "scripts": {
     "build": "cd src && yarn build",
     "dev": "cd src && yarn dev",
+    "local": "tsc-watch --onSuccess \"cp -a src/dist/* ../totum/node_modules/react-unifier/dist\"",
     "build:web": "expo build:web",
     "lint": "prettier --list-different \"src/**/*.ts\" && eslint \"src/**/*.ts*\"",
     "lintfix": "eslint \"src/**/*.ts*\"",
@@ -283,6 +284,7 @@
     "terser-webpack-plugin": "2.3.5",
     "ts-loader": "^8.0.2",
     "ts-pnp": "1.1.6",
+    "tsc-watch": "^5.0.2",
     "typescript": "^3.9.7",
     "url-loader": "2.3.0",
     "webpack": "4.42.0",
